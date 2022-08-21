@@ -26,7 +26,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> ChorusFruitGrain = ITEMS.register("chorus_fruit_grain",
             ()-> new Item(new Item.Properties().food(FoodList.ChorusFruitGrain).group(EndsDelightGroup.ends_delightGroup)));
     public static final RegistryObject<Item> BakedRiceCakeWithChorusFruitFilling = ITEMS.register("baked_rice_cake_with_chorus_fruit_filling",
-            ()-> new ChorusFruitItem(new Item.Properties().food(FoodList.BakedRiceCakeWithChorusFruitFilling).group(EndsDelightGroup.ends_delightGroup)));
+            ()-> new BubbleTeaItem(new Item.Properties().food(FoodList.BakedRiceCakeWithChorusFruitFilling).group(EndsDelightGroup.ends_delightGroup)));
     //Drink
     public static final RegistryObject<Item> ChorusFruitWine = ITEMS.register("chorus_fruit_wine",
             ()-> new ChorusFruitWineItem(new Item.Properties().food(FoodList.ChorusFruitWine).containerItem(Items.GLASS_BOTTLE).maxStackSize(16).group(EndsDelightGroup.ends_delightGroup)));

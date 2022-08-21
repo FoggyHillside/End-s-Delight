@@ -20,7 +20,7 @@ public class BubbleTeaItem extends DrinkItem {
 
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         ItemStack itemstack = super.onItemUseFinish(stack, worldIn, entityLiving);
-        if (!worldIn.isRemote) {
+        if (!worldIn.isRemote && entityLiving.isSneaking() == true) {
             double d0 = entityLiving.getPosX();
             double d1 = entityLiving.getPosY();
             double d2 = entityLiving.getPosZ();
