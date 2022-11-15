@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " 00",
+    "100",
+    "21 "
+  ],
+  "key": {
+    "0": {
+      "item": "ends_delight:chorus_fruit_grain"
+    },
+    "1": {
+      "item": "minecraft:ice"
+    },
+    "2": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "ends_delight:chorus_fruit_popsicle"
+  }
+}

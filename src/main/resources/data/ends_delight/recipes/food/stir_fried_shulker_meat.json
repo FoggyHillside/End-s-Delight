@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:crops/onion"
+    },
+    {
+      "item": "farmersdelight:tomato_sauce"
+    },
+    {
+      "tag": "forge:shulker_meat"
+    }
+  ],
+  "result": {
+    "item": "ends_delight:stir_fried_shulker_meat"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}
