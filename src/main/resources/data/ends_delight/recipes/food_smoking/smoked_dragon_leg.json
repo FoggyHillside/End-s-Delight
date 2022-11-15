@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "ends_delight:dragon_leg"
+  },
+  "result": "ends_delight:smoked_dragon_leg",
+  "cookingtime": 200
+}

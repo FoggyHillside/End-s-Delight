@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "ends_delight:liquid_dragon_egg_in_bowl"
+  },
+  "result": "ends_delight:fried_dragon_egg",
+  "cookingtime": 100
+}
