@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT License"
+[[mods]]
+modId="ends_delight"
+version="1.16.5-1.7"
+displayName="End's Delight"
+logoFile="logo.png"
+authors="FoggyHillside"
+description='''
+This mod adds some food and drink about the End
+'''
+[[dependencies.ends_delight]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ends_delight]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.ends_delight]]
+    modId="farmersdelight"
+    mandatory=true
+    versionRange="[1.16.5-0.6.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
