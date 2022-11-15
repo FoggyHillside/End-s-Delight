@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:dragon_egg_research_notes"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_dragon_egg_research_notes"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_dragon_egg_research_notes.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:root",
+  "criteria": {
+    "dragon_egg_research_notes": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ends_delight:dragon_egg_research_notes"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "dragon_egg_research_notes"
+    ]
+  ]
+}
+
