@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:chorus_flower_tea"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_chorus_flower_tea"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_chorus_flower_tea.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:the_end_chef",
+  "criteria": {
+    "chorus_flower_tea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:chorus_flower_tea"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "chorus_flower_tea"
+    ]
+  ]
+}
+

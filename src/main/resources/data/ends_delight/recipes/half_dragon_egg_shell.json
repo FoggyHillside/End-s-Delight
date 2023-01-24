@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "0 0",
+    "1 1",
+    "010"
+  ],
+  "key":{
+    "0": {
+      "item": "minecraft:obsidian"
+    },
+    "1": {
+      "tag": "forge:dragon_egg_shell"
+    }
+  },
+  "result": {
+    "item": "ends_delight:half_dragon_egg_shell"
+  }
+}

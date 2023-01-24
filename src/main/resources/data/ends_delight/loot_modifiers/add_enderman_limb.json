@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/enderman"
+    }
+  ],
+  "item": "ends_delight:ender_man_limb",
+  "type": "ends_delight:add_enderman_limb"
+}

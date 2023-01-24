@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:roasted_shulker_meat"
+    },
+    {
+      "tag": "forge:roasted_dragon_meat"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "tag": "forge:roasted_ender_mite_meat"
+    },
+    {
+      "item": "ends_delight:ender_man_limb"
+    },
+    {
+      "item": "ends_delight:ender_man_limb"
+    },
+    {
+      "item": "ends_delight:ender_man_limb"
+    }
+  ],
+  "result": {
+    "item": "ends_delight:end_barbecue_stick",
+    "count": 3
+  }
+}

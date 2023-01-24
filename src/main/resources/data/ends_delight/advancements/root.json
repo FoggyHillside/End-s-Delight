@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:bubble_tea"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.root"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.root.desc"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/block/end_stone_bricks.png"
+  },
+  "criteria": {
+    "the_end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_end"
+      }
+    }
+  },
+  "requirements": [
+      [
+      "the_end"
+    ]
+  ]
+}

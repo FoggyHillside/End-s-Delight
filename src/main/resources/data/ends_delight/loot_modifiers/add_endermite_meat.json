@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/endermite"
+    }
+  ],
+  "item": "ends_delight:raw_ender_mite_meat",
+  "type": "ends_delight:add_endermite_meat"
+}

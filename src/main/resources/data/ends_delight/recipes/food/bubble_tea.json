@@ -1,0 +1,18 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "forge:milk"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "ends_delight:ender_pearl_grain"
+    }
+  ],
+  "result": {
+    "item": "ends_delight:bubble_tea"
+  },
+  "cookingtime": 200
+}

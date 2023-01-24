@@ -1,0 +1,10 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/shulker"
+    }
+  ],
+  "item": "ends_delight:shulker_meat",
+  "type": "ends_delight:add_shulker_meat"
+}

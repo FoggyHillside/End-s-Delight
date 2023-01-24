@@ -1,0 +1,48 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"3": "ends_delight:block/shulker_shell_buttom_and_top",
+		"particle": "minecraft:block/shulker_box"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 8, 9], "texture": "#3"},
+				"east": {"uv": [0, 8, 8, 9], "texture": "#3"},
+				"south": {"uv": [0, 8, 8, 9], "texture": "#3"},
+				"west": {"uv": [0, 8, 8, 9], "texture": "#3"},
+				"up": {"uv": [0, 0, 8, 8], "rotation": 180, "texture": "#3"},
+				"down": {"uv": [8, 0, 16, 8], "rotation": 180, "texture": "#3"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "cabbage",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "shell",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "succulent",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "meat",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": []
+		},
+		0
+	]
+}

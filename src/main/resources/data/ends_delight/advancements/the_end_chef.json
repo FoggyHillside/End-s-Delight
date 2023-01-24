@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:end_stove"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.the_end_chef"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.the_end_chef.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:root",
+  "criteria": {
+    "end_stove": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:end_stove"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "end_stove"
+    ]
+  ]
+}
+

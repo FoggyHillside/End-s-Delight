@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ends_delight:item/baked_rice_cake_with_chorus_fruit_filling"
+  }
+}

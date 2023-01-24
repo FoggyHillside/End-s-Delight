@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:chorus_flower"
+  },
+  "result": "ends_delight:dried_chorus_flower",
+  "cookingtime": 200
+}

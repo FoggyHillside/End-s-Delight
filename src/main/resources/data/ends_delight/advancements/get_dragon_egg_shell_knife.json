@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:dragon_egg_shell_knife"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_dragon_egg_shell_knife"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_dragon_egg_shell_knife.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:get_knife",
+  "criteria": {
+    "dragon_egg_shell_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:dragon_egg_shell_knife"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "dragon_egg_shell_knife"
+    ]
+  ]
+}
+

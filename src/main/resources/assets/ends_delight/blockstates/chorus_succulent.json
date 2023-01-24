@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "succulent=1": {
+      "model": "ends_delight:block/chorus_succulent"
+    },
+    "succulent=2": {
+      "model": "ends_delight:block/chorus_succulent_2"
+    },
+    "succulent=3": {
+      "model": "ends_delight:block/chorus_succulent_3"
+    }
+  }
+}

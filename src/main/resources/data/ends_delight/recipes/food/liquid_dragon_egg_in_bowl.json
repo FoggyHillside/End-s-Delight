@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "ends_delight:liquid_dragon_egg"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "item": "ends_delight:liquid_dragon_egg_in_bowl",
+    "count": 1
+  }
+}

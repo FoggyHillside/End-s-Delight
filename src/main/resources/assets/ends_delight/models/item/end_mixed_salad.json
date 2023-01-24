@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ends_delight:item/end_mixed_salad"
+  }
+}

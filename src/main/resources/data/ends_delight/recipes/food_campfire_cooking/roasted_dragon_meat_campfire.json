@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "ends_delight:raw_dragon_meat"
+  },
+  "result": "ends_delight:roasted_dragon_meat",
+  "cookingtime": 600
+}
