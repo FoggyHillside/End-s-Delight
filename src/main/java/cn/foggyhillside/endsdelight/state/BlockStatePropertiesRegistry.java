@@ -1,6 +1,6 @@
 package cn.foggyhillside.endsdelight.state;
 
-import net.minecraft.state.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class BlockStatePropertiesRegistry {
     public static final IntegerProperty SUCCULENT_1_3 = IntegerProperty.create("succulent", 1, 3);

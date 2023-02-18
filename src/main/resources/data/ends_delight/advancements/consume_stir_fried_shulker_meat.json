@@ -1,0 +1,49 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:stir_fried_shulker_meat"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.consume_stir_fried_shulker_meat"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.consume_stir_fried_shulker_meat.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:the_end_chef",
+  "criteria": {
+    "stir_fried_shulker_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item":
+          {
+            "items": [
+              "ends_delight:stir_fried_shulker_meat"
+            ]
+          }
+      }
+    },
+    "grilled_shulker": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item":
+        {
+          "items": [
+            "ends_delight:grilled_shulker"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+      [
+      "stir_fried_shulker_meat",
+      "grilled_shulker"
+    ]
+  ]
+}
+

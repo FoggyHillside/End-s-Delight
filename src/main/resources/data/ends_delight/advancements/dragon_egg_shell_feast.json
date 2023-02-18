@@ -1,0 +1,53 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:dragon_meat_stew_block"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.dragon_egg_shell_feast"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.dragon_egg_shell_feast.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:get_non_hatchable_dragon_egg",
+  "criteria": {
+    "dragon_meat_stew_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:dragon_meat_stew_block"
+            ]
+          }
+        ]
+      }
+    },
+    "steamed_dragon_egg_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:steamed_dragon_egg_block"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+        "dragon_meat_stew_block"
+      ],
+      [
+        "steamed_dragon_egg_block"
+      ]
+  ]
+}
+

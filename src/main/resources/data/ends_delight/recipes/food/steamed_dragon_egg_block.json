@@ -17,7 +17,7 @@
       "item": "ends_delight:chorus_succulent"
     },
     {
-      "item": "farmersdelight:onion"
+      "tag": "forge:crops/onion"
     }
   ],
   "result": {

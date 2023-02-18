@@ -1,85 +1,70 @@
 package cn.foggyhillside.endsdelight.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IWorld;
+import cn.foggyhillside.endsdelight.registry.BlockRegistry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.Map;
-
+@Mod.EventBusSubscriber
 public class ChorusFruitPie {
-        @Mod.EventBusSubscriber
-        private static class GlobalTrigger {
-            @SubscribeEvent
-            public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-                PlayerEntity entity = event.getPlayer();
-                if (event.getHand() != entity.getActiveHand()) {
-                    return;
-                }
-                double i = event.getPos().getX();
-                double j = event.getPos().getY();
-                double k = event.getPos().getZ();
-                IWorld world = event.getWorld();
-                BlockState state = world.getBlockState(event.getPos());
-                Map<String, Object> dependencies = new HashMap<>();
-                dependencies.put("x", i);
-                dependencies.put("y", j);
-                dependencies.put("z", k);
-                dependencies.put("world", world);
-                dependencies.put("entity", entity);
-                dependencies.put("direction", event.getFace());
-                dependencies.put("blockstate", state);
-                dependencies.put("event", event);
-                executeProcedure(dependencies);
-            }
-        }
+    @SubscribeEvent
+    public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getHand() != event.getEntity().getUsedItemHand())
+            return;
+        execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getEntity(), event.getEntity());
+    }
 
-        public static void executeProcedure(Map<String, Object> dependencies) {
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, Player player) {
+        execute(null, world, x, y, z, entity, player);
+    }
 
-            IWorld world = (IWorld) dependencies.get("world");
-            double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-            double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-            double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-            Entity entity = (Entity) dependencies.get("entity");
-            if ((world.getBlockState(new BlockPos(x, y, z))).getBlock() == BlockRegistry.ChorusFruitPie.get()
-                    && ((PlayerEntity) entity).canEat(false) ){
-                if (((PlayerEntity) entity).isSneaking() == true
-                        && ((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemMainhand() : ItemStack.EMPTY).getItem() == ItemStack.EMPTY.getItem()
-                        && ((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemOffhand() : ItemStack.EMPTY).getItem() == ItemStack.EMPTY.getItem()) {
-                    double d0 = ((PlayerEntity) entity).getPosX();
-                    double d1 = ((PlayerEntity) entity).getPosY();
-                    double d2 = ((PlayerEntity) entity).getPosZ();
+    private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity, Player player) {
+        if (entity == null)
+            return;
+        if ((world.getBlockState(new BlockPos(x, y, z))).getBlock() == BlockRegistry.ChorusFruitPie.get()
+                && player.getOffhandItem().getItem() == (ItemStack.EMPTY).getItem()
+                && player.getOffhandItem().getItem() == (ItemStack.EMPTY).getItem()
+                && player.isShiftKeyDown() == true
+                && player.canEat(false)) {
+            if (!world.isClientSide()) {
+                double d0 = player.getX();
+                double d1 = player.getY();
+                double d2 = player.getZ();
 
-                    for(int i = 0; i < 16; ++i) {
-                        double d3 = ((PlayerEntity) entity).getPosX() + (((PlayerEntity) entity).getRNG().nextDouble() - 0.5D) * 16.0D;
-                        double d4 = MathHelper.clamp(((PlayerEntity) entity).getPosY() + (double)(((PlayerEntity) entity).getRNG().nextInt(16) - 8), 0.0D, (double)(world.func_234938_ad_() - 1));
-                        double d5 = ((PlayerEntity) entity).getPosZ() + (((PlayerEntity) entity).getRNG().nextDouble() - 0.5D) * 16.0D;
-                        if (((PlayerEntity) entity).isPassenger()) {
-                            ((PlayerEntity) entity).stopRiding();
-                        }
+                for (int i = 0; i < 16; ++i) {
+                    double d3 = player.getX() + (player.getRandom().nextDouble() - 0.5D) * 16.0D;
+                    double d4 = Mth.clamp(player.getY() + (double) (player.getRandom().nextInt(16) - 8), (double) world.getMinBuildHeight(), (double) (world.getMinBuildHeight() + ((ServerLevel) world).getLogicalHeight() - 1));
+                    double d5 = player.getZ() + (player.getRandom().nextDouble() - 0.5D) * 16.0D;
+                    if (player.isPassenger()) {
+                        player.stopRiding();
+                    }
 
-                        net.minecraftforge.event.entity.living.EntityTeleportEvent.ChorusFruit event = net.minecraftforge.event.ForgeEventFactory.onChorusFruitTeleport(((PlayerEntity) entity), d3, d4, d5);
-                        if (((PlayerEntity) entity).attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
-                            SoundEvent soundevent = entity instanceof FoxEntity ? SoundEvents.ENTITY_FOX_TELEPORT : SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-                            ((PlayerEntity) entity).playSound(soundevent, 1.0F, 1.0F);
-                            break;
-                        }
+                    EntityTeleportEvent.ChorusFruit event2 = ForgeEventFactory.onChorusFruitTeleport(player, d3, d4, d5);
+                    if (player.randomTeleport(event2.getTargetX(), event2.getTargetY(), event2.getTargetZ(), true)) {
+                        SoundEvent soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
+                        player.playSound(soundevent, 1.0F, 1.0F);
+                        break;
                     }
                 }
             }
         }
+    }
 }
+
+
 
 
 

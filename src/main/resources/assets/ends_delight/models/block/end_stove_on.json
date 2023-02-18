@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "side": "ends_delight:block/end_stove_side",
+    "front": "ends_delight:block/end_stove_front_on",
+    "bottom": "ends_delight:block/end_stove_bottom",
+    "top": "ends_delight:block/end_stove_top_on"
+  }
+}

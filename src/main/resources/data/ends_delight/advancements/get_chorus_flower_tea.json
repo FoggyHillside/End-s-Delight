@@ -14,14 +14,16 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "ends_delight:root",
+  "parent": "ends_delight:the_end_chef",
   "criteria": {
     "chorus_flower_tea": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "ends_delight:chorus_flower_tea"
+            "items": [
+              "ends_delight:chorus_flower_tea"
+            ]
           }
         ]
       }

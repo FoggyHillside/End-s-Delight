@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "ends_delight:non_hatchable_dragon_egg"
+            "items": [
+              "ends_delight:non_hatchable_dragon_egg"
+            ]
           }
         ]
       }

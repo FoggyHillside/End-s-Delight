@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:assorted_salad"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_assorted_salad"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_assorted_salad.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:get_non_hatchable_dragon_egg",
+  "criteria": {
+    "assorted_salad": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:assorted_salad"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "assorted_salad"
+    ]
+  ]
+}
+

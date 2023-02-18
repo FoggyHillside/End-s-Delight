@@ -21,7 +21,9 @@
       "conditions": {
         "items": [
           {
-            "item": "ends_delight:dragon_egg_research_notes"
+            "items": [
+              "ends_delight:dragon_egg_research_notes"
+            ]
           }
         ]
       }

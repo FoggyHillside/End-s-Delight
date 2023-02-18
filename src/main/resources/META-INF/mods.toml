@@ -1,11 +1,12 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[43,)"
 license="MIT License"
 [[mods]]
 modId="ends_delight"
-version="1.16.5-1.7"
+version="1.19.2-1.0"
 displayName="End's Delight"
 logoFile="logo.png"
+logoBlur=false
 authors="FoggyHillside"
 description='''
 This mod adds some food and drink about the End
@@ -13,21 +14,18 @@ This mod adds some food and drink about the End
 [[dependencies.ends_delight]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[43,)"
     ordering="NONE"
     side="BOTH"
-
 [[dependencies.ends_delight]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.5,1.17)"
+    versionRange="[1.19.2,1.20)"
     ordering="NONE"
     side="BOTH"
-
 [[dependencies.ends_delight]]
     modId="farmersdelight"
     mandatory=true
-    versionRange="[1.16.5-0.6.0,)"
+    versionRange="[1.19-1.2.0,)"
     ordering="AFTER"
     side="BOTH"
-

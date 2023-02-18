@@ -1,83 +1,60 @@
 package cn.foggyhillside.endsdelight;
 
-import cn.foggyhillside.endsdelight.item.ItemRegistry;
+import cn.foggyhillside.endsdelight.registry.ItemRegistry;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import org.jetbrains.annotations.Nullable;
 
-import net.minecraft.world.IWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.item.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.BlockState;
-
-import java.util.Map;
-import java.util.HashMap;
-
-public class GetDragonEggResearchNotes {
     @Mod.EventBusSubscriber
-    private static class GlobalTrigger {
+    public class GetDragonEggResearchNotes {
         @SubscribeEvent
         public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-            PlayerEntity entity = event.getPlayer();
-            if (event.getHand() != entity.getActiveHand()) {
+            if (event.getHand() != event.getEntity().getUsedItemHand())
                 return;
+            execute(event, event.getLevel(), event.getPos().getX(), event.getPos().getY(), event.getPos().getZ(), event.getEntity());
+        }
+        public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
+            execute(null, world, x, y, z, entity);
+        }
+
+        private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
+            if (entity == null)
+                return;
+            if ((world.getBlockState(new BlockPos(x, y, z))).getBlock() == Blocks.DRAGON_EGG
+                    && (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.WRITABLE_BOOK
+                    && (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == Blocks.OBSIDIAN.asItem()
+                    && (entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(Items.NETHER_STAR)) : false)
+                    && (entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(Items.END_CRYSTAL)) : false)
+                    && ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY)).getCount() >= 4) {
+                ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY)).shrink(4);
+                ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)).shrink(1);
+                if (entity instanceof Player player) {
+                    ItemStack itemStack = new ItemStack(Items.NETHER_STAR);
+                    player.getInventory().clearOrCountMatchingItems(p -> itemStack.getItem() == p.getItem(), 1,
+                            player.inventoryMenu.getCraftSlots());
+                }
+                if (entity instanceof Player player) {
+                    ItemStack itemStack = new ItemStack(Items.END_CRYSTAL);
+                    player.getInventory().clearOrCountMatchingItems(p -> itemStack.getItem() == p.getItem(), 1,
+                            player.inventoryMenu.getCraftSlots());
+                }
+                if (entity instanceof Player _player) {
+                    ItemStack itemStack = new ItemStack(ItemRegistry.DragonEggResearchNotes.get());
+                    itemStack.setCount(1);
+                    ItemHandlerHelper.giveItemToPlayer(_player, itemStack);
+                }
             }
-            double i = event.getPos().getX();
-            double j = event.getPos().getY();
-            double k = event.getPos().getZ();
-            IWorld world = event.getWorld();
-            BlockState state = world.getBlockState(event.getPos());
-            Map<String, Object> dependencies = new HashMap<>();
-            dependencies.put("x", i);
-            dependencies.put("y", j);
-            dependencies.put("z", k);
-            dependencies.put("world", world);
-            dependencies.put("entity", entity);
-            dependencies.put("direction", event.getFace());
-            dependencies.put("blockstate", state);
-            dependencies.put("event", event);
-            executeProcedure(dependencies);
         }
     }
 
-    public static void executeProcedure(Map<String, Object> dependencies) {
-
-        IWorld world = (IWorld) dependencies.get("world");
-        double x = dependencies.get("x") instanceof Integer ? (int) dependencies.get("x") : (double) dependencies.get("x");
-        double y = dependencies.get("y") instanceof Integer ? (int) dependencies.get("y") : (double) dependencies.get("y");
-        double z = dependencies.get("z") instanceof Integer ? (int) dependencies.get("z") : (double) dependencies.get("z");
-        Entity entity = (Entity) dependencies.get("entity");
-        if ((world.getBlockState(new BlockPos(x, y, z))).getBlock() == Blocks.DRAGON_EGG
-                && ((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemMainhand() : ItemStack.EMPTY)
-                .getItem() == Items.WRITABLE_BOOK
-                && ((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemOffhand() : ItemStack.EMPTY).getItem() == Blocks.OBSIDIAN
-                .asItem()
-                && (((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemOffhand() : ItemStack.EMPTY)).getCount() >= 4
-                && ((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.hasItemStack(new ItemStack(Items.END_CRYSTAL)) : false)
-                && ((entity instanceof PlayerEntity) ? ((PlayerEntity) entity).inventory.hasItemStack(new ItemStack(Items.NETHER_STAR)) : false)) {
-            if (entity instanceof PlayerEntity) {
-                ItemStack _stktoremove = new ItemStack(Items.END_CRYSTAL);
-                ((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) 1,
-                        ((PlayerEntity) entity).container.func_234641_j_());
-            }
-            if (entity instanceof PlayerEntity) {
-                ItemStack _stktoremove = new ItemStack(Items.NETHER_STAR);
-                ((PlayerEntity) entity).inventory.func_234564_a_(p -> _stktoremove.getItem() == p.getItem(), (int) 1,
-                        ((PlayerEntity) entity).container.func_234641_j_());
-            }
-            (((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemMainhand() : ItemStack.EMPTY)).shrink((int) 1);
-            (((entity instanceof LivingEntity) ? ((LivingEntity) entity).getHeldItemOffhand() : ItemStack.EMPTY)).shrink((int) 4);
-            if (entity instanceof PlayerEntity) {
-                ItemStack _setstack = new ItemStack(ItemRegistry.DragonEggResearchNotes.get());
-                _setstack.setCount((int) 1);
-                ItemHandlerHelper.giveItemToPlayer(((PlayerEntity) entity), _setstack);
-            }
-        }
-    }
-}

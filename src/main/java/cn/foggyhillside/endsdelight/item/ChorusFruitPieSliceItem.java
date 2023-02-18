@@ -1,53 +1,97 @@
 package cn.foggyhillside.endsdelight.item;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import vectorwing.farmersdelight.items.ConsumableItem;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import vectorwing.farmersdelight.common.Configuration;
+import vectorwing.farmersdelight.common.item.ConsumableItem;
+import vectorwing.farmersdelight.common.utility.TextUtils;
 
-public class ChorusFruitPieSliceItem extends ConsumableItem {
+import javax.annotation.Nullable;
+import java.util.List;
 
-    public ChorusFruitPieSliceItem(Properties builder) {
-        super(builder);
+public class ChorusFruitPieSliceItem extends Item {
+
+    private final boolean hasFoodEffectTooltip;
+    private final boolean hasCustomTooltip;
+
+    public ChorusFruitPieSliceItem(Item.Properties properties) {
+        super(properties);
+        this.hasFoodEffectTooltip = false;
+        this.hasCustomTooltip = false;
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        ItemStack itemstack = super.onItemUseFinish(stack, worldIn, entityLiving);
-        if (!worldIn.isRemote && entityLiving.isSneaking() == true) {
-            double d0 = entityLiving.getPosX();
-            double d1 = entityLiving.getPosY();
-            double d2 = entityLiving.getPosZ();
+    public ChorusFruitPieSliceItem(Item.Properties properties, boolean hasFoodEffectTooltip) {
+        super(properties);
+        this.hasFoodEffectTooltip = hasFoodEffectTooltip;
+        this.hasCustomTooltip = false;
+    }
+
+    public ChorusFruitPieSliceItem(Item.Properties properties, boolean hasFoodEffectTooltip, boolean hasCustomTooltip) {
+        super(properties);
+        this.hasFoodEffectTooltip = hasFoodEffectTooltip;
+        this.hasCustomTooltip = hasCustomTooltip;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag isAdvanced) {
+        if ((Boolean) Configuration.FOOD_EFFECT_TOOLTIP.get()) {
+            if (this.hasCustomTooltip) {
+                MutableComponent textEmpty = TextUtils.getTranslation("tooltip." + this, new Object[0]);
+                tooltip.add(textEmpty.withStyle(ChatFormatting.BLUE));
+            }
+
+            if (this.hasFoodEffectTooltip) {
+                TextUtils.addFoodEffectTooltip(stack, tooltip, 1.0F);
+            }
+        }
+
+    }
+
+    public ItemStack finishUsingItem(ItemStack p_40712_, Level p_40713_, LivingEntity p_40714_) {
+        ItemStack itemstack = super.finishUsingItem(p_40712_, p_40713_, p_40714_);
+        if (!p_40713_.isClientSide && p_40714_.isShiftKeyDown()) {
+            double d0 = p_40714_.getX();
+            double d1 = p_40714_.getY();
+            double d2 = p_40714_.getZ();
 
             for(int i = 0; i < 16; ++i) {
-                double d3 = entityLiving.getPosX() + (entityLiving.getRNG().nextDouble() - 0.5D) * 16.0D;
-                double d4 = MathHelper.clamp(entityLiving.getPosY() + (double)(entityLiving.getRNG().nextInt(16) - 8), 0.0D, (double)(worldIn.func_234938_ad_() - 1));
-                double d5 = entityLiving.getPosZ() + (entityLiving.getRNG().nextDouble() - 0.5D) * 16.0D;
-                if (entityLiving.isPassenger()) {
-                    entityLiving.stopRiding();
+                double d3 = p_40714_.getX() + (p_40714_.getRandom().nextDouble() - 0.5D) * 16.0D;
+                double d4 = Mth.clamp(p_40714_.getY() + (double)(p_40714_.getRandom().nextInt(16) - 8), (double)p_40713_.getMinBuildHeight(), (double)(p_40713_.getMinBuildHeight() + ((ServerLevel)p_40713_).getLogicalHeight() - 1));
+                double d5 = p_40714_.getZ() + (p_40714_.getRandom().nextDouble() - 0.5D) * 16.0D;
+                if (p_40714_.isPassenger()) {
+                    p_40714_.stopRiding();
                 }
 
-                net.minecraftforge.event.entity.living.EntityTeleportEvent.ChorusFruit event = net.minecraftforge.event.ForgeEventFactory.onChorusFruitTeleport(entityLiving, d3, d4, d5);
+                net.minecraftforge.event.entity.EntityTeleportEvent.ChorusFruit event = net.minecraftforge.event.ForgeEventFactory.onChorusFruitTeleport(p_40714_, d3, d4, d5);
                 if (event.isCanceled()) return itemstack;
-                if (entityLiving.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
-                    SoundEvent soundevent = entityLiving instanceof FoxEntity ? SoundEvents.ENTITY_FOX_TELEPORT : SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-                    worldIn.playSound((PlayerEntity)null, d0, d1, d2, soundevent, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    entityLiving.playSound(soundevent, 1.0F, 1.0F);
+                if (p_40714_.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                    SoundEvent soundevent = p_40714_ instanceof Fox ? SoundEvents.FOX_TELEPORT : SoundEvents.CHORUS_FRUIT_TELEPORT;
+                    p_40713_.playSound((Player)null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    p_40714_.playSound(soundevent, 1.0F, 1.0F);
                     break;
                 }
             }
 
-            if (entityLiving instanceof PlayerEntity) {
-                ((PlayerEntity)entityLiving).getCooldownTracker().setCooldown(this, 20);
+            if (p_40714_ instanceof Player) {
+                ((Player)p_40714_).getCooldowns().addCooldown(this, 20);
             }
         }
 
         return itemstack;
     }
-
 }
