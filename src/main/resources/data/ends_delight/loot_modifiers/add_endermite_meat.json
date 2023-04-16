@@ -3,6 +3,17 @@
     {
       "condition": "forge:loot_table_id",
       "loot_table_id": "minecraft:entities/endermite"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "killer",
+      "predicate": {
+        "equipment": {
+          "mainhand": {
+            "tag": "farmersdelight:tools/knives"
+          }
+        }
+      }
     }
   ],
   "item": "ends_delight:raw_ender_mite_meat",

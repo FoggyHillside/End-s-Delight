@@ -1,0 +1,48 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"1": "ends_delight:block/dragon_bone",
+		"2": "ends_delight:block/dragon_leg_tray",
+		"3": "ends_delight:block/dragon_leg_2",
+		"particle": "ends_delight:block/dragon_leg_2"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 2, 16],
+			"faces": {
+				"north": {"uv": [8, 8, 7, 16], "rotation": 90, "texture": "#2"},
+				"east": {"uv": [0, 15, 8, 16], "rotation": 180, "texture": "#2"},
+				"south": {"uv": [0, 16, 1, 8], "rotation": 90, "texture": "#2"},
+				"west": {"uv": [0, 15, 8, 16], "rotation": 180, "texture": "#2"},
+				"up": {"uv": [0, 8, 8, 16], "rotation": 270, "texture": "#2"},
+				"down": {"uv": [8, 8, 16, 16], "rotation": 270, "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 2, 2],
+			"to": [6, 13, 14],
+			"faces": {
+				"north": {"uv": [9, 0, 12, 5.5], "texture": "#3"},
+				"east": {"uv": [0, 0, 6, 5.5], "texture": "#3"},
+				"south": {"uv": [9, 5.5, 12, 11], "texture": "#3"},
+				"west": {"uv": [0, 5.5, 6, 11], "texture": "#3"},
+				"up": {"uv": [9, 6, 6, 0], "texture": "#3"},
+				"down": {"uv": [9, 6, 6, 12], "texture": "#3"}
+			}
+		},
+		{
+			"from": [6, 5, 6],
+			"to": [13, 9, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 7, 4], "texture": "#1"},
+				"east": {"uv": [0, 8, 4, 12], "texture": "#1"},
+				"south": {"uv": [0, 4, 7, 8], "texture": "#1"},
+				"west": {"uv": [4, 8, 8, 12], "texture": "#1"},
+				"up": {"uv": [14, 4, 7, 0], "texture": "#1"},
+				"down": {"uv": [14, 4, 7, 8], "texture": "#1"}
+			}
+		}
+	]
+}

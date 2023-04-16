@@ -10,7 +10,7 @@
       "item": "minecraft:obsidian"
     },
     "1": {
-      "tag": "forge:dragon_egg_shell"
+      "item": "ends_delight:dragon_egg_shell"
     }
   },
   "result": {

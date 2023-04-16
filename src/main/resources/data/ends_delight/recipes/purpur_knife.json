@@ -2,14 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "0",
-    "1"
+    "0"
   ],
   "key": {
     "0": {
       "item": "minecraft:popped_chorus_fruit"
-    },
-    "1": {
-      "item": "ends_delight:ender_man_limb"
     }
   },
   "result": {

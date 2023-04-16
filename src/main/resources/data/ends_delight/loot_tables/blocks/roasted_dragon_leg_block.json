@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "name": "pool1",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ends_delight:roasted_dragon_leg_block"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "ends_delight:roasted_dragon_leg_block",
+          "properties": {
+            "servings": "7",
+            "part": "head"
+
+          }
+        }
+      ]
+    },
+    {
+      "name": "pool2",
+      "rolls": 2,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:block_state_property",
+            "block": "ends_delight:roasted_dragon_leg_block",
+            "properties": {
+              "servings": "7"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

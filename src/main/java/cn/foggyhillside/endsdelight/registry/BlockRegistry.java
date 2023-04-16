@@ -38,8 +38,10 @@ public class BlockRegistry {
     public static final RegistryObject<Block> DragonMeatStewBlock = BLOCKS.register("dragon_meat_stew_block",
             ()-> new SteamedDragonEggBlock(Block.Properties.copy(Blocks.DRAGON_EGG),ItemRegistry.DragonMeatStew,true));
     public static final RegistryObject<Block> GrilledShulkerBlock = BLOCKS.register("grilled_shulker_block",
-            ()-> new GrilledShullkerBlock(Block.Properties.copy(Blocks.SHULKER_BOX),ItemRegistry.GrilledShulker,false));
+            ()-> new GrilledShullkerBlock(Block.Properties.copy(Blocks.SHULKER_BOX),ItemRegistry.GrilledShulker,true));
     public static final RegistryObject<Block> EndStove = BLOCKS.register("end_stove",
             () -> new EndStoveBlock(Block.Properties.copy(Blocks.END_STONE_BRICKS).lightLevel(litBlockEmission(13))));
+    public static final RegistryObject<Block> RoastedDragonLegBlock = BLOCKS.register("roasted_dragon_leg_block",
+            ()-> new RoastedDragonLegBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
 }
 

@@ -1,0 +1,38 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:suspicious_dragon_core"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_suspicious_dragon_core"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_suspicious_dragon_core.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:root",
+  "criteria": {
+    "suspicious_dragon_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:suspicious_dragon_core"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "suspicious_dragon_core"
+    ]
+  ]
+}
+

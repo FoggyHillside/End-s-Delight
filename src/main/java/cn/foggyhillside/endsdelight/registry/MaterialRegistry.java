@@ -34,7 +34,7 @@ public class MaterialRegistry {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(ItemRegistry.LargerDragonEggShell.get());
+            return Ingredient.of(ItemRegistry.DragonEggShell.get());
         }
     };
     public static final Tier END_STONE = new Tier() {

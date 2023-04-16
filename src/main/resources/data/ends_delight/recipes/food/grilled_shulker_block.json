@@ -20,6 +20,9 @@
       "tag": "forge:crops/onion"
     }
   ],
+  "container": {
+    "item": "minecraft:shulker_shell"
+  },
   "result": {
     "item": "ends_delight:grilled_shulker_block"
   },

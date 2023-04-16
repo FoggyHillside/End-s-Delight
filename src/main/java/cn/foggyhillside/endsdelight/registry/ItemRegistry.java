@@ -6,6 +6,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -25,8 +26,6 @@ public class ItemRegistry {
             ()->new KnifeItem(MaterialRegistry.PURPUR, 0.5F, -2.0F, new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> EndStoneKnife = ITEMS.register("end_stone_knife",
             ()->new KnifeItem(MaterialRegistry.END_STONE, 0.5F, -2.0F, new Item.Properties().tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> DragonEggResearchNotes = ITEMS.register("dragon_egg_research_notes",
-            ()-> new DragonEggResearchNotesItem(new Item.Properties().tab(EndsDelight.EndsDelightTab).stacksTo(64).rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> EnderPearlGrain = ITEMS.register("ender_pearl_grain",
             ()-> new Item(new Item.Properties().tab(EndsDelight.EndsDelightTab)));
@@ -38,14 +37,14 @@ public class ItemRegistry {
             ()-> new Item(new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> DragonEggShell = ITEMS.register("dragon_egg_shell",
            ()-> new Item(new Item.Properties().tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> LargerDragonEggShell = ITEMS.register("larger_dragon_egg_shell",
-            ()-> new Item(new Item.Properties().tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> EnderManLimb = ITEMS.register("ender_man_limb",
-            ()-> new Item(new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> NonHatchableDragonEgg = ITEMS.register("non_hatchable_dragon_egg",
             ()-> new Item(new Item.Properties().rarity(Rarity.RARE).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> HalfDragonEggShell = ITEMS.register("half_dragon_egg_shell",
             ()-> new Item(new Item.Properties().rarity(Rarity.UNCOMMON).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> LiquidDragonEgg = ITEMS.register("liquid_dragon_egg",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.LiquidDragonEgg).tab(EndsDelight.EndsDelightTab), true));
+    public static final RegistryObject<Item> FriedDragonEgg = ITEMS.register("fried_dragon_egg",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.FriedDragonEgg).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> ShulkerMeat = ITEMS.register("shulker_meat",
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.ShulkerMeat).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> ShulkerMeatSlice = ITEMS.register("shulker_meat_slice",
@@ -54,6 +53,8 @@ public class ItemRegistry {
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedShulkerMeat).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> RoastedShulkerMeatSlice = ITEMS.register("roasted_shulker_meat_slice",
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedShulkerMeatSlice).tab(EndsDelight.EndsDelightTab), true));
+    public static final RegistryObject<Item> SuspiciousDragonCore = ITEMS.register("suspicious_dragon_core",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.SuspiciousDragonCore).rarity(Rarity.EPIC).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> DragonLeg = ITEMS.register("dragon_leg",
             ()-> new Item(new Item.Properties().food(FoodList.DragonLeg).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> SmokedDragonLeg = ITEMS.register("smoked_dragon_leg",
@@ -68,10 +69,12 @@ public class ItemRegistry {
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedDragonMeatCuts).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> RawEnderMiteMeat = ITEMS.register("raw_ender_mite_meat",
             ()-> new Item(new Item.Properties().food(FoodList.RawEnderMiteMeat).tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> RoastedEnderMiteMeat = ITEMS.register("roasted_ender_mite_meat",
-            ()-> new Item(new Item.Properties().food(FoodList.RoastedEnderMiteMeat).tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> BakedRiceCakeWithChorusFruitFilling = ITEMS.register("baked_rice_cake_with_chorus_fruit_filling",
-            ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodList.BakedRiceCakeWithChorusFruitFilling).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> DriedEnderMiteMeat = ITEMS.register("dried_endermite_meat",
+            ()-> new Item(new Item.Properties().food(FoodList.DriedEnderMiteMeat).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> EnderSause = ITEMS.register("ender_sause",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.EnderSause).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> StuffedRiceCake = ITEMS.register("stuffed_rice_cake",
+            ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodList.StuffedRiceCake).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> ChorusFlowerPie = ITEMS.register("chorus_flower_pie",
             ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodList.ChorusFlowerPie).tab(EndsDelight.EndsDelightTab),true));
     //Drink
@@ -85,6 +88,9 @@ public class ItemRegistry {
             ()-> new DragonBreathSodaItem(new Item.Properties().food(FoodList.DragonBreathSoda).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> ChorusFlowerTea = ITEMS.register("chorus_flower_tea",
             ()-> new ChorusFlowerTeaItem(new Item.Properties().food(FoodList.ChorusFlowerTea).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab), true, true));
+    //Cookie
+    public static final RegistryObject<Item> ChorusCookie = ITEMS.register("chorus_cookie",
+            ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodList.ChorusCookie).tab(EndsDelight.EndsDelightTab)));
     //Popsicle
     public static final RegistryObject<Item> ChorusFruitPopsicle = ITEMS.register("chorus_fruit_popsicle",
             ()-> new ChorusFruitPopsicleItem(new Item.Properties().food(FoodList.ChorusFruitPopsicle).stacksTo(16).tab(EndsDelight.EndsDelightTab)));
@@ -93,26 +99,29 @@ public class ItemRegistry {
             () -> new BlockItem(BlockRegistry.ChorusFruitPie.get(), new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> ChorusFruitPieSlice = ITEMS.register("chorus_fruit_pie_slice",
             ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodValues.PIE_SLICE).tab(EndsDelight.EndsDelightTab), true));
+    //Congee
+    public static final RegistryObject<Item> EnderCongee = ITEMS.register("ender_congee",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.EnderCongee).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
     //Soup
     public static final RegistryObject<Item> DragonBreathAndChorusSoup = ITEMS.register("dragon_breath_and_chorus_soup",
             ()-> new DragonBreathAndChorusSoupItem(new Item.Properties().food(FoodList.DragonBreathAndChorusSoup).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab), true, true));
     //ConsumableItem
     public static final RegistryObject<Item> StirFriedShulkerMeat = ITEMS.register("stir_fried_shulker_meat",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.StirFriedShulkerMeat).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab), true));
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.StirFriedShulkerMeat).stacksTo(16).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab), true));
+    public static final RegistryObject<Item> RoastedDragonSteak = ITEMS.register("roasted_dragon_steak",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedDragonSteak).stacksTo(16).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> EndMixedSalad = ITEMS.register("end_mixed_salad",
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.EndMixedSalad).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> AssortedSalad = ITEMS.register("assorted_salad",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.AssortedSalad).craftRemainder(ItemRegistry.LargerDragonEggShell.get()).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
-    public static final RegistryObject<Item> LiquidDragonEgg = ITEMS.register("liquid_dragon_egg",
-            ()-> new LiquidDragonEgg(new Item.Properties().food(FoodList.LiquidDragonEgg).craftRemainder(ItemRegistry.LargerDragonEggShell.get()).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
-    public static final RegistryObject<Item> LiquidDragonEggInBowl = ITEMS.register("liquid_dragon_egg_in_bowl",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.LiquidDragonEggInBowl).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
-    public static final RegistryObject<Item> FriedDragonEgg = ITEMS.register("fried_dragon_egg",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.FriedDragonEgg).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab), true));
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.AssortedSalad).craftRemainder(ItemRegistry.DragonEggShell.get()).stacksTo(16).tab(EndsDelight.EndsDelightTab), true));
     //BarbecueStick
     public static final RegistryObject<Item> EndBarbecueStick = ITEMS.register("end_barbecue_stick",
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.EndBarbecueStick).tab(EndsDelight.EndsDelightTab), true));
     //Feast
+    public static final RegistryObject<Item> RoastedDragonLegBlock = ITEMS.register("roasted_dragon_leg_block",
+            ()-> new BlockItem(BlockRegistry.RoastedDragonLegBlock.get(), new Item.Properties().stacksTo(1).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> RoastedDragonLeg = ITEMS.register("roasted_dragon_leg",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedDragonLeg).stacksTo(16).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab),true));
     public static final RegistryObject<Item> SteamedDragonEggBlock = ITEMS.register("steamed_dragon_egg_block",
             ()-> new BlockItem(BlockRegistry.SteamedDragonEggBlock.get(), new Item.Properties().stacksTo(1).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> SteamedDragonEgg = ITEMS.register("steamed_dragon_egg",
