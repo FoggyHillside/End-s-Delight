@@ -1,0 +1,51 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:dragon_leg_with_sauce"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_dragon_leg_with_sauce"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_dragon_leg_with_sauce.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:the_end_chef",
+  "criteria": {
+    "dragon_leg_with_sauce_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:dragon_leg_with_sauce_block"
+            ]
+          }
+        ]
+      }
+    },
+    "dragon_leg_with_sauce": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:dragon_leg_with_sauce"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "dragon_leg_with_sauce_block",
+      "dragon_leg_with_sauce"
+    ]
+  ]
+}
+

@@ -7,13 +7,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "ends_delight:roasted_dragon_leg_block"
+          "name": "ends_delight:dragon_leg_with_sauce_block"
         }
       ],
       "conditions": [
         {
           "condition": "minecraft:block_state_property",
-          "block": "ends_delight:roasted_dragon_leg_block",
+          "block": "ends_delight:dragon_leg_with_sauce_block",
           "properties": {
             "servings": "7",
             "part": "head"
@@ -36,7 +36,7 @@
           "condition": "minecraft:inverted",
           "term": {
             "condition": "minecraft:block_state_property",
-            "block": "ends_delight:roasted_dragon_leg_block",
+            "block": "ends_delight:dragon_leg_with_sauce_block",
             "properties": {
               "servings": "7"
             }

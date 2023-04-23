@@ -7,9 +7,10 @@ version="1.19.2-1.1"
 displayName="End's Delight"
 logoFile="logo.png"
 logoBlur=false
+credits="FoggyHillside, PExPE3, SKZGx"
 authors="FoggyHillside"
 description='''
-This mod adds some food and drink about the End
+An addon mod for Farmer's Delight based around adding culinary content to the end!
 '''
 [[dependencies.ends_delight]]
     modId="forge"

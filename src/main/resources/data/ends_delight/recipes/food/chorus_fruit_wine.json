@@ -11,6 +11,14 @@
       {
         "item": "ends_delight:chorus_fruit_grain"
       }
+    ],
+    [
+      {
+        "item": "minecraft:chorus_fruit"
+      },
+      {
+        "item": "ends_delight:chorus_fruit_grain"
+      }
     ]
   ],
   "result": {

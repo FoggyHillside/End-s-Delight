@@ -2,7 +2,6 @@ package cn.foggyhillside.endsdelight.registry;
 
 import cn.foggyhillside.endsdelight.EndsDelight;
 import cn.foggyhillside.endsdelight.block.*;
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -15,7 +14,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.block.PieBlock;
-import vectorwing.farmersdelight.common.block.SkilletBlock;
 
 import java.util.function.ToIntFunction;
 
@@ -41,7 +39,9 @@ public class BlockRegistry {
             ()-> new GrilledShullkerBlock(Block.Properties.copy(Blocks.SHULKER_BOX),ItemRegistry.GrilledShulker,true));
     public static final RegistryObject<Block> EndStove = BLOCKS.register("end_stove",
             () -> new EndStoveBlock(Block.Properties.copy(Blocks.END_STONE_BRICKS).lightLevel(litBlockEmission(13))));
-    public static final RegistryObject<Block> RoastedDragonLegBlock = BLOCKS.register("roasted_dragon_leg_block",
-            ()-> new RoastedDragonLegBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
+    public static final RegistryObject<Block> DragonLegBlock = BLOCKS.register("dragon_leg_with_sauce_block",
+            ()-> new DragonLegBlock(BlockBehaviour.Properties.copy(Blocks.CAKE)));
+    public static final RegistryObject<Block> ChorusFruitCrate = BLOCKS.register("chorus_fruit_crate",
+            ()-> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 }
 

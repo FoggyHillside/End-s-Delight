@@ -32,7 +32,7 @@ import vectorwing.farmersdelight.common.utility.TextUtils;
 
 import javax.annotation.Nullable;
 
-public class RoastedDragonLegBlock extends HorizontalDirectionalBlock {
+public class DragonLegBlock extends HorizontalDirectionalBlock {
 
     public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
     public static final IntegerProperty SERVINGS = IntegerProperty.create("servings", 0, 7);
@@ -126,7 +126,7 @@ public class RoastedDragonLegBlock extends HorizontalDirectionalBlock {
     };
 
 
-    public RoastedDragonLegBlock(Properties properties) {
+    public DragonLegBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(SERVINGS, 7).setValue(PART, BedPart.HEAD));
     }
@@ -239,7 +239,7 @@ public class RoastedDragonLegBlock extends HorizontalDirectionalBlock {
 
         if (!(servings == 0)) {
             if (heldStack.is(Items.BOWL)) {
-                return takeServing(level, pos, state, player, handIn, ItemRegistry.RoastedDragonLeg.get());
+                return takeServing(level, pos, state, player, handIn, ItemRegistry.DragonLegWithSauce.get());
             } else {
                 player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
             }

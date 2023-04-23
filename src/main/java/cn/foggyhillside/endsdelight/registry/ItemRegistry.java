@@ -17,6 +17,8 @@ import vectorwing.farmersdelight.common.item.KnifeItem;
 public class ItemRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EndsDelight.MOD_ID);
     //BlockItem
+    public static final RegistryObject<Item> ChorusFruitCrate = ITEMS.register("chorus_fruit_crate",
+            ()-> new BlockItem(BlockRegistry.ChorusFruitCrate.get(), new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> EndStove = ITEMS.register("end_stove",
             ()-> new BlockItem(BlockRegistry.EndStove.get(), new Item.Properties().tab(EndsDelight.EndsDelightTab)));
     //knife
@@ -71,8 +73,8 @@ public class ItemRegistry {
             ()-> new Item(new Item.Properties().food(FoodList.RawEnderMiteMeat).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> DriedEnderMiteMeat = ITEMS.register("dried_endermite_meat",
             ()-> new Item(new Item.Properties().food(FoodList.DriedEnderMiteMeat).tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> EnderSause = ITEMS.register("ender_sause",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.EnderSause).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> EnderSauce = ITEMS.register("ender_sauce",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.EnderSauce).craftRemainder(Items.BOWL).stacksTo(16).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> StuffedRiceCake = ITEMS.register("stuffed_rice_cake",
             ()-> new ChorusFruitPieSliceItem(new Item.Properties().food(FoodList.StuffedRiceCake).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> ChorusFlowerPie = ITEMS.register("chorus_flower_pie",
@@ -118,10 +120,10 @@ public class ItemRegistry {
     public static final RegistryObject<Item> EndBarbecueStick = ITEMS.register("end_barbecue_stick",
             ()-> new ConsumableItem(new Item.Properties().food(FoodList.EndBarbecueStick).tab(EndsDelight.EndsDelightTab), true));
     //Feast
-    public static final RegistryObject<Item> RoastedDragonLegBlock = ITEMS.register("roasted_dragon_leg_block",
-            ()-> new BlockItem(BlockRegistry.RoastedDragonLegBlock.get(), new Item.Properties().stacksTo(1).tab(EndsDelight.EndsDelightTab)));
-    public static final RegistryObject<Item> RoastedDragonLeg = ITEMS.register("roasted_dragon_leg",
-            ()-> new ConsumableItem(new Item.Properties().food(FoodList.RoastedDragonLeg).stacksTo(16).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab),true));
+    public static final RegistryObject<Item> DragonLegBlock = ITEMS.register("dragon_leg_with_sauce_block",
+            ()-> new BlockItem(BlockRegistry.DragonLegBlock.get(), new Item.Properties().stacksTo(1).tab(EndsDelight.EndsDelightTab)));
+    public static final RegistryObject<Item> DragonLegWithSauce = ITEMS.register("dragon_leg_with_sauce",
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.DragonLegWithSauce).stacksTo(16).craftRemainder(Items.BOWL).tab(EndsDelight.EndsDelightTab),true));
     public static final RegistryObject<Item> SteamedDragonEggBlock = ITEMS.register("steamed_dragon_egg_block",
             ()-> new BlockItem(BlockRegistry.SteamedDragonEggBlock.get(), new Item.Properties().stacksTo(1).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> SteamedDragonEgg = ITEMS.register("steamed_dragon_egg",
