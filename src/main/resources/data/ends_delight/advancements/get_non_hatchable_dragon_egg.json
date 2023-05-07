@@ -14,7 +14,7 @@
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "ends_delight:get_suspicious_dragon_core",
+  "parent": "ends_delight:root",
   "criteria": {
     "non_hatchable_dragon_egg": {
       "trigger": "minecraft:inventory_changed",

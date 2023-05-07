@@ -3,7 +3,7 @@ loaderVersion="[43,)"
 license="MIT License"
 [[mods]]
 modId="ends_delight"
-version="1.19.2-1.1"
+version="1.19.2-1.1.1"
 displayName="End's Delight"
 logoFile="logo.png"
 logoBlur=false

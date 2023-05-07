@@ -99,4 +99,35 @@ public class MaterialRegistry {
             return Ingredient.of(Items.POPPED_CHORUS_FRUIT);
         }
     };
+    public static final Tier DRAGON_TOOTH = new Tier() {
+        @Override
+        public int getUses() {
+            return 1561;
+        }
+
+        @Override
+        public float getSpeed() {
+            return 4.0F;
+        }
+
+        @Override
+        public float getAttackDamageBonus() {
+            return 4.0F;
+        }
+
+        @Override
+        public int getLevel() {
+            return 2;
+        }
+
+        @Override
+        public int getEnchantmentValue() {
+            return 5;
+        }
+
+        @Override
+        public Ingredient getRepairIngredient() {
+            return Ingredient.of(Items.BONE_BLOCK);
+        }
+    };
 }

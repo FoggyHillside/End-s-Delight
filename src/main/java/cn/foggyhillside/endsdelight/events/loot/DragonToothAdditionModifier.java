@@ -16,16 +16,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public class SuspiciousDragonCoreAdditionModifier extends LootModifier {
+public class DragonToothAdditionModifier extends LootModifier {
 
-    public static final Supplier<Codec<SuspiciousDragonCoreAdditionModifier>> CODEC = Suppliers.memoize(() ->
+    public static final Supplier<Codec<DragonToothAdditionModifier>> CODEC = Suppliers.memoize(() ->
             RecordCodecBuilder.create(inst -> codecStart(inst)
                     .and(ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter((m) -> m.item))
-                    .apply(inst, SuspiciousDragonCoreAdditionModifier::new)));
+                    .apply(inst, DragonToothAdditionModifier::new)));
 
     private final Item item;
 
-    protected SuspiciousDragonCoreAdditionModifier(LootItemCondition[] conditionsIn, Item item) {
+    protected DragonToothAdditionModifier(LootItemCondition[] conditionsIn, Item item) {
         super(conditionsIn);
         this.item = item;
     }
@@ -33,6 +33,9 @@ public class SuspiciousDragonCoreAdditionModifier extends LootModifier {
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
         generatedLoot.add(new ItemStack(item, 1));
+        if (context.getRandom().nextFloat() > 0.7) {
+            generatedLoot.add(new ItemStack(item, 1));
+        };
         return generatedLoot;
     }
 
