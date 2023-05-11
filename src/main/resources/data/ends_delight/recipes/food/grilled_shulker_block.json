@@ -1,27 +1,32 @@
 {
-  "type": "farmersdelight:cooking",
-  "ingredients": [
-    {
-      "item": "ends_delight:shulker_meat"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "353",
+    "412",
+    " 6 "
+  ],
+  "key": {
+    "1": {
+      "item": "ends_delight:roasted_shulker_meat"
     },
-    {
+    "2": {
       "item": "minecraft:chorus_fruit"
     },
-    {
+    "3": {
       "item": "ends_delight:chorus_succulent"
     },
-    {
-      "item": "ends_delight:chorus_succulent"
-    },
-    {
+    "4": {
       "tag": "forge:crops/tomato"
     },
-    {
+    "5": {
       "tag": "forge:crops/onion"
+    },
+    "6":{
+      "item": "minecraft:shulker_shell"
     }
-  ],
+  },
   "result": {
     "item": "ends_delight:grilled_shulker_block"
   },
-  "cookingtime": 200
+  "count": 1
 }

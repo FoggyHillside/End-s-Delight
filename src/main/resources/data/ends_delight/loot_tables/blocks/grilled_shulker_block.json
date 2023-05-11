@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "ends_delight:grilled_shulker_block",
+                  "properties": {
+                    "servings": "0"
+                  }
+                }
+              ],
+              "count": 1
+            },
+            {
+              "function": "minecraft:explosion_decay"
+            }
+          ],
+          "name": "minecraft:shulker_shell"
+        }
+      ]
+    }
+  ]
+}

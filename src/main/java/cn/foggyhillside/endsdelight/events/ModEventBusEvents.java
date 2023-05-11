@@ -3,7 +3,7 @@ package cn.foggyhillside.endsdelight.events;
 import cn.foggyhillside.endsdelight.EndsDelight;
 import cn.foggyhillside.endsdelight.events.loot.DragonLegAdditionModifier;
 import cn.foggyhillside.endsdelight.events.loot.DragonMeatAdditionModifier;
-import cn.foggyhillside.endsdelight.events.loot.EndermanLimbAdditionModifier;
+import cn.foggyhillside.endsdelight.events.loot.DragonToothAdditionModifier;
 import cn.foggyhillside.endsdelight.events.loot.ShulkerMeatAdditionModifier;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
@@ -25,8 +25,8 @@ public class ModEventBusEvents {
                             (new ResourceLocation(EndsDelight.MOD_ID,"add_dragon_meat")),
                     new DragonLegAdditionModifier.Serializer().setRegistryName
                             (new ResourceLocation(EndsDelight.MOD_ID,"add_dragon_leg")),
-                    new EndermanLimbAdditionModifier.Serializer().setRegistryName
-                            (new ResourceLocation(EndsDelight.MOD_ID,"add_enderman_limb")),
+                    new DragonToothAdditionModifier.Serializer().setRegistryName
+                            (new ResourceLocation(EndsDelight.MOD_ID,"add_dragon_tooth")),
                     new ShulkerMeatAdditionModifier.Serializer().setRegistryName
                             (new ResourceLocation(EndsDelight.MOD_ID,"add_endermite_meat")),
                     new ShulkerMeatAdditionModifier.Serializer().setRegistryName

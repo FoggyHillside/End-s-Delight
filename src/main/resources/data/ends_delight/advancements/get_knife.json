@@ -51,13 +51,26 @@
           }
         ]
       }
+    },
+    "dragon_tooth_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ends_delight:dragon_tooth_knife"
+            ]
+          }
+        ]
+      }
     }
   },
   "requirements": [
       [
       "dragon_egg_shell_knife",
       "end_stone_knife",
-      "purpur_knife"
+      "purpur_knife",
+      "dragon_tooth_knife"
     ]
   ]
 }

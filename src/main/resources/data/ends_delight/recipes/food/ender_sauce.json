@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "ends_delight:chorus_succulent"
+    },
+    [
+      {
+        "item": "minecraft:chorus_fruit"
+      },
+      {
+        "item": "ends_delight:chorus_fruit_grain"
+      }
+    ]
+  ],
+  "result": {
+    "item": "ends_delight:ender_sauce"
+  },
+  "cookingtime": 200
+}

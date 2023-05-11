@@ -15,9 +15,14 @@
     "2": {
       "item": "minecraft:poppy"
     },
-    "3": {
-      "item": "minecraft:chorus_fruit"
-    },
+    "3": [
+      {
+        "item": "minecraft:chorus_fruit"
+      },
+      {
+        "item": "ends_delight:chorus_fruit_grain"
+      }
+    ],
     "4": {
       "item": "minecraft:chorus_flower"
     },
