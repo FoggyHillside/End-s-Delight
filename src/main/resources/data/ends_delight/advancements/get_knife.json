@@ -1,0 +1,69 @@
+{
+  "display": {
+    "icon": {
+      "item": "ends_delight:end_stone_knife"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_knife"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_knife.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:root",
+  "criteria": {
+    "end_stone_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ends_delight:end_stone_knife"
+          }
+        ]
+      }
+    },
+    "purpur_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ends_delight:purpur_knife"
+          }
+        ]
+      }
+    },
+    "dragon_egg_shell_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ends_delight:dragon_egg_shell_knife"
+          }
+        ]
+      }
+    },
+    "dragon_tooth_knife": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ends_delight:dragon_tooth_knife"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+      [
+      "end_stone_knife",
+      "purpur_knife",
+      "dragon_egg_shell_knife",
+      "dragon_tooth_knife"
+    ]
+  ]
+}
+

@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "forge:liquid_dragon_egg"
+      "item": "ends_delight:liquid_dragon_egg"
     },
     {
       "tag": "forge:shulker_meat"
@@ -17,7 +17,7 @@
       "item": "ends_delight:chorus_succulent"
     },
     {
-      "item": "farmersdelight:onion"
+      "tag": "forge:crops/onion"
     }
   ],
   "result": {

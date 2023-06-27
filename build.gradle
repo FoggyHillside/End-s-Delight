@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 
-version = '1.16.5-1.7'
+version = '1.16.5-1.8'
 group = 'cn.foggyhillside.ends_delight' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'ends_delight'
 
@@ -194,7 +194,7 @@ jar {
                 "Specification-Vendor": "ends_delightsareus",
                 "Specification-Version": "1", // We are version 1 of ourselves
                 "Implementation-Title": "ends_delight",
-                "Implementation-Version": "1.16.5-1.0",
+                "Implementation-Version": "1.16.5-1.8",
                 "Implementation-Vendor" :"ends_delightsareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])

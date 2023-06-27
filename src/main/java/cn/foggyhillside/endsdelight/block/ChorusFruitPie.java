@@ -1,5 +1,6 @@
 package cn.foggyhillside.endsdelight.block;
 
+import cn.foggyhillside.endsdelight.registry.BlockRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

@@ -9,12 +9,12 @@
     "description": {
       "translate": "ends_delight.advancement.get_dragon_egg_shell_knife.desc"
     },
-    "frame": "task",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
-  "parent": "ends_delight:get_dragon_egg_research_notes",
+  "parent": "ends_delight:get_knife",
   "criteria": {
     "dragon_egg_shell_knife": {
       "trigger": "minecraft:inventory_changed",

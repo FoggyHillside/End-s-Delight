@@ -11,16 +11,16 @@
       "item": "minecraft:chorus_fruit"
     },
     {
-      "tag": "forge:roasted_ender_mite_meat"
+      "item": "ends_delight:dried_endermite_meat"
     },
     {
-      "item": "ends_delight:ender_man_limb"
+      "item": "minecraft:stick"
     },
     {
-      "item": "ends_delight:ender_man_limb"
+      "item": "minecraft:stick"
     },
     {
-      "item": "ends_delight:ender_man_limb"
+      "item": "minecraft:stick"
     }
   ],
   "result": {

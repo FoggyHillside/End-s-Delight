@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "ends_delight:raw_ender_mite_meat"
+  },
+  "result": "ends_delight:dried_endermite_meat",
+  "cookingtime": 100
+}
