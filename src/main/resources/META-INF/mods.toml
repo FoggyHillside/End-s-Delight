@@ -1,10 +1,11 @@
+
 modLoader="javafml"
-loaderVersion="[43,)"
-license="MIT License"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 [[mods]]
-modId="ends_delight"
-version="1.19.2-1.1.1"
-displayName="End's Delight"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
 logoFile="logo.png"
 logoBlur=false
 credits="FoggyHillside, PExPE3, SKZGx"
@@ -12,21 +13,21 @@ authors="FoggyHillside"
 description='''
 An addon mod for Farmer's Delight based around adding culinary content to the end!
 '''
-[[dependencies.ends_delight]]
+[[dependencies.${mod_id}]]
     modId="forge"
     mandatory=true
-    versionRange="[43,)"
+    versionRange="${forge_version_range}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.ends_delight]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,1.20)"
+    versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.ends_delight]]
-    modId="farmersdelight"
-    mandatory=true
-    versionRange="[1.19-1.2.0,)"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${mod_id}]]
+modId="farmersdelight"
+mandatory=true
+versionRange="[1.20.1-1.2.2a,)"
+ordering="AFTER"
+side="BOTH"
