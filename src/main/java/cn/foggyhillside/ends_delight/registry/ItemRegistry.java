@@ -89,7 +89,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> BubbleTea = ITEMS.register("bubble_tea",
             ()-> new BubbleTeaItem(new Item.Properties().food(FoodList.BubbleTea).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE)));
     public static final RegistryObject<Item> DragonBreathSoda = ITEMS.register("dragon_breath_soda",
-            ()-> new DragonBreathSodaItem(new Item.Properties().food(FoodList.DragonBreathSoda).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true));
+            ()-> new ConsumableItem(new Item.Properties().food(FoodList.DragonBreathSoda).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true));
     public static final RegistryObject<Item> ChorusFlowerTea = ITEMS.register("chorus_flower_tea",
             ()-> new ChorusFlowerTeaItem(new Item.Properties().food(FoodList.ChorusFlowerTea).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE), true, true));
     //Cookie
