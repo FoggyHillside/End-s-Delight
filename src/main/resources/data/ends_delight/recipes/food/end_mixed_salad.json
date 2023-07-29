@@ -11,10 +11,10 @@
       "item": "ends_delight:chorus_succulent"
     },
     {
-      "tag": "forge:crops/cabbage"
+      "tag": "c:crops/cabbage"
     },
     {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     },
     {
       "item": "minecraft:bowl"

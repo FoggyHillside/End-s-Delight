@@ -14,10 +14,10 @@
       "item": "minecraft:warped_fungus"
     },
     {
-      "tag": "forge:crops/cabbage"
+      "tag": "c:crops/cabbage"
     },
     {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     },
     {
       "item": "ends_delight:dragon_egg_shell"

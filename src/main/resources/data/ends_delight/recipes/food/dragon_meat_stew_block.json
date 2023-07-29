@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "forge:raw_dragon_meat"
+      "tag": "c:raw_dragon_meat"
     },
     {
       "item": "minecraft:chorus_fruit"
@@ -17,7 +17,7 @@
       "item": "minecraft:potato"
     },
     {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     }
   ],
   "result": {

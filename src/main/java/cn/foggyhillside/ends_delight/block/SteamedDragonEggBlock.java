@@ -1,26 +1,24 @@
 package cn.foggyhillside.ends_delight.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import vectorwing.farmersdelight.common.block.FeastBlock;
-
-import java.util.function.Supplier;
+import com.nhoryzon.mc.farmersdelight.block.FeastBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
 
 public class SteamedDragonEggBlock extends FeastBlock {
 
-    protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 11.0D, 15.0D);
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 11.0D, 15.0D);
 
-    public SteamedDragonEggBlock(Properties properties, Supplier<Item> servingItem, boolean hasLeftovers) {
-        super(properties, servingItem, hasLeftovers);
+    public SteamedDragonEggBlock(Settings settings, Item servingItem, boolean hasLeftovers) {
+        super(settings, servingItem, hasLeftovers);
     }
 
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
-
 }

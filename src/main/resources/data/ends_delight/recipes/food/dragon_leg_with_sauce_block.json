@@ -7,7 +7,7 @@
   ],
   "key": {
       "0": {
-        "tag": "forge:crops/tomato"
+        "tag": "c:crops/tomato"
       },
       "1": {
         "item": "ends_delight:ender_sauce"

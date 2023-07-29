@@ -1,38 +1,38 @@
 package cn.foggyhillside.ends_delight.world.feature;
 
-import cn.foggyhillside.ends_delight.registry.BlockRegistry;
 import cn.foggyhillside.ends_delight.block.ChorusSucculentBlock;
+import cn.foggyhillside.ends_delight.registry.ModBlock;
 import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.CountConfiguration;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.Heightmap;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.CountConfig;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
-public class ChorusSucculentFeature extends Feature<CountConfiguration> {
+public class ChorusSucculentFeature extends Feature<CountConfig> {
 
-    public ChorusSucculentFeature(Codec<CountConfiguration> p_66754_) {
-        super(p_66754_);
+    public ChorusSucculentFeature(Codec<CountConfig> codec) {
+        super(codec);
     }
 
-    public boolean place(FeaturePlaceContext<CountConfiguration> p_160316_) {
+    public boolean generate(FeatureContext<CountConfig> context) {
         int i = 0;
-        RandomSource randomsource = p_160316_.random();
-        WorldGenLevel worldgenlevel = p_160316_.level();
-        BlockPos blockpos = p_160316_.origin();
-        int j = p_160316_.config().count().sample(randomsource);
+        Random random = context.getRandom();
+        StructureWorldAccess structureWorldAccess = context.getWorld();
+        BlockPos blockpos = context.getOrigin();
+        int j = ((CountConfig)context.getConfig()).getCount().get(random);
 
         for(int k = 0; k < j; ++k) {
-            int l = randomsource.nextInt(8) - randomsource.nextInt(8);
-            int i1 = randomsource.nextInt(8) - randomsource.nextInt(8);
-            int j1 = worldgenlevel.getHeight(Heightmap.Types.WORLD_SURFACE, blockpos.getX() + l, blockpos.getZ() + i1);
+            int l = random.nextInt(8) - random.nextInt(8);
+            int i1 = random.nextInt(8) - random.nextInt(8);
+            int j1 = structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE, blockpos.getX() + l, blockpos.getZ() + i1);
             BlockPos blockpos1 = new BlockPos(blockpos.getX() + l, j1, blockpos.getZ() + i1);
-            BlockState blockstate = BlockRegistry.ChorusSucculent.get().defaultBlockState().setValue(ChorusSucculentBlock.Succulent, Integer.valueOf(randomsource.nextInt(3) + 1));
-            if (blockstate.canSurvive(worldgenlevel, blockpos1)) {
-                worldgenlevel.setBlock(blockpos1, blockstate, 2);
+            BlockState blockstate = ModBlock.ChorusSucculent.getDefaultState().with(ChorusSucculentBlock.Succulent, Integer.valueOf(random.nextInt(3) + 1));
+            if (blockstate.canPlaceAt(structureWorldAccess, blockpos1)) {
+                structureWorldAccess.setBlockState(blockpos1, blockstate, 2);
                 ++i;
             }
         }
@@ -40,5 +40,3 @@ public class ChorusSucculentFeature extends Feature<CountConfiguration> {
         return i > 0;
     }
 }
-
-

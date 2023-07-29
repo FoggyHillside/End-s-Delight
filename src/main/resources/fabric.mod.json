@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "ends_delight",
+	"version": "${version}",
+	"name": "End's Delight",
+	"description": "An addon mod for Farmer's Delight based around adding culinary content to the end!",
+	"authors": [
+		"FoggyHillside"
+	],
+	"contact": {
+		"sources": ""
+	},
+	"license": "MIT License",
+	"icon": "assets/modid/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cn.foggyhillside.ends_delight.EndsDelight"
+		],
+		"client": [
+			"cn.foggyhillside.ends_delight.EndsDelightClient"
+		]
+	},
+	"mixins": [
+		"ends_delight.mixins.json",
+		{
+			"config": "ends_delight.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.14.21",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"farmersdelight": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

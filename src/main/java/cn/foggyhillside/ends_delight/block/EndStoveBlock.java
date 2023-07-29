@@ -1,216 +1,205 @@
 package cn.foggyhillside.ends_delight.block;
 
-import cn.foggyhillside.ends_delight.blockentitiy.EndStoveBlockEntity;
-import cn.foggyhillside.ends_delight.registry.ModBlockEntityTypes;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolActions;
-import vectorwing.farmersdelight.common.registry.ModDamageTypes;
-import vectorwing.farmersdelight.common.registry.ModSounds;
-import vectorwing.farmersdelight.common.utility.ItemUtils;
-import vectorwing.farmersdelight.common.utility.MathUtils;
+import cn.foggyhillside.ends_delight.blockentity.EndStoveBlockEntity;
+import cn.foggyhillside.ends_delight.registry.ModBlockEntity;
+import com.nhoryzon.mc.farmersdelight.registry.SoundsRegistry;
+import com.nhoryzon.mc.farmersdelight.util.MathUtils;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.*;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.*;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.CampfireCookingRecipe;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
-import java.util.Random;
 
-public class EndStoveBlock extends BaseEntityBlock {
-    public static final BooleanProperty LIT;
+public class EndStoveBlock extends BlockWithEntity {
+    private static final RegistryKey<DamageType> STOVE_BURN;
     public static final DirectionProperty FACING;
+    public static final BooleanProperty LIT;
 
-    public EndStoveBlock(BlockBehaviour.Properties builder) {
-        super(builder);
-        this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(LIT, false));
+    public EndStoveBlock() {
+        super(FabricBlockSettings.copyOf(Blocks.BRICKS).luminance((state) -> {
+            return Boolean.TRUE.equals(state.get(Properties.LIT)) ? 13 : 0;
+        }));
+        this.setDefaultState((BlockState)((BlockState)((BlockState)this.getStateManager().getDefaultState()).with(FACING, Direction.NORTH)).with(LIT, false));
     }
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
-        Item heldItem = heldStack.getItem();
-        if ((Boolean)state.getValue(LIT)) {
-            if (heldStack.canPerformAction(ToolActions.SHOVEL_DIG)) {
-                this.extinguish(state, level, pos);
-                heldStack.hurtAndBreak(1, player, (action) -> {
-                    action.broadcastBreakEvent(hand);
-                });
-                return InteractionResult.SUCCESS;
-            }
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return ModBlockEntity.EndStove.instantiate(pos, state);
+    }
 
-            if (heldItem == Items.WATER_BUCKET) {
-                if (!level.isClientSide()) {
-                    level.playSound((Player)null, pos, SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
-                }
+    public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, ModBlockEntity.EndStove, EndStoveBlockEntity::tick);
+    }
 
-                this.extinguish(state, level, pos);
-                if (!player.isCreative()) {
-                    player.setItemInHand(hand, new ItemStack(Items.BUCKET));
-                }
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
 
-                return InteractionResult.SUCCESS;
-            }
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!Boolean.TRUE.equals(state.get(LIT)) && this.tryLightUpByPlayerHand(state, world, pos, player, hand) == ActionResult.SUCCESS) {
+            return ActionResult.SUCCESS;
         } else {
-            if (heldItem instanceof FlintAndSteelItem) {
-                level.playSound(player, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, MathUtils.RAND.nextFloat() * 0.4F + 0.8F);
-                level.setBlock(pos, (BlockState)state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
-                heldStack.hurtAndBreak(1, player, (action) -> {
-                    action.broadcastBreakEvent(hand);
-                });
-                return InteractionResult.SUCCESS;
+            BlockEntity var8 = world.getBlockEntity(pos);
+            if (var8 instanceof EndStoveBlockEntity) {
+                EndStoveBlockEntity stoveBlockEntity = (EndStoveBlockEntity)var8;
+                return this.onUseByPlayerHand(stoveBlockEntity, state, world, pos, player, hand);
+            } else {
+                return ActionResult.PASS;
+            }
+        }
+    }
+
+    protected ActionResult onUseByPlayerHand(EndStoveBlockEntity stoveBlockEntity, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        Optional<CampfireCookingRecipe> optional = stoveBlockEntity.findMatchingRecipe(itemStack);
+        if (optional.isEmpty()) {
+            return this.tryExtinguishByPlayerHand(state, world, pos, player, hand);
+        } else if (!world.isClient() && !stoveBlockEntity.isStoveBlockedAbove() && stoveBlockEntity.addItem(player.getAbilities().creativeMode ? itemStack.copy() : itemStack, ((CampfireCookingRecipe)optional.get()).getCookTime())) {
+            player.incrementStat(Stats.INTERACT_WITH_CAMPFIRE);
+            return ActionResult.SUCCESS;
+        } else {
+            return ActionResult.CONSUME;
+        }
+    }
+
+    protected ActionResult tryLightUpByPlayerHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ActionResult actionResult = ActionResult.PASS;
+        ItemStack stackHand = player.getStackInHand(hand);
+        if (stackHand.getItem() instanceof FlintAndSteelItem) {
+            world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, MathUtils.RAND.nextFloat() * 0.4F + 0.8F);
+            stackHand.damage(1, player, (playerEntity) -> {
+                playerEntity.sendToolBreakStatus(hand);
+            });
+            actionResult = ActionResult.SUCCESS;
+        } else if (stackHand.getItem() instanceof FireChargeItem) {
+            world.playSound(player, pos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, (MathUtils.RAND.nextFloat() - MathUtils.RAND.nextFloat()) * 0.2F + 1.0F);
+            if (!player.isCreative()) {
+                stackHand.decrement(1);
             }
 
-            if (heldItem instanceof FireChargeItem) {
-                level.playSound((Player)null, pos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (MathUtils.RAND.nextFloat() - MathUtils.RAND.nextFloat()) * 0.2F + 1.0F);
-                level.setBlock(pos, (BlockState)state.setValue(BlockStateProperties.LIT, Boolean.TRUE), 11);
-                if (!player.isCreative()) {
-                    heldStack.shrink(1);
-                }
+            actionResult = ActionResult.SUCCESS;
+        }
 
-                return InteractionResult.SUCCESS;
+        if (actionResult.isAccepted()) {
+            world.setBlockState(pos, (BlockState)state.with(LIT, Boolean.TRUE), 11);
+        }
+
+        return actionResult;
+    }
+
+    protected ActionResult tryExtinguishByPlayerHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
+        ItemStack stackHand = player.getStackInHand(hand);
+        Item usedItem = stackHand.getItem();
+        if (!stackHand.isIn(ItemTags.SHOVELS) && usedItem != Items.WATER_BUCKET) {
+            return ActionResult.PASS;
+        } else {
+            this.extinguish(state, world, pos);
+            if (!player.isCreative() && usedItem == Items.WATER_BUCKET) {
+                player.setStackInHand(hand, new ItemStack(Items.BUCKET));
+            }
+
+            return ActionResult.SUCCESS;
+        }
+    }
+
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(new Property[]{FACING, LIT});
+    }
+
+    public @Nullable BlockState getPlacementState(ItemPlacementContext context) {
+        return (BlockState)((BlockState)this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite())).with(LIT, true);
+    }
+
+    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        boolean isLit = (Boolean)world.getBlockState(pos).get(LIT);
+        if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity) {
+            if (!EnchantmentHelper.hasFrostWalker(livingEntity)) {
+                entity.damage(world.getDamageSources().create(STOVE_BURN), 1.0F);
             }
         }
 
-        BlockEntity tileEntity = level.getBlockEntity(pos);
-        if (tileEntity instanceof EndStoveBlockEntity stoveEntity) {
-            int stoveSlot = stoveEntity.getNextEmptySlot();
-            if (stoveSlot < 0 || stoveEntity.isStoveBlockedAbove()) {
-                return InteractionResult.PASS;
+        super.onSteppedOn(world, pos, state, entity);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (Boolean.TRUE.equals(state.get(CampfireBlock.LIT))) {
+            double dx = (double)pos.getX() + 0.5;
+            double dy = (double)pos.getY();
+            double dz = (double)pos.getZ() + 0.5;
+            if (random.nextInt(10) == 0) {
+                world.playSound(dx, dy, dz, SoundsRegistry.BLOCK_STOVE_CRACKLE.get(), SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             }
 
-            Optional<CampfireCookingRecipe> recipe = stoveEntity.getMatchingRecipe(new SimpleContainer(new ItemStack[]{heldStack}), stoveSlot);
-            if (recipe.isPresent()) {
-                if (!level.isClientSide && stoveEntity.addItem(player.getAbilities().instabuild ? heldStack.copy() : heldStack, (CampfireCookingRecipe)recipe.get(), stoveSlot)) {
-                    return InteractionResult.SUCCESS;
-                }
-
-                return InteractionResult.CONSUME;
-            }
+            Direction direction = (Direction)state.get(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double d0 = random.nextDouble() * 0.6 - 0.3;
+            double d1 = axis == Direction.Axis.X ? (double)direction.getOffsetX() * 0.52 : d0;
+            double d2 = random.nextDouble() * 6.0 / 16.0;
+            double d3 = axis == Direction.Axis.Z ? (double)direction.getOffsetZ() * 0.52 : d0;
+            world.addParticle(ParticleTypes.SMOKE, dx + d1, dy + d2, dz + d3, 0.0, 0.0, 0.0);
+            world.addParticle(ParticleTypes.FLAME, dx + d1, dy + d2, dz + d3, 0.0, 0.0, 0.0);
         }
 
-        return InteractionResult.PASS;
     }
 
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
-
-    public void extinguish(BlockState state, Level level, BlockPos pos) {
-        level.setBlock(pos, (BlockState)state.setValue(LIT, false), 2);
-        double x = (double)pos.getX() + 0.5;
-        double y = (double)pos.getY();
-        double z = (double)pos.getZ() + 0.5;
-        level.playLocalSound(x, y, z, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F, false);
-    }
-
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return (BlockState)((BlockState)this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())).setValue(LIT, true);
-    }
-
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        boolean isLit = (Boolean)level.getBlockState(pos).getValue(LIT);
-        if (isLit && !entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity)) {
-            entity.hurt(ModDamageTypes.getSimpleDamageSource(level, ModDamageTypes.STOVE_BURN), 1.0F);
-        }
-
-        super.stepOn(level, pos, state, entity);
-    }
-
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
-            BlockEntity tileEntity = level.getBlockEntity(pos);
-            if (tileEntity instanceof EndStoveBlockEntity) {
-                ItemUtils.dropItems(level, pos, ((EndStoveBlockEntity)tileEntity).getInventory());
+            BlockEntity var7 = world.getBlockEntity(pos);
+            if (var7 instanceof EndStoveBlockEntity) {
+                EndStoveBlockEntity stoveBlockEntity = (EndStoveBlockEntity)var7;
+                ItemScatterer.spawn(world, pos, stoveBlockEntity.getInventory());
             }
 
-            super.onRemove(state, level, pos, newState, isMoving);
+            super.onStateReplaced(state, world, pos, newState, moved);
         }
 
     }
 
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(new Property[]{LIT, FACING});
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState stateIn, Level level, BlockPos pos, Random rand) {
-        if ((Boolean)stateIn.getValue(CampfireBlock.LIT)) {
-            double x = (double)pos.getX() + 0.5;
-            double y = (double)pos.getY();
-            double z = (double)pos.getZ() + 0.5;
-            if (rand.nextInt(10) == 0) {
-                level.playLocalSound(x, y, z, (SoundEvent) ModSounds.BLOCK_STOVE_CRACKLE.get(), SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            }
-
-            Direction direction = (Direction)stateIn.getValue(HorizontalDirectionalBlock.FACING);
-            Direction.Axis direction$axis = direction.getAxis();
-            double horizontalOffset = rand.nextDouble() * 0.6 - 0.3;
-            double xOffset = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : horizontalOffset;
-            double yOffset = rand.nextDouble() * 6.0 / 16.0;
-            double zOffset = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : horizontalOffset;
-            level.addParticle(ParticleTypes.SMOKE, x + xOffset, y + yOffset, z + zOffset, 0.0, 0.0, 0.0);
-            level.addParticle(ParticleTypes.FLAME, x + xOffset, y + yOffset, z + zOffset, 0.0, 0.0, 0.0);
-        }
-
-    }
-
-    @Nullable
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ((BlockEntityType) ModBlockEntityTypes.END_STOVE.get()).create(pos, state);
-    }
-
-    @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return (Boolean)state.getValue(LIT) ? createTickerHelper(blockEntityType, (BlockEntityType) ModBlockEntityTypes.END_STOVE.get(), level.isClientSide ? EndStoveBlockEntity::animationTick : EndStoveBlockEntity::cookingTick) : null;
-    }
-
-    @Nullable
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
-        return (Boolean)state.getValue(LIT) ? BlockPathTypes.DAMAGE_FIRE : null;
-    }
-
-    public BlockState rotate(BlockState pState, Rotation pRot) {
-        return (BlockState)pState.setValue(FACING, pRot.rotate((Direction)pState.getValue(FACING)));
-    }
-
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
-        return pState.rotate(pMirror.getRotation((Direction)pState.getValue(FACING)));
+    private void extinguish(BlockState state, World world, BlockPos pos) {
+        world.setBlockState(pos, (BlockState)state.with(LIT, false));
+        double dx = (double)pos.getX() + 0.5;
+        double dy = (double)pos.getY();
+        double dz = (double)pos.getZ() + 0.5;
+        world.playSound(dx, dy, dz, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F, false);
     }
 
     static {
-        LIT = BlockStateProperties.LIT;
-        FACING = BlockStateProperties.HORIZONTAL_FACING;
+        STOVE_BURN = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("farmersdelight", "stove_burn"));
+        FACING = Properties.HORIZONTAL_FACING;
+        LIT = Properties.LIT;
     }
-
 }

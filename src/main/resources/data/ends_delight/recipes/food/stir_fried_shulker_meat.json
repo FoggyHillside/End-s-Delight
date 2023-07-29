@@ -2,10 +2,10 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:crops/onion"
     },
     {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     },
     [
       {
@@ -16,7 +16,7 @@
       }
     ],
     {
-      "tag": "forge:shulker_meat"
+      "tag": "c:shulker_meat"
     }
   ],
   "result": {

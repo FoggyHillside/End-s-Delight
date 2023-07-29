@@ -5,7 +5,7 @@
       "item": "ends_delight:liquid_dragon_egg"
     },
     {
-      "tag": "forge:shulker_meat"
+      "tag": "c:shulker_meat"
     },
     {
       "item": "minecraft:chorus_fruit"
@@ -17,7 +17,7 @@
       "item": "ends_delight:chorus_succulent"
     },
     {
-      "tag": "forge:crops/onion"
+      "tag": "c:crops/onion"
     }
   ],
   "result": {

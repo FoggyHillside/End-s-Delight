@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:dough"
+      "tag": "c:dough"
     },
     {
       "item": "ends_delight:dried_chorus_flower"

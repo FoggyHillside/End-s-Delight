@@ -1,276 +1,269 @@
 package cn.foggyhillside.ends_delight.block;
 
-import cn.foggyhillside.ends_delight.registry.ItemRegistry;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import vectorwing.farmersdelight.common.utility.TextUtils;
+import cn.foggyhillside.ends_delight.registry.ModItem;
+import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.BedPart;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
+public class DragonLegBlock extends HorizontalFacingBlock {
 
-public class DragonLegBlock extends HorizontalDirectionalBlock {
+    public static final EnumProperty<BedPart> PART = Properties.BED_PART;
 
-    public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
-    public static final IntegerProperty SERVINGS = IntegerProperty.create("servings", 0, 7);
+    public static final IntProperty SERVINGS = IntProperty.of("servings", 0, 7);
 
     protected static final VoxelShape[] SHAPES_NORTH_HEAD = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(6.0D, 2.0D, 0.0D, 10.0D, 6.0D, 5.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 5.0D, 5.0D), Block.box(6.0D, 5.0D, 0.0D, 10.0D, 15.0D, 1.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 8.0D, 5.0D), Block.box(6.0D, 8.0D, 0.0D, 10.0D, 15.0D, 1.0D)),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D,3.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D,6.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 9.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 12.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(6.0D, 2.0D, 0.0D, 10.0D, 6.0D, 5.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 5.0D, 5.0D), Block.createCuboidShape(6.0D, 5.0D, 0.0D, 10.0D, 15.0D, 1.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 8.0D, 5.0D), Block.createCuboidShape(6.0D, 8.0D, 0.0D, 10.0D, 15.0D, 1.0D)),
+            Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D,3.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D,6.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 9.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 12.0D)),
     };
 
     protected static final VoxelShape[] SHAPES_NORTH_FOOT = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(6.0D, 2.0D, 11.0D, 10.0D, 6.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 5.0D, 16.0D), Block.box(6.0D, 5.0D, 13.0D, 10.0D, 15.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 8.0D, 16.0D), Block.box(6.0D, 8.0D, 13.0D, 10.0D, 15.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.box(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.box(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.box(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.box(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.box(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D))
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(6.0D, 2.0D, 11.0D, 10.0D, 6.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 5.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 13.0D, 10.0D, 15.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 8.0D, 16.0D), Block.createCuboidShape(6.0D, 8.0D, 13.0D, 10.0D, 15.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 3.0D, 10.0D, 9.0D, 10.0D))
     };
 
     protected static final VoxelShape[] SHAPES_SOUTH_HEAD = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(6.0D, 2.0D, 11.0D, 10.0D, 6.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 11.0D, 14.0D, 5.0D, 16.0D), Block.box(6.0D, 5.0D, 15.0D, 10.0D, 15.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 11.0D, 14.0D, 8.0D, 16.0D), Block.box(6.0D, 8.0D, 15.0D, 10.0D, 15.0D, 16.0D)),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 13.0D, 14.0D, 13.0D,16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 10.0D, 14.0D, 13.0D,16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 7.0D, 14.0D, 13.0D, 16.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 4.0D, 14.0D, 13.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(6.0D, 2.0D, 11.0D, 10.0D, 6.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 11.0D, 14.0D, 5.0D, 16.0D), Block.createCuboidShape(6.0D, 5.0D, 15.0D, 10.0D, 15.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 11.0D, 14.0D, 8.0D, 16.0D), Block.createCuboidShape(6.0D, 8.0D, 15.0D, 10.0D, 15.0D, 16.0D)),
+            Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 13.0D, 14.0D, 13.0D,16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 10.0D, 14.0D, 13.0D,16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 7.0D, 14.0D, 13.0D, 16.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 4.0D, 14.0D, 13.0D, 16.0D)),
     };
 
     protected static final VoxelShape[] SHAPES_SOUTH_FOOT = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(6.0D, 2.0D, 0.0D, 10.0D, 6.0D, 5.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 5.0D, 6.0D), Block.box(6.0D, 5.0D, 0.0D, 10.0D, 15.0D, 3.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 8.0D, 6.0D), Block.box(6.0D, 8.0D, 0.0D, 10.0D, 15.0D, 3.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.box(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.box(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.box(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.box(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.box(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D))
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(6.0D, 2.0D, 0.0D, 10.0D, 6.0D, 5.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 5.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 0.0D, 10.0D, 15.0D, 3.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 8.0D, 6.0D), Block.createCuboidShape(6.0D, 8.0D, 0.0D, 10.0D, 15.0D, 3.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(2.0D, 2.0D, 0.0D, 14.0D, 13.0D, 6.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 10.0D, 9.0D, 13.0D))
     };
 
     protected static final VoxelShape[] SHAPES_WEST_HEAD = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 6.0D, 5.0D, 6.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 5.0D, 5.0D, 14.0D), Block.box(0.0D, 5.0D, 6.0D, 1.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 5.0D, 8.0D, 14.0D), Block.box(0.0D, 8.0D, 6.0D, 1.0D, 15.0D, 10.0D)),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 3.0D, 13.0D,14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D,14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 9.0D, 13.0D, 14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 12.0D, 13.0D, 14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 6.0D, 5.0D, 6.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 5.0D, 5.0D, 14.0D), Block.createCuboidShape(0.0D, 5.0D, 6.0D, 1.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 5.0D, 8.0D, 14.0D), Block.createCuboidShape(0.0D, 8.0D, 6.0D, 1.0D, 15.0D, 10.0D)),
+            Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 3.0D, 13.0D,14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D,14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 9.0D, 13.0D, 14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 12.0D, 13.0D, 14.0D)),
     };
 
     protected static final VoxelShape[] SHAPES_WEST_FOOT = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(11.0D, 2.0D, 6.0D, 16.0D, 6.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 5.0D, 14.0D), Block.box(13.0D, 5.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 8.0D, 14.0D), Block.box(13.0D, 8.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.box(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.box(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.box(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.box(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.box(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D))
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(11.0D, 2.0D, 6.0D, 16.0D, 6.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 5.0D, 14.0D), Block.createCuboidShape(13.0D, 5.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 8.0D, 14.0D), Block.createCuboidShape(13.0D, 8.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.createCuboidShape(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.createCuboidShape(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.createCuboidShape(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.createCuboidShape(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D), Block.createCuboidShape(3.0D, 5.0D, 6.0D, 10.0D, 9.0D, 10.0D))
     };
 
     protected static final VoxelShape[] SHAPES_EAST_HEAD = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(11.0D, 2.0D, 6.0D, 16.0D, 6.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(11.0D, 2.0D, 2.0D, 16.0D, 5.0D, 14.0D), Block.box(15.0D, 5.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(11.0D, 2.0D, 2.0D, 16.0D, 8.0D, 14.0D), Block.box(15.0D, 8.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(13.0D, 2.0D, 2.0D, 16.0D, 13.0D,14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(10.0D, 2.0D, 2.0D, 16.0D, 13.0D,14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(7.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(4.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(11.0D, 2.0D, 6.0D, 16.0D, 6.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(11.0D, 2.0D, 2.0D, 16.0D, 5.0D, 14.0D), Block.createCuboidShape(15.0D, 5.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(11.0D, 2.0D, 2.0D, 16.0D, 8.0D, 14.0D), Block.createCuboidShape(15.0D, 8.0D, 6.0D, 16.0D, 15.0D, 10.0D)),
+            Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(13.0D, 2.0D, 2.0D, 16.0D, 13.0D,14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(10.0D, 2.0D, 2.0D, 16.0D, 13.0D,14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(7.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(4.0D, 2.0D, 2.0D, 16.0D, 13.0D, 14.0D)),
     };
 
     protected static final VoxelShape[] SHAPES_EAST_FOOT = new VoxelShape[]{
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 6.0D, 5.0D, 6.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 5.0D, 14.0D), Block.box(0.0D, 5.0D, 6.0D, 3.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 8.0D, 14.0D), Block.box(0.0D, 8.0D, 6.0D, 3.0D, 15.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.box(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.box(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.box(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.box(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
-            Shapes.or(Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.box(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.box(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D))
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 6.0D, 5.0D, 6.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 5.0D, 14.0D), Block.createCuboidShape(0.0D, 5.0D, 6.0D, 3.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 8.0D, 14.0D), Block.createCuboidShape(0.0D, 8.0D, 6.0D, 3.0D, 15.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D)),
+            VoxelShapes.union(Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D), Block.createCuboidShape(0.0D, 2.0D, 2.0D, 6.0D, 13.0D, 14.0D), Block.createCuboidShape(6.0D, 5.0D, 6.0D, 13.0D, 9.0D, 10.0D))
     };
 
-
-    public DragonLegBlock(Properties properties) {
-        super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(SERVINGS, 7).setValue(PART, BedPart.HEAD));
+    public DragonLegBlock(Settings settings) {
+        super(settings);
+        this.setDefaultState((BlockState)((BlockState)((BlockState)this.getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(SERVINGS, 7).with(PART, BedPart.HEAD))));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (state.getValue(PART) == BedPart.HEAD) {
-            switch ((Direction) state.getValue(FACING)) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        if (state.get(PART) == BedPart.HEAD) {
+            switch ((Direction) state.get(FACING)) {
                 case NORTH:
-                    return SHAPES_NORTH_HEAD[state.getValue(SERVINGS)];
+                    return SHAPES_NORTH_HEAD[state.get(SERVINGS)];
                 case SOUTH:
-                    return SHAPES_SOUTH_HEAD[state.getValue(SERVINGS)];
+                    return SHAPES_SOUTH_HEAD[state.get(SERVINGS)];
                 case WEST:
-                    return SHAPES_WEST_HEAD[state.getValue(SERVINGS)];
+                    return SHAPES_WEST_HEAD[state.get(SERVINGS)];
                 case EAST:
-                    return SHAPES_EAST_HEAD[state.getValue(SERVINGS)];
+                    return SHAPES_EAST_HEAD[state.get(SERVINGS)];
             }
         }
-        if (state.getValue(PART) == BedPart.FOOT) {
-            switch ((Direction) state.getValue(FACING)) {
+        if (state.get(PART) == BedPart.FOOT) {
+            switch ((Direction) state.get(FACING)) {
                 case NORTH:
-                    return SHAPES_NORTH_FOOT[state.getValue(SERVINGS)];
+                    return SHAPES_NORTH_FOOT[state.get(SERVINGS)];
                 case SOUTH:
-                    return SHAPES_SOUTH_FOOT[state.getValue(SERVINGS)];
+                    return SHAPES_SOUTH_FOOT[state.get(SERVINGS)];
                 case WEST:
-                    return SHAPES_WEST_FOOT[state.getValue(SERVINGS)];
+                    return SHAPES_WEST_FOOT[state.get(SERVINGS)];
                 case EAST:
-                    return SHAPES_EAST_FOOT[state.getValue(SERVINGS)];
+                    return SHAPES_EAST_FOOT[state.get(SERVINGS)];
             }
         }
-        return SHAPES_NORTH_HEAD[state.getValue(SERVINGS)];
+        return SHAPES_NORTH_HEAD[state.get(SERVINGS)];
     }
 
-    private static Direction getDirectionToOther(BedPart part, Direction direction) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING, PART, SERVINGS);
+    }
+
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    private static Direction getDirectionTowardsOtherPart(BedPart part, Direction direction) {
         return part == BedPart.HEAD ? direction : direction.getOpposite();
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SERVINGS, PART);
-    }
-
-    @Override
-    public RenderShape getRenderShape(BlockState state) {
-        return RenderShape.MODEL;
-    }
-
-    @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == getDirectionToOther(stateIn.getValue(PART), stateIn.getValue(FACING))) {
-            return stateIn.canSurvive(worldIn, currentPos) && facingState.is(this) && facingState.getValue(PART) != stateIn.getValue(PART) ? stateIn : Blocks.AIR.defaultBlockState();
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+        if (direction == getDirectionTowardsOtherPart(state.get(PART), state.get(FACING))) {
+            return state.canPlaceAt(world, pos) && neighborState.isOf(this) && neighborState.get(PART) != state.get(PART) ? state : Blocks.AIR.getDefaultState();
         } else {
-            return !stateIn.canSurvive(worldIn, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+            return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
         }
     }
 
     @Override
-    public void playerWillDestroy(Level p_49505_, BlockPos p_49506_, BlockState p_49507_, Player p_49508_) {
-        if (!p_49505_.isClientSide && p_49508_.isCreative()) {
-            BedPart bedpart = p_49507_.getValue(PART);
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        if (!world.isClient && player.isCreative()) {
+            BedPart bedpart = state.get(PART);
             if (bedpart == BedPart.FOOT) {
-                BlockPos blockpos = p_49506_.relative(getDirectionToOther(bedpart, p_49507_.getValue(FACING)));
-                BlockState blockstate = p_49505_.getBlockState(blockpos);
-                if (blockstate.is(this) && blockstate.getValue(PART) == BedPart.HEAD) {
-                    p_49505_.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 35);
-                    p_49505_.levelEvent(p_49508_, 2001, blockpos, Block.getId(blockstate));
+                BlockPos blockpos = pos.offset(getDirectionTowardsOtherPart(bedpart, state.get(FACING)));
+                BlockState blockstate = world.getBlockState(blockpos);
+                if (blockstate.isOf(this) && blockstate.get(PART) == BedPart.HEAD) {
+                    world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 35);
+                    world.syncWorldEvent(player, 2001, blockpos, Block.getRawIdFromState(blockstate));
                 }
             }
         }
 
-        super.playerWillDestroy(p_49505_, p_49506_, p_49507_, p_49508_);
+        super.onBreak(world, pos, state, player);
     }
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext p_49479_) {
-        Direction direction = p_49479_.getHorizontalDirection();
-        BlockPos blockpos = p_49479_.getClickedPos();
-        BlockPos blockpos1 = blockpos.relative(direction);
-        Level level = p_49479_.getLevel();
-        return level.getBlockState(blockpos1).canBeReplaced(p_49479_) && level.getWorldBorder().isWithinBounds(blockpos1) ? this.defaultBlockState().setValue(FACING, direction) : null;
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        Direction direction = ctx.getHorizontalPlayerFacing();
+        BlockPos blockPos = ctx.getBlockPos();
+        BlockPos blockPos2 = blockPos.offset(direction);
+        World world = ctx.getWorld();
+        return world.getBlockState(blockPos2).canReplace(ctx) && world.getWorldBorder().contains(blockPos2) ? (BlockState)this.getDefaultState().with(FACING, direction) : null;
     }
 
-    @Override
-    public PushReaction getPistonPushReaction(BlockState state) {
-        return PushReaction.DESTROY;
+    public PistonBehavior method_9527(BlockState state) {
+        return PistonBehavior.DESTROY;
     }
 
-    @Override
-    public void setPlacedBy(Level worldIn, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
-        super.setPlacedBy(worldIn, pos, state, placer, stack);
-        if (!worldIn.isClientSide) {
-            BlockPos facingPos = pos.relative(state.getValue(FACING));
-            worldIn.setBlock(facingPos, state.setValue(PART, BedPart.FOOT), 3);
-            worldIn.blockUpdated(pos, Blocks.AIR);
-            state.updateNeighbourShapes(worldIn, pos, 3);
+    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        super.onPlaced(world, pos, state, placer, itemStack);
+        if (!world.isClient) {
+            BlockPos blockPos = pos.offset((Direction)state.get(FACING));
+            world.setBlockState(blockPos, (BlockState)state.with(PART, BedPart.FOOT), 3);
+            world.updateNeighbors(pos, Blocks.AIR);
+            state.updateNeighbors(world, pos, 3);
         }
+
     }
 
-    public static DoubleBlockCombiner.BlockType getBlockType(BlockState state) {
-        BedPart bedpart = state.getValue(PART);
-        return bedpart == BedPart.FOOT ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
+    public static DoubleBlockProperties.Type getBedPart(BlockState state) {
+        BedPart bedPart = (BedPart)state.get(PART);
+        return bedPart == BedPart.FOOT ? DoubleBlockProperties.Type.FIRST : DoubleBlockProperties.Type.SECOND;
     }
 
-
-    @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
-        int servings = state.getValue(SERVINGS);
-        ItemStack heldStack = player.getItemInHand(handIn);
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        int servings = state.get(SERVINGS);
+        ItemStack heldStack = player.getStackInHand(hand);
 
         if (!(servings == 0)) {
-            if (heldStack.is(Items.BOWL)) {
-                return takeServing(level, pos, state, player, handIn, ItemRegistry.DragonLegWithSauce.get());
+            if (heldStack.isOf(Items.BOWL)) {
+                return takeServing(world, pos, state, player, hand, ModItem.DragonLegWithSauce.get());
             } else {
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
+                player.sendMessage(FarmersDelightMod.i18n("block.feast.use_container", (new ItemStack(Items.BOWL)).getName()), true);
             }
         }
         if (servings == 0) {
-                level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 1.0F, 1.0F);
-                level.destroyBlock(pos, true);
-            }
-            else {
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
-            }
-        return InteractionResult.SUCCESS;
+            world.playSound(null, pos, SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            world.breakBlock(pos, true);
+        }
+        else {
+            player.sendMessage(FarmersDelightMod.i18n("block.feast.use_container", new ItemStack(Items.BOWL).getName()), true);
+        }
+        return ActionResult.SUCCESS;
     }
 
-    protected InteractionResult takeServing(Level level, BlockPos pos, BlockState state, Player player, InteractionHand handIn, Item serving) {
-        int servings = state.getValue(SERVINGS);
-        BedPart part = state.getValue(PART);
-        BlockPos pairPos = pos.relative(getDirectionToOther(part, state.getValue(FACING)));
-        BlockState pairState = level.getBlockState(pairPos);
-        ItemStack heldItem = player.getItemInHand(handIn);
+    protected ActionResult takeServing(World world, BlockPos pos, BlockState state, PlayerEntity player, Hand hand, Item serving) {
+        int servings = state.get(SERVINGS);
+        BedPart part = state.get(PART);
+        BlockPos pairPos = pos.offset(getDirectionTowardsOtherPart(part, state.get(FACING)));
+        BlockState pairState = world.getBlockState(pairPos);
+        ItemStack heldItem = player.getStackInHand(hand);
 
-        level.setBlock(pairPos, pairState.setValue(SERVINGS, servings - 1), 3);
-        level.setBlock(pos, state.setValue(SERVINGS, servings - 1), 3);
+        world.setBlockState(pairPos, pairState.with(SERVINGS, servings - 1), 3);
+        world.setBlockState(pos, state.with(SERVINGS, servings - 1), 3);
 
         if (!player.isCreative()) {
-            heldItem.shrink(1);
+            heldItem.decrement(1);
         }
-        if (!player.getInventory().add(new ItemStack(serving))) {
-            player.drop(new ItemStack(serving), false);
+        if (!player.getInventory().insertStack(new ItemStack(serving))) {
+            player.dropItem(new ItemStack(serving), false);
         }
-        level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_GENERIC, SoundSource.PLAYERS, 1.0F, 1.0F);
-        return InteractionResult.SUCCESS;
+        world.playSound(null, pos, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, SoundCategory.PLAYERS, 1.0F, 1.0F);
+        return ActionResult.SUCCESS;
     }
+
 }
