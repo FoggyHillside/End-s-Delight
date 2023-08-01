@@ -10,12 +10,12 @@
       "predicate": {
         "equipment": {
           "mainhand": {
-                "tag": "farmersdelight:tools/knives"
+            "tag": "nethersdelight:tools/machetes"
           }
         }
       }
     }
   ],
-  "item": "ends_delight:raw_dragon_meat",
-  "type": "ends_delight:dragon_meat"
+  "item": "ends_delight:dragon_tooth",
+  "type": "ends_delight:dragon_tooth"
 }

@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.FoodValues;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
+import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.KnifeItem;
 
 public class ItemRegistry {
@@ -89,7 +90,7 @@ public class ItemRegistry {
     public static final RegistryObject<Item> BubbleTea = ITEMS.register("bubble_tea",
             ()-> new BubbleTeaItem(new Item.Properties().food(FoodList.BubbleTea).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab)));
     public static final RegistryObject<Item> DragonBreathSoda = ITEMS.register("dragon_breath_soda",
-            ()-> new DragonBreathSodaItem(new Item.Properties().food(FoodList.DragonBreathSoda).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab), true));
+            ()-> new DrinkableItem(new Item.Properties().food(FoodList.DragonBreathSoda).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab), true));
     public static final RegistryObject<Item> ChorusFlowerTea = ITEMS.register("chorus_flower_tea",
             ()-> new ChorusFlowerTeaItem(new Item.Properties().food(FoodList.ChorusFlowerTea).stacksTo(16).craftRemainder(Items.GLASS_BOTTLE).tab(EndsDelight.EndsDelightTab), true, true));
     //Cookie

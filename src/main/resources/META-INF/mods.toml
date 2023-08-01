@@ -3,11 +3,11 @@ loaderVersion="[43,)"
 license="MIT License"
 [[mods]]
 modId="ends_delight"
-version="1.19.2-1.1.1"
+version="1.19.2-1.2.1"
 displayName="End's Delight"
 logoFile="logo.png"
 logoBlur=false
-credits="FoggyHillside, PExPE3, SKZGx"
+credits="FoggyHillside, PExPE3, unroman"
 authors="FoggyHillside"
 description='''
 An addon mod for Farmer's Delight based around adding culinary content to the end!
@@ -27,6 +27,6 @@ An addon mod for Farmer's Delight based around adding culinary content to the en
 [[dependencies.ends_delight]]
     modId="farmersdelight"
     mandatory=true
-    versionRange="[1.19-1.2.0,)"
+    versionRange="[1.19-1.2.1,)"
     ordering="AFTER"
     side="BOTH"

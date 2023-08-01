@@ -10,7 +10,7 @@
       "predicate": {
         "equipment": {
           "mainhand": {
-                "tag": "farmersdelight:tools/knives"
+              "tag": "nethersdelight:tools/machetes"
           }
         }
       }

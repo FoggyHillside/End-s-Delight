@@ -2,9 +2,14 @@
   "replace": false,
   "entries": [
     "ends_delight:add_dragon_meat",
+    "ends_delight:nd_add_dragon_meat",
     "ends_delight:add_dragon_leg",
+    "ends_delight:nd_add_dragon_leg",
     "ends_delight:add_endermite_meat",
+    "ends_delight:nd_add_endermite_meat",
     "ends_delight:add_shulker_meat",
-    "ends_delight:add_dragon_tooth"
+    "ends_delight:nd_add_shulker_meat",
+    "ends_delight:add_dragon_tooth",
+    "ends_delight:nd_add_dragon_tooth"
   ]
 }

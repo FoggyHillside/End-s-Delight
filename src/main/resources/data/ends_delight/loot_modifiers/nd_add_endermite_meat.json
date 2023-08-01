@@ -2,7 +2,7 @@
   "conditions": [
     {
       "condition": "forge:loot_table_id",
-      "loot_table_id": "minecraft:entities/ender_dragon"
+      "loot_table_id": "minecraft:entities/endermite"
     },
     {
       "condition": "minecraft:entity_properties",
@@ -10,12 +10,12 @@
       "predicate": {
         "equipment": {
           "mainhand": {
-                "tag": "farmersdelight:tools/knives"
+            "tag": "nethersdelight:tools/machetes"
           }
         }
       }
     }
   ],
-  "item": "ends_delight:raw_dragon_meat",
-  "type": "ends_delight:dragon_meat"
+  "item": "ends_delight:raw_ender_mite_meat",
+  "type": "ends_delight:shulker_meat"
 }
