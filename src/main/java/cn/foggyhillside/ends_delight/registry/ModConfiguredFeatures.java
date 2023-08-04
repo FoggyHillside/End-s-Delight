@@ -1,8 +1,8 @@
 package cn.foggyhillside.ends_delight.registry;
 
 import cn.foggyhillside.ends_delight.EndsDelight;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -26,8 +26,8 @@ public enum ModConfiguredFeatures {
 
         for(int var2 = 0; var2 < var1; ++var2) {
             ModConfiguredFeatures value = var0[var2];
-            value.configuredFeatureRegistryKey = RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, value.featureIdentifier);
-            value.featureRegistryKey = RegistryKey.of(RegistryKeys.PLACED_FEATURE, value.featureIdentifier);
+            value.configuredFeatureRegistryKey = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, value.featureIdentifier);
+            value.featureRegistryKey = RegistryKey.of(Registry.PLACED_FEATURE_KEY, value.featureIdentifier);
         }
 
     }

@@ -15,7 +15,7 @@ repositories {
 }
 
 loom {
-    splitEnvironmentSourceSets()
+	splitEnvironmentSourceSets()
 
 	mods {
 		"ends_delight" {
@@ -31,8 +31,8 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "curse.maven:farmersdelightfabric-482834:4640640"
-	implementation "net.minecraft:minecraft-clientonly-project-root:1.20.1-net.fabricmc.yarn.1_20_1.1.20.1+build.9-v2"
+	modImplementation "curse.maven:farmersdelightfabric-482834:4634237"
+	implementation "net.minecraft:minecraft-clientonly-project-root:1.19.2-net.fabricmc.yarn.1_19_2.1.19.2+build.28-v2"
 }
 
 processResources {

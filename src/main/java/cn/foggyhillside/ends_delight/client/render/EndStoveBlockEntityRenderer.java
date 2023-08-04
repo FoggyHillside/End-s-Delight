@@ -9,13 +9,13 @@ import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec2f;
+import net.minecraft.util.math.Vec3f;
 
 @Environment(EnvType.CLIENT)
 public class EndStoveBlockEntityRenderer implements BlockEntityRenderer<EndStoveBlockEntity> {
@@ -33,14 +33,14 @@ public class EndStoveBlockEntityRenderer implements BlockEntityRenderer<EndStove
                 matrices.push();
                 matrices.translate(0.5, 1.02, 0.5);
                 float angle = -direction.asRotation();
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(angle));
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90.0F));
+                matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angle));
+                matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(90.0F));
                 Vec2f itemOffset = entity.getStoveItemOffset(i);
                 matrices.translate((double)itemOffset.x, (double)itemOffset.y, 0.0);
                 matrices.scale(0.375F, 0.375F, 0.375F);
                 if (entity.getWorld() != null) {
                     int lightAbove = WorldRenderer.getLightmapCoordinates(entity.getWorld(), entity.getPos().up());
-                    MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformationMode.FIXED, lightAbove, overlay, matrices, vertexConsumers, entity.getWorld(), intPos + i);
+                    MinecraftClient.getInstance().getItemRenderer().renderItem(itemStack, ModelTransformation.Mode.FIXED, lightAbove, overlay, matrices, vertexConsumers, intPos + i);
                 }
 
                 matrices.pop();

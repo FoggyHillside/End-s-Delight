@@ -20,7 +20,6 @@ public class EndsDelight implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModTab.registerItemGroup();
 		ModItem.registerModItems();
 		ModBlock.registerModBlocks();
 		ModBlockEntity.registerBlockEntities();

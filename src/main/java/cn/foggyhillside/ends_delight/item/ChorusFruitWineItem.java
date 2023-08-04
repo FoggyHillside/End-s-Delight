@@ -1,9 +1,11 @@
 package cn.foggyhillside.ends_delight.item;
 
 import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
+import com.nhoryzon.mc.farmersdelight.item.DrinkableItem;
 import com.nhoryzon.mc.farmersdelight.item.HotCocoaItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -28,7 +30,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ChorusFruitWineItem extends HotCocoaItem {
+public class ChorusFruitWineItem extends DrinkableItem {
+    public ChorusFruitWineItem(FabricItemSettings settings) {
+        super(settings);
+    }
 
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {

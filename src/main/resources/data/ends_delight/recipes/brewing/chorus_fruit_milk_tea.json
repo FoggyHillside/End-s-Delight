@@ -1,0 +1,27 @@
+{
+  "type": "farmersrespite:brewing",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "brewingtime": 200,
+  "experience": 0.35,
+  "group": "chorus_fruit_milk_tea",
+  "ingredients": [
+    {
+      "tag": "c:milk"
+    },
+    [
+      {
+        "item": "minecraft:chorus_fruit"
+      },
+      {
+        "item": "ends_delight:chorus_fruit_grain"
+      }
+    ]
+  ],
+  "needWater": true,
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "ends_delight:chorus_fruit_milk_tea"
+  }
+}

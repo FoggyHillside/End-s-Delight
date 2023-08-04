@@ -13,8 +13,8 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.CampfireCookingRecipe;
@@ -183,7 +183,7 @@ public class EndStoveBlockEntity extends BlockEntity implements Clearable {
                     if (this.world != null) {
                         Inventory cookInventory = new SimpleInventory(new ItemStack[]{itemstack});
                         ItemStack result = (ItemStack)this.world.getRecipeManager().getAllMatches(RecipeType.CAMPFIRE_COOKING, cookInventory, this.world).stream().map((recipe) -> {
-                            return recipe.craft(cookInventory, this.world.getRegistryManager());
+                            return recipe.craft(cookInventory);
                         }).findAny().orElse(itemstack);
                         if (!result.isEmpty()) {
                             ItemEntity entity = new ItemEntity(this.world, (double)this.pos.getX() + 0.5, (double)this.pos.getY() + 1.0, (double)this.pos.getZ() + 0.5, result.copy());

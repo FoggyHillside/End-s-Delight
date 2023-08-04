@@ -1,0 +1,22 @@
+{
+  "type": "farmersrespite:brewing",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "brewingtime": 200,
+  "experience": 0.35,
+  "group": "chorus_flower_tea",
+  "ingredients": [
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "ends_delight:dried_chorus_flower"
+    }
+  ],
+  "needWater": true,
+  "recipe_book_tab": "drinks",
+  "result": {
+    "item": "ends_delight:chorus_flower_tea"
+  }
+}

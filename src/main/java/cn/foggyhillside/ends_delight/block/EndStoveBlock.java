@@ -2,11 +2,13 @@ package cn.foggyhillside.ends_delight.block;
 
 import cn.foggyhillside.ends_delight.blockentity.EndStoveBlockEntity;
 import cn.foggyhillside.ends_delight.registry.ModBlockEntity;
+import com.nhoryzon.mc.farmersdelight.registry.DamageSourcesRegistry;
 import com.nhoryzon.mc.farmersdelight.registry.SoundsRegistry;
 import com.nhoryzon.mc.farmersdelight.util.MathUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -14,14 +16,10 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.CampfireCookingRecipe;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -32,7 +30,6 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -44,7 +41,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 
 public class EndStoveBlock extends BlockWithEntity {
-    private static final RegistryKey<DamageType> STOVE_BURN;
     public static final DirectionProperty FACING;
     public static final BooleanProperty LIT;
 
@@ -122,7 +118,7 @@ public class EndStoveBlock extends BlockWithEntity {
     protected ActionResult tryExtinguishByPlayerHand(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stackHand = player.getStackInHand(hand);
         Item usedItem = stackHand.getItem();
-        if (!stackHand.isIn(ItemTags.SHOVELS) && usedItem != Items.WATER_BUCKET) {
+        if (!stackHand.isIn(ConventionalItemTags.SHOVELS) && usedItem != Items.WATER_BUCKET) {
             return ActionResult.PASS;
         } else {
             this.extinguish(state, world, pos);
@@ -140,14 +136,14 @@ public class EndStoveBlock extends BlockWithEntity {
     }
 
     public @Nullable BlockState getPlacementState(ItemPlacementContext context) {
-        return (BlockState)((BlockState)this.getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite())).with(LIT, true);
+        return (BlockState)((BlockState)this.getDefaultState().with(FACING, context.getPlayerFacing().getOpposite())).with(LIT, true);
     }
 
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         boolean isLit = (Boolean)world.getBlockState(pos).get(LIT);
         if (isLit && !entity.isFireImmune() && entity instanceof LivingEntity livingEntity) {
             if (!EnchantmentHelper.hasFrostWalker(livingEntity)) {
-                entity.damage(world.getDamageSources().create(STOVE_BURN), 1.0F);
+                entity.damage(DamageSourcesRegistry.STOVE_BLOCK, 1.0F);
             }
         }
 
@@ -198,7 +194,6 @@ public class EndStoveBlock extends BlockWithEntity {
     }
 
     static {
-        STOVE_BURN = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, new Identifier("farmersdelight", "stove_burn"));
         FACING = Properties.HORIZONTAL_FACING;
         LIT = Properties.LIT;
     }

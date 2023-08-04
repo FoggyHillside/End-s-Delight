@@ -97,7 +97,7 @@ public class TooltipItem extends Item {
                     }
 
                     if (instance.getDuration() > 20) {
-                        iformattabletextcomponent = Text.translatable("potion.withDuration", new Object[]{iformattabletextcomponent, StatusEffectUtil.getDurationText(instance, durationFactor)});
+                        iformattabletextcomponent = Text.translatable("potion.withDuration", new Object[]{iformattabletextcomponent, StatusEffectUtil.durationToString(instance, durationFactor)});
                     }
                 }
             }
