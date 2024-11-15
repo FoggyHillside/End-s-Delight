@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "forge:raw_dragon_meat"
+      "tag": "c:foods/raw_dragon_meat"
     },
     {
       "item": "ends_delight:enderman_gristle"

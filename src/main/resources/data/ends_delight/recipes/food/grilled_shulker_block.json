@@ -16,10 +16,10 @@
       "item": "ends_delight:chorus_succulent"
     },
     "4": {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     },
     "5": {
-      "tag": "forge:crops/onion"
+      "tag": "c:crops/onion"
     },
     "6":{
       "item": "minecraft:shulker_shell"

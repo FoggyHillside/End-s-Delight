@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "forge:shulker_meat"
+      "tag": "c:foods/shulker_meat"
     },
     {
       "item": "ends_delight:dried_endermite_meat"
@@ -26,10 +26,10 @@
     ],
     [
       {
-        "tag": "forge:dough"
+        "tag": "c:foods/dough"
       },
       {
-        "tag": "forge:pasta"
+        "tag": "c:foods/pasta"
       }
     ]
   ],

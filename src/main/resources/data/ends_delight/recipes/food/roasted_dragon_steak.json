@@ -5,10 +5,10 @@
       "item": "ends_delight:chorus_sauce"
     },
     {
-      "tag": "forge:roasted_dragon_meat"
+      "tag": "c:foods/roasted_dragon_meat"
     },
     {
-      "tag": "forge:crops/tomato"
+      "tag": "c:crops/tomato"
     },
     {
       "item": "minecraft:warped_fungus"
