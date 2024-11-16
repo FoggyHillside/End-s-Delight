@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/raw_dragon_meat"
+    },
+    {
+      "item": "ends_delight:enderman_gristle"
+    },
+    {
+      "item": "ends_delight:chorus_sauce"
+    }
+  ],
+  "result": {
+    "id": "ends_delight:raw_ender_sausage",
+    "count": 2
+  }
+}

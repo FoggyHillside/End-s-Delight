@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:shulker_meat_slice"
+  },
+  "result": {
+    "id": "ends_delight:roasted_shulker_meat_slice"
+  },
+  "cookingtime": 600
+}

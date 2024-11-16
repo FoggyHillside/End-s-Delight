@@ -52,7 +52,7 @@ public class ModCreativeTab {
                 output.accept(ModItems.ENDER_SAUSAGE.get());
                 output.accept(ModItems.ENDER_BAMBOO_RICE.get());
                 output.accept(ModItems.STUFFED_RICE_CAKE.get());
-                output.accept(ModItems.CHORUS_FLOWER_TEA.get());
+                output.accept(ModItems.CHORUS_FLOWER_PIE.get());
                 output.accept(ModItems.CHORUS_COOKIE.get());
                 output.accept(ModItems.CHORUS_FRUIT_POPSICLE.get());
                 output.accept(ModItems.CHORUS_FRUIT_MILK_TEA.get());

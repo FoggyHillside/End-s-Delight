@@ -86,7 +86,7 @@
   "ends_delight.advancement.get_dragon_leg_with_sauce": "龙腿大餐！",
   "ends_delight.advancement.get_dragon_leg_with_sauce.desc": "获得浇汁龙腿",
   "ends_delight.advancement.consume_enderman_gristle": "向上跃迁！",
-  "ends_delight.advancement.consume_enderman_gristle.desc": "获得末影人脆骨",
+  "ends_delight.advancement.consume_enderman_gristle.desc": "消耗末影人脆骨",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s落地过猛",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s在逃离%2$s时落地过猛",
   "farmersdelight.tooltip.chorus_fruit_wine": "随机传送并消除一个负面效果",

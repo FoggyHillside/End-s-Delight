@@ -1,0 +1,49 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:foods/shulker_meat"
+    },
+    {
+      "item": "ends_delight:dried_endermite_meat"
+    },
+    {
+      "item": "ends_delight:chorus_sauce"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:warped_fungus"
+        },
+        {
+          "item": "minecraft:crimson_fungus"
+        },
+        {
+          "item": "minecraft:brown_mushroom"
+        },
+        {
+          "item": "minecraft:red_mushroom"
+        }
+      ]
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "tag": "c:foods/dough"
+        },
+        {
+          "tag": "c:foods/pasta"
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "ends_delight:ender_noodle",
+    "count": 2
+  },
+  "recipe_book_tab": "meals",
+  "cookingtime": 200,
+  "experience": 1.0
+}

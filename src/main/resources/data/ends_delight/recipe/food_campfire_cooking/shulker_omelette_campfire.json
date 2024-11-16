@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:shulker_omelette_mixture"
+  },
+  "result": {
+    "id": "ends_delight:shulker_omelette"
+  },
+  "cookingtime": 600
+}

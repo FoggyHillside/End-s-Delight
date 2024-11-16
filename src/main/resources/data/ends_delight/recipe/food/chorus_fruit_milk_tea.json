@@ -1,0 +1,25 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:foods/milk"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "ends_delight:chorus_fruit_milk_tea"
+  },
+  "recipe_book_tab": "drinks",
+  "cookingtime": 200,
+  "experience": 1.0
+}

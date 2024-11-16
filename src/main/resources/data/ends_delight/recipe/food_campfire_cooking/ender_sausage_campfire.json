@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:raw_ender_sausage"
+  },
+  "result": {
+    "id": "ends_delight:ender_sausage"
+  },
+  "cookingtime": 600
+}

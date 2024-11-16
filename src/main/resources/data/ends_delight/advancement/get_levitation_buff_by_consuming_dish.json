@@ -1,0 +1,80 @@
+{
+  "display": {
+    "icon": {
+      "id": "ends_delight:stir_fried_shulker_meat"
+    },
+    "title": {
+      "translate": "ends_delight.advancement.get_levitation_buff_by_consuming_dish"
+    },
+    "description": {
+      "translate": "ends_delight.advancement.get_levitation_buff_by_consuming_dish.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "ends_delight:the_end_chef",
+  "criteria": {
+    "stir_fried_shulker_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "ends_delight:stir_fried_shulker_meat"
+          ]
+        }
+      }
+    },
+    "grilled_shulker": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "ends_delight:grilled_shulker"
+          ]
+        }
+      }
+    },
+    "shulker_soup": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "ends_delight:shulker_soup"
+          ]
+        }
+      }
+    },
+    "ender_noodle": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "ends_delight:ender_noodle"
+          ]
+        }
+      }
+    },
+    "shulker_omelette": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "ends_delight:shulker_omelette"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "stir_fried_shulker_meat",
+      "grilled_shulker",
+      "shulker_soup",
+      "ender_noodle",
+      "shulker_omelette"
+    ]
+  ]
+}
+

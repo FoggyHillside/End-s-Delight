@@ -1,0 +1,30 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:bamboo"
+    },
+    {
+      "tag": "c:crops/rice"
+    },
+    {
+      "tag": "c:foods/raw_dragon_meat"
+    },
+    {
+      "item": "ends_delight:chorus_succulent"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "tag": "c:crops/onion"
+    }
+  ],
+  "result": {
+    "id": "ends_delight:ender_bamboo_rice",
+    "count": 2
+  },
+  "recipe_book_tab": "meals",
+  "cookingtime": 200,
+  "experience": 1.0
+}

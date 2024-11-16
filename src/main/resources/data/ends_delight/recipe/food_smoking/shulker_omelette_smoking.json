@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:shulker_omelette_mixture"
+  },
+  "result": {
+    "id": "ends_delight:shulker_omelette"
+  },
+  "cookingtime": 100,
+  "experience": 0.35
+}

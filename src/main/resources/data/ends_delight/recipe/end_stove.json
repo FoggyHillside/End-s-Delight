@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "111",
+    "2 2",
+    "232"
+  ],
+  "key": {
+    "1": {
+      "item": "minecraft:popped_chorus_fruit"
+    },
+    "2": {
+      "item": "minecraft:end_stone_bricks"
+    },
+    "3": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "id": "ends_delight:end_stove"
+  }
+}

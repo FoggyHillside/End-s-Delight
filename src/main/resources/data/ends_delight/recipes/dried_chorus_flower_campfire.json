@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "minecraft:chorus_flower"
-  },
-  "result": "ends_delight:dried_chorus_flower",
-  "cookingtime": 600
-}

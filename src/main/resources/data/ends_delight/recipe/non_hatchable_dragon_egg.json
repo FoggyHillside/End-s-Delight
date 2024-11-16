@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "010",
+    "121",
+    "010"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:obsidian"
+    },
+    "1": {
+      "item": "minecraft:end_crystal"
+    },
+    "2": {
+      "item": "ends_delight:dragon_tooth"
+    }
+  },
+  "result": {
+    "id": "ends_delight:non_hatchable_dragon_egg"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:liquid_dragon_egg"
+  },
+  "result": {
+    "id": "ends_delight:fried_dragon_egg"
+  },
+  "cookingtime": 100,
+  "experience": 0.35
+}

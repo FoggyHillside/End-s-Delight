@@ -1,0 +1,36 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    }
+  ],
+  "result": {
+    "id": "ends_delight:chorus_fruit_wine"
+  },
+  "recipe_book_tab": "drinks",
+  "cookingtime": 200,
+  "experience": 1.0
+}

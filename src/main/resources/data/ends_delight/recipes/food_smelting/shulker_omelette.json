@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "ends_delight:shulker_omelette_mixture"
-  },
-  "result": "ends_delight:shulker_omelette",
-  "cookingtime": 200,
-  "experience": 0.35
-}

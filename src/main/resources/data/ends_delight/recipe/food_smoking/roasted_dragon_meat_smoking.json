@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "ingredient": {
+    "item": "ends_delight:raw_dragon_meat"
+  },
+  "result": {
+    "id": "ends_delight:roasted_dragon_meat"
+  },
+  "cookingtime": 100,
+  "experience": 0.35
+}

@@ -154,6 +154,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_name               : mod_name,
             mod_license            : mod_license,
             mod_version            : mod_version,
+            mod_credits            : mod_credits,
             mod_authors            : mod_authors,
             mod_description        : mod_description,
             farmersdelight_version_range: farmersdelight_version_range

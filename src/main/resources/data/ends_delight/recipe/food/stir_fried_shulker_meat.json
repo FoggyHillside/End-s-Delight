@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "tag": "c:crops/tomato"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    },
+    {
+      "tag": "c:foods/shulker_meat"
+    }
+  ],
+  "result": {
+    "id": "ends_delight:stir_fried_shulker_meat"
+  },
+  "recipe_book_tab": "meals",
+  "experience": 1.0,
+  "cookingtime": 200
+}

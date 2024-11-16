@@ -1,0 +1,40 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:foods/raw_dragon_meat"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    },
+    {
+      "item": "ends_delight:chorus_succulent"
+    },
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "tag": "c:crops/tomato"
+    }
+  ],
+  "result": {
+    "id": "ends_delight:dragon_meat_stew_block"
+  },
+  "container": {
+    "id": "ends_delight:half_dragon_egg_shell"
+  },
+  "recipe_book_tab": "meals",
+  "cookingtime": 200,
+  "experience": 2.0
+}

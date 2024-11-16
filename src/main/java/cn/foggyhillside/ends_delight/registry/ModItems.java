@@ -93,11 +93,11 @@ public class ModItems {
     public static final DeferredItem<Item> ENDER_BAMBOO_RICE = ITEMS.register("ender_bamboo_rice",
             () -> new ConsumableItem(new Item.Properties().food(FoodList.ENDER_BAMBOO_RICE), true));
     public static final DeferredItem<Item> STUFFED_RICE_CAKE = ITEMS.register("stuffed_rice_cake",
-            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.STUFFED_RICE_CAKE)));
+            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.STUFFED_RICE_CAKE), true));
     public static final DeferredItem<Item> CHORUS_FLOWER_PIE = ITEMS.register("chorus_flower_pie",
-            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.CHORUS_FLOWER_TEA), true));
+            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.CHORUS_FLOWER_PIE), true, true));
     public static final DeferredItem<Item> CHORUS_COOKIE = ITEMS.register("chorus_cookie",
-            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.CHORUS_COOKIE)));
+            () -> new ConsumableChorusItem(new Item.Properties().food(FoodList.CHORUS_COOKIE), true));
     public static final DeferredItem<Item> CHORUS_FRUIT_POPSICLE = ITEMS.register("chorus_fruit_popsicle",
             () -> new ChorusFruitPopsicleItem(new Item.Properties().food(FoodList.CHORUS_FRUIT_POPSICLE).stacksTo(16)));
     //Drink
@@ -115,7 +115,7 @@ public class ModItems {
     public static final DeferredItem<BlockItem> CHORUS_FRUIT_PIE = ITEMS.register("chorus_fruit_pie",
             () -> new BlockItem(ModBlocks.CHORUS_FRUIT_PIE.get(), new Item.Properties()));
     public static final DeferredItem<Item> CHORUS_FRUIT_PIE_SLICE = ITEMS.register("chorus_fruit_pie_slice",
-            () -> new ConsumableChorusItem(new Item.Properties().food(FoodValues.PIE_SLICE), true));
+            () -> new ConsumableChorusItem(new Item.Properties().food(FoodValues.PIE_SLICE), true, true));
     //Congee
     public static final DeferredItem<Item> ENDER_CONGEE = ITEMS.register("ender_congee",
             () -> new ConsumableItem(new Item.Properties().food(FoodList.ENDER_CONGEE).craftRemainder(Items.BOWL).stacksTo(16), true));

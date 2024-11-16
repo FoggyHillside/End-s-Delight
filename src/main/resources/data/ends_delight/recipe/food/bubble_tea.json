@@ -1,0 +1,28 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:foods/milk"
+    },
+    {
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    },
+    {
+      "item": "ends_delight:ender_pearl_grain"
+    }
+  ],
+  "recipe_book_tab": "drinks",
+  "result": {
+    "id": "ends_delight:bubble_tea"
+  },
+  "cookingtime": 200,
+  "experience": 1.0
+}

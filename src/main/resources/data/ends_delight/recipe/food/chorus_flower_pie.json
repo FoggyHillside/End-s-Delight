@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:foods/dough"
+    },
+    {
+      "item": "ends_delight:dried_chorus_flower"
+    },
+    {
+      "item": "ends_delight:dried_chorus_flower"
+    },
+    {
+      "item": "minecraft:poppy"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "ends_delight:chorus_flower_pie",
+    "count": 1
+  }
+}
