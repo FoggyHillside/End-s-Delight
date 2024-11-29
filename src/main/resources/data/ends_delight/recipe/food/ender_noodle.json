@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "c:foods/shulker_meat"
+      "tag": "ends_delight:shulker_meat"
     },
     {
       "item": "ends_delight:dried_endermite_meat"
@@ -11,8 +11,8 @@
       "item": "ends_delight:chorus_sauce"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:warped_fungus"
         },
@@ -28,8 +28,8 @@
       ]
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "tag": "c:foods/dough"
         },

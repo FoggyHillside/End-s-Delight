@@ -8,6 +8,16 @@
       }
     },
     {
+      "condition": "minecraft:random_chance_with_enchanted_bonus",
+      "enchantment": "minecraft:looting",
+      "unenchanted_chance": 0.35,
+      "enchanted_chance": {
+        "type": "minecraft:linear",
+        "base": 0.5,
+        "per_level_above_first": 0.1
+      }
+    },
+    {
       "condition": "minecraft:entity_properties",
       "entity": "attacker",
       "predicate": {
@@ -20,5 +30,5 @@
     }
   ],
   "item": "ends_delight:enderman_gristle",
-  "type": "ends_delight:enderman_gristle"
+  "type": "ends_delight:add_item"
 }

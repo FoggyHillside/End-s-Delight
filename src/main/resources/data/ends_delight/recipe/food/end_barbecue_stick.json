@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "c:foods/roasted_shulker_meat"
+      "tag": "ends_delight:roasted_shulker_meat"
     },
     {
-      "tag": "c:foods/roasted_dragon_meat"
+      "tag": "ends_delight:roasted_dragon_meat"
     },
     {
       "item": "minecraft:chorus_fruit"

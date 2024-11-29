@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "minecraft:egg",
+      "required": false
+    },
+    {
+      "id": "#c:eggs",
+      "required": false
+    }
+  ]
+}

@@ -9,5 +9,8 @@
     }
   ],
   "item": "ends_delight:dragon_tooth",
-  "type": "ends_delight:dragon_tooth"
+  "count": 3,
+  "bonus1": 0.75,
+  "bonus2": 0.5,
+  "type": "ends_delight:add_item"
 }

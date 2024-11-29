@@ -8,6 +8,6 @@ import net.minecraft.world.damagesource.DamageType;
 
 public class EDModDamageTypes {
 
-    public static final ResourceKey<DamageType> ENDERMAN_GRISTLE_TELEPORT = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EndsDelight.MODID, "enderman_gristle_teleport"));
+    public static final ResourceKey<DamageType> ENDERMAN_GRISTLE_TELEPORT = ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EndsDelight.MOD_ID, "enderman_gristle_teleport"));
 
 }

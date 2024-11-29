@@ -1,11 +1,6 @@
 package cn.foggyhillside.ends_delight.registry;
 
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 public class ModMaterials {
@@ -26,8 +21,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
-            return BlockTags.INCORRECT_FOR_IRON_TOOL;
+        public @NotNull net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> getIncorrectBlocksForDrops() {
+            return net.minecraft.tags.BlockTags.INCORRECT_FOR_IRON_TOOL;
         }
 
         @Override
@@ -36,8 +31,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(ModItems.HALF_DRAGON_EGG_SHELL.get());
+        public @NotNull net.minecraft.world.item.crafting.Ingredient getRepairIngredient() {
+            return net.minecraft.world.item.crafting.Ingredient.of(ModItems.HALF_DRAGON_EGG_SHELL.get());
         }
     };
     public static final Tier END_STONE = new Tier() {
@@ -57,8 +52,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
-            return BlockTags.INCORRECT_FOR_STONE_TOOL;
+        public @NotNull net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> getIncorrectBlocksForDrops() {
+            return net.minecraft.tags.BlockTags.INCORRECT_FOR_STONE_TOOL;
         }
 
         @Override
@@ -67,8 +62,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(Items.END_STONE);
+        public @NotNull net.minecraft.world.item.crafting.Ingredient getRepairIngredient() {
+            return net.minecraft.world.item.crafting.Ingredient.of(net.minecraft.world.item.Items.END_STONE);
         }
     };
     public static final Tier PURPUR = new Tier() {
@@ -88,8 +83,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
-            return BlockTags.INCORRECT_FOR_STONE_TOOL;
+        public @NotNull net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> getIncorrectBlocksForDrops() {
+            return net.minecraft.tags.BlockTags.INCORRECT_FOR_STONE_TOOL;
         }
 
         @Override
@@ -98,8 +93,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(Items.POPPED_CHORUS_FRUIT);
+        public @NotNull net.minecraft.world.item.crafting.Ingredient getRepairIngredient() {
+            return net.minecraft.world.item.crafting.Ingredient.of(net.minecraft.world.item.Items.POPPED_CHORUS_FRUIT);
         }
     };
     public static final Tier DRAGON_TOOTH = new Tier() {
@@ -119,8 +114,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
-            return BlockTags.INCORRECT_FOR_DIAMOND_TOOL;
+        public @NotNull net.minecraft.tags.TagKey<net.minecraft.world.level.block.Block> getIncorrectBlocksForDrops() {
+            return net.minecraft.tags.BlockTags.INCORRECT_FOR_DIAMOND_TOOL;
         }
 
         @Override
@@ -129,8 +124,8 @@ public class ModMaterials {
         }
 
         @Override
-        public @NotNull Ingredient getRepairIngredient() {
-            return Ingredient.of(ModItems.DRAGON_TOOTH.get());
+        public @NotNull net.minecraft.world.item.crafting.Ingredient getRepairIngredient() {
+            return net.minecraft.world.item.crafting.Ingredient.of(ModItems.DRAGON_TOOTH.get());
         }
     };
 }

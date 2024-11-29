@@ -1,20 +1,18 @@
 package cn.foggyhillside.ends_delight.item;
 
 import cn.foggyhillside.ends_delight.EDCommonConfigs;
-import cn.foggyhillside.ends_delight.EndermanGristleTransport;
+import cn.foggyhillside.ends_delight.utility.Utils;
+import io.github.fabricators_of_create.porting_lib.entity.events.EntityTeleportEvent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
+
+import static io.github.fabricators_of_create.porting_lib.entity.EntityHooks.onChorusFruitTeleport;
 
 public class EndermanGristleItem extends ConsumableItem {
 
@@ -39,8 +37,8 @@ public class EndermanGristleItem extends ConsumableItem {
         this.damage = damage;
         this.shift = shift;
     }
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        ItemStack itemstack = super.finishUsingItem(pStack, pLevel, pEntityLiving);
+    public net.minecraft.world.item.ItemStack finishUsingItem(net.minecraft.world.item.ItemStack pStack, Level pLevel, net.minecraft.world.entity.LivingEntity pEntityLiving) {
+        net.minecraft.world.item.ItemStack itemstack = super.finishUsingItem(pStack, pLevel, pEntityLiving);
         if (EDCommonConfigs.GRISTLE_TELEPORT.get() && (!shift || pEntityLiving.isShiftKeyDown())) {
             if (!pLevel.isClientSide) {
                 for (int i = 0; i < 16; i++) {
@@ -56,17 +54,17 @@ public class EndermanGristleItem extends ConsumableItem {
                     }
 
                     Vec3 vec3 = pEntityLiving.position();
-                    net.neoforged.neoforge.event.entity.EntityTeleportEvent.ChorusFruit event = net.neoforged.neoforge.event.EventHooks.onChorusFruitTeleport(pEntityLiving, d0, d1, d2);
+                    EntityTeleportEvent.ChorusFruit event = onChorusFruitTeleport(pEntityLiving, d0, d1, d2);
                     if (event.isCanceled()) return itemstack;
-                    if (EndermanGristleTransport.randomTeleport(pEntityLiving, event.getTargetX(), event.getTargetY(), event.getTargetZ(), true, damage)) {
-                        pLevel.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(pEntityLiving));
+                    if (Utils.gristleTeleport(pEntityLiving, event.getTargetX(), event.getTargetY(), event.getTargetZ(), true, damage)) {
+                        pLevel.gameEvent(net.minecraft.world.level.gameevent.GameEvent.TELEPORT, vec3, net.minecraft.world.level.gameevent.GameEvent.Context.of(pEntityLiving));
                         SoundSource soundsource;
-                        SoundEvent soundevent;
+                        net.minecraft.sounds.SoundEvent soundevent;
                         if (pEntityLiving instanceof Fox) {
-                            soundevent = SoundEvents.FOX_TELEPORT;
+                            soundevent = net.minecraft.sounds.SoundEvents.FOX_TELEPORT;
                             soundsource = SoundSource.NEUTRAL;
                         } else {
-                            soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
+                            soundevent = net.minecraft.sounds.SoundEvents.CHORUS_FRUIT_TELEPORT;
                             soundsource = SoundSource.PLAYERS;
                         }
 

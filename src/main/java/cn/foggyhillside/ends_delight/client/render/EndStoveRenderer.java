@@ -1,9 +1,10 @@
-package cn.foggyhillside.ends_delight.client.renderer;
+package cn.foggyhillside.ends_delight.client.render;
 
 import cn.foggyhillside.ends_delight.block.EndStoveBlock;
 import cn.foggyhillside.ends_delight.block.entity.EndStoveBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import io.github.fabricators_of_create.porting_lib.transfer.item.ItemStackHandlerContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,7 +14,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec2;
-import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class EndStoveRenderer implements BlockEntityRenderer<EndStoveBlockEntity>
 {
@@ -24,10 +24,10 @@ public class EndStoveRenderer implements BlockEntityRenderer<EndStoveBlockEntity
     public void render(EndStoveBlockEntity stoveEntity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
         Direction direction = stoveEntity.getBlockState().getValue(EndStoveBlock.FACING).getOpposite();
 
-        ItemStackHandler inventory = stoveEntity.getInventory();
+        ItemStackHandlerContainer inventory = stoveEntity.getInventory();
         int posLong = (int) stoveEntity.getBlockPos().asLong();
 
-        for (int i = 0; i < inventory.getSlots(); ++i) {
+        for (int i = 0; i < inventory.getSlotCount(); ++i) {
             ItemStack stoveStack = inventory.getStackInSlot(i);
             if (!stoveStack.isEmpty()) {
                 poseStack.pushPose();

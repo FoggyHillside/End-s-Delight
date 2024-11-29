@@ -9,5 +9,8 @@
     }
   ],
   "item": "ends_delight:raw_dragon_meat",
-  "type": "ends_delight:dragon_meat"
+  "count": 5,
+  "bonus1": 0.75,
+  "bonus2": 0.5,
+  "type": "ends_delight:add_item"
 }

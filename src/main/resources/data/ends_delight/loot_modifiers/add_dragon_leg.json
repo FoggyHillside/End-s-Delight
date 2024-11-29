@@ -9,5 +9,6 @@
     }
   ],
   "item": "ends_delight:dragon_leg",
-  "type": "ends_delight:dragon_leg"
+  "count": 2,
+  "type": "ends_delight:add_item"
 }

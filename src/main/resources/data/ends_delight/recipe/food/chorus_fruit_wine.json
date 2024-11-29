@@ -5,8 +5,8 @@
       "item": "minecraft:sugar"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },
@@ -16,8 +16,8 @@
       ]
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },

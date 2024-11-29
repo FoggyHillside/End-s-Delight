@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "ends_delight:end_stove"
+    "ends_delight:end_stove",
+    "ends_delight:steamed_dragon_egg_block",
+    "ends_delight:dragon_meat_stew_block"
   ]
 }

@@ -1,17 +1,11 @@
 package cn.foggyhillside.ends_delight;
 
-import cn.foggyhillside.ends_delight.client.renderer.EndStoveRenderer;
-import cn.foggyhillside.ends_delight.registry.ModBlockEntityTypes;
-import com.mojang.logging.LogUtils;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import cn.foggyhillside.ends_delight.registry.ModBiomeModifiers;
+import io.github.fabricators_of_create.porting_lib.config.ConfigRegistry;
+import io.github.fabricators_of_create.porting_lib.config.ModConfig;
+import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static cn.foggyhillside.ends_delight.registry.ModBiomeFeatures.FEATURES;
 import static cn.foggyhillside.ends_delight.registry.ModBlockEntityTypes.TILES;
@@ -20,29 +14,20 @@ import static cn.foggyhillside.ends_delight.registry.ModCreativeTab.CREATIVE_MOD
 import static cn.foggyhillside.ends_delight.registry.ModItems.ITEMS;
 import static cn.foggyhillside.ends_delight.registry.ModLootModifiers.LOOT_MODIFIERS;
 
-@Mod(EndsDelight.MODID)
-public class EndsDelight {
-    public static final String MODID = "ends_delight";
-    public static final Logger LOGGER = LogUtils.getLogger();
+public class EndsDelight implements ModInitializer {
 
-    public EndsDelight(IEventBus modEventBus, ModContainer modContainer) {
+    public static final String MOD_ID = "ends_delight";
+    public static final Logger LOGGER = LoggerFactory.getLogger("ends_delight");
 
-        TILES.register(modEventBus);
-        BLOCKS.register(modEventBus);
-        FEATURES.register(modEventBus);
-        ITEMS.register(modEventBus);
-        CREATIVE_MODE_TABS.register(modEventBus);
-        LOOT_MODIFIERS.register(modEventBus);
-
-        modContainer.registerConfig(ModConfig.Type.COMMON, EDCommonConfigs.SPEC);
-    }
-
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientSetupEvents
-    {
-        @SubscribeEvent
-        public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntityTypes.END_STOVE.get(), EndStoveRenderer::new);
-        }
+    @Override
+    public void onInitialize() {
+        ConfigRegistry.registerConfig(MOD_ID, ModConfig.Type.COMMON, EDCommonConfigs.SPEC);
+        BLOCKS.register();
+        TILES.register();
+        FEATURES.register();
+        ITEMS.register();
+        CREATIVE_MODE_TABS.register();
+        LOOT_MODIFIERS.register();
+        ModBiomeModifiers.init();
     }
 }

@@ -5,11 +5,11 @@
       "item": "ends_delight:liquid_dragon_egg"
     },
     {
-      "tag": "c:foods/shulker_meat"
+      "tag": "ends_delight:shulker_meat"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },

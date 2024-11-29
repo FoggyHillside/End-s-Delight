@@ -5,8 +5,8 @@
       "tag": "c:foods/milk"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },

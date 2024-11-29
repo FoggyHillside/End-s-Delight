@@ -1,7 +1,7 @@
 package cn.foggyhillside.ends_delight;
 
 import com.google.common.collect.ImmutableList;
-import net.neoforged.neoforge.common.ModConfigSpec;
+import io.github.fabricators_of_create.porting_lib.config.ModConfigSpec;
 
 import java.util.List;
 

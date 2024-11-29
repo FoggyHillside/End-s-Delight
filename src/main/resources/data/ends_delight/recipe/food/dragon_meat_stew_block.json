@@ -2,11 +2,11 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "c:foods/raw_dragon_meat"
+      "tag": "ends_delight:raw_dragon_meat"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },

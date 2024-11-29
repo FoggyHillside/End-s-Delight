@@ -8,8 +8,8 @@
       "tag": "c:crops/tomato"
     },
     {
-      "type": "neoforge:compound",
-      "children": [
+      "fabric:type": "fabric:any",
+      "ingredients": [
         {
           "item": "minecraft:chorus_fruit"
         },
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "tag": "c:foods/shulker_meat"
+      "tag": "ends_delight:shulker_meat"
     }
   ],
   "result": {

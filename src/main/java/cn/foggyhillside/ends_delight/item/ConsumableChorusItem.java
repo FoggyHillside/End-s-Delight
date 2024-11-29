@@ -1,8 +1,6 @@
 package cn.foggyhillside.ends_delight.item;
 
 import cn.foggyhillside.ends_delight.utility.Utils;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import vectorwing.farmersdelight.common.item.ConsumableItem;
 
@@ -26,9 +24,9 @@ public class ConsumableChorusItem extends ConsumableItem {
     }
 
     @Override
-    public void affectConsumer(ItemStack stack, Level level, LivingEntity consumer) {
+    public void affectConsumer(net.minecraft.world.item.ItemStack stack, Level level, net.minecraft.world.entity.LivingEntity consumer) {
         if (!shift || consumer.isShiftKeyDown()) {
-            Utils.ItemChorusFruitTeleport(stack, level, consumer);
+            Utils.itemChorusFruitTeleport(stack, level, consumer);
         }
     }
 

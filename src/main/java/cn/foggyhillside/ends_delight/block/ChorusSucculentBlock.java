@@ -2,6 +2,7 @@ package cn.foggyhillside.ends_delight.block;
 
 import cn.foggyhillside.ends_delight.registry.ModBlockStateProperties;
 import com.mojang.serialization.MapCodec;
+import io.github.fabricators_of_create.porting_lib.tags.Tags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -20,8 +21,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 public class ChorusSucculentBlock extends BushBlock implements BonemealableBlock {
@@ -29,9 +28,9 @@ public class ChorusSucculentBlock extends BushBlock implements BonemealableBlock
     public static final MapCodec<ChorusSucculentBlock> CODEC = simpleCodec(ChorusSucculentBlock::new);
 
     public static final IntegerProperty SUCCULENT = ModBlockStateProperties.SUCCULENT_1_3;
-    protected static final VoxelShape ONE_SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 6.0D, 10.0D);
-    protected static final VoxelShape TWO_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 6.0D, 13.0D);
-    protected static final VoxelShape THREE_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D);
+    protected static final net.minecraft.world.phys.shapes.VoxelShape ONE_SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 6.0D, 10.0D);
+    protected static final net.minecraft.world.phys.shapes.VoxelShape TWO_SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 6.0D, 13.0D);
+    protected static final net.minecraft.world.phys.shapes.VoxelShape THREE_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D);
 
     public ChorusSucculentBlock(Properties pProperties) {
         super(pProperties);
@@ -54,7 +53,7 @@ public class ChorusSucculentBlock extends BushBlock implements BonemealableBlock
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    public boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return !pState.getCollisionShape(pLevel, pPos).getFaceShape(Direction.UP).isEmpty() || pState.isFaceSturdy(pLevel, pPos, Direction.UP);
     }
 
@@ -70,7 +69,7 @@ public class ChorusSucculentBlock extends BushBlock implements BonemealableBlock
     }
 
     @Override
-    protected VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+    protected net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         switch (pState.getValue(SUCCULENT)) {
             case 1:
             default:

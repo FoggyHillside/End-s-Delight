@@ -42,6 +42,38 @@
           }
         }
       ]
+    },
+    {
+      "name": "pool3",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bowl"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:block_state_property",
+            "block": "ends_delight:dragon_leg_with_sauce_block",
+            "properties": {
+              "servings": "6"
+            }
+          }
+        },
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:block_state_property",
+            "block": "ends_delight:dragon_leg_with_sauce_block",
+            "properties": {
+              "part": "foot"
+            }
+          }
+        }
+      ]
     }
   ]
 }

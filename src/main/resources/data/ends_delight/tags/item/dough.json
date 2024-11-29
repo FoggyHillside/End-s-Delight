@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:foods/doughs",
+      "required": false
+    },
+    {
+      "id": "#c:dough",
+      "required": false
+    }
+  ]
+}

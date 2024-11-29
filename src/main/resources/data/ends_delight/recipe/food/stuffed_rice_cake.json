@@ -8,14 +8,17 @@
     {
       "item": "minecraft:sugar"
     },
-    [
-      {
-        "item": "minecraft:chorus_fruit"
-      },
-      {
-        "item": "ends_delight:chorus_fruit_grain"
-      }
-    ]
+    {
+      "fabric:type": "fabric:any",
+      "ingredients": [
+        {
+          "item": "minecraft:chorus_fruit"
+        },
+        {
+          "item": "ends_delight:chorus_fruit_grain"
+        }
+      ]
+    }
   ],
   "result": {
     "id": "ends_delight:stuffed_rice_cake",
