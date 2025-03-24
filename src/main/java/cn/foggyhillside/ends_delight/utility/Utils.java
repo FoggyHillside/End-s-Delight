@@ -1,8 +1,10 @@
 package cn.foggyhillside.ends_delight.utility;
 
+import cn.foggyhillside.ends_delight.EndsDelight;
 import cn.foggyhillside.ends_delight.registry.EDModDamageTypes;
-import io.github.fabricators_of_create.porting_lib.entity.events.EntityTeleportEvent;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -19,7 +21,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import vectorwing.farmersdelight.common.registry.ModDamageTypes;
 
-import static io.github.fabricators_of_create.porting_lib.entity.EntityHooks.onChorusFruitTeleport;
+import java.util.function.Supplier;
 
 public class Utils {
 
@@ -67,7 +69,7 @@ public class Utils {
             return false;
         } else {
             if (pBroadcastTeleport) {
-                level.broadcastEntityEvent(entity, (byte)46);
+                level.broadcastEntityEvent(entity, (byte) 46);
             }
 
             if (entity instanceof PathfinderMob pathfindermob) {
@@ -80,34 +82,28 @@ public class Utils {
 
     public static void itemChorusFruitTeleport(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         if (!pLevel.isClientSide) {
-            for (int i = 0; i < 16; i++) {
-                double d0 = pEntityLiving.getX() + (pEntityLiving.getRandom().nextDouble() - 0.5) * 16.0;
-                double d1 = Mth.clamp(
-                        pEntityLiving.getY() + (double) (pEntityLiving.getRandom().nextInt(16) - 8),
-                        (double) pLevel.getMinBuildHeight(),
-                        (double) (pLevel.getMinBuildHeight() + ((ServerLevel) pLevel).getLogicalHeight() - 1)
-                );
-                double d2 = pEntityLiving.getZ() + (pEntityLiving.getRandom().nextDouble() - 0.5) * 16.0;
+            for (int i = 0; i < 16; ++i) {
+                double d = pEntityLiving.getX() + (pEntityLiving.getRandom().nextDouble() - (double) 0.5F) * (double) 16.0F;
+                double e = Mth.clamp(pEntityLiving.getY() + (double) (pEntityLiving.getRandom().nextInt(16) - 8), pLevel.getMinBuildHeight(), (pLevel.getMinBuildHeight() + ((ServerLevel) pLevel).getLogicalHeight() - 1));
+                double f = pEntityLiving.getZ() + (pEntityLiving.getRandom().nextDouble() - (double) 0.5F) * (double) 16.0F;
                 if (pEntityLiving.isPassenger()) {
                     pEntityLiving.stopRiding();
                 }
 
                 Vec3 vec3 = pEntityLiving.position();
-                EntityTeleportEvent.ChorusFruit event = onChorusFruitTeleport(pEntityLiving, d0, d1, d2);
-                if (event.isCanceled()) return;
-                if (pEntityLiving.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                if (pEntityLiving.randomTeleport(d, e, f, true)) {
                     pLevel.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(pEntityLiving));
-                    SoundSource soundsource;
-                    SoundEvent soundevent;
+                    SoundSource soundSource;
+                    SoundEvent soundEvent;
                     if (pEntityLiving instanceof Fox) {
-                        soundevent = SoundEvents.FOX_TELEPORT;
-                        soundsource = SoundSource.NEUTRAL;
+                        soundEvent = SoundEvents.FOX_TELEPORT;
+                        soundSource = SoundSource.NEUTRAL;
                     } else {
-                        soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
-                        soundsource = SoundSource.PLAYERS;
+                        soundEvent = SoundEvents.CHORUS_FRUIT_TELEPORT;
+                        soundSource = SoundSource.PLAYERS;
                     }
 
-                    pLevel.playSound(null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), soundevent, soundsource);
+                    pLevel.playSound(null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), soundEvent, soundSource);
                     pEntityLiving.resetFallDistance();
                     break;
                 }
@@ -122,39 +118,39 @@ public class Utils {
 
     public static void blockChorusFruitTeleport(Level pLevel, LivingEntity pEntityLiving) {
         if (!pLevel.isClientSide) {
-            for (int i = 0; i < 16; i++) {
-                double d0 = pEntityLiving.getX() + (pEntityLiving.getRandom().nextDouble() - 0.5) * 16.0;
-                double d1 = Mth.clamp(
-                        pEntityLiving.getY() + (double) (pEntityLiving.getRandom().nextInt(16) - 8),
-                        (double) pLevel.getMinBuildHeight(),
-                        (double) (pLevel.getMinBuildHeight() + ((ServerLevel) pLevel).getLogicalHeight() - 1)
-                );
-                double d2 = pEntityLiving.getZ() + (pEntityLiving.getRandom().nextDouble() - 0.5) * 16.0;
+            for (int i = 0; i < 16; ++i) {
+                double d = pEntityLiving.getX() + (pEntityLiving.getRandom().nextDouble() - (double) 0.5F) * (double) 16.0F;
+                double e = Mth.clamp(pEntityLiving.getY() + (double) (pEntityLiving.getRandom().nextInt(16) - 8), pLevel.getMinBuildHeight(), (pLevel.getMinBuildHeight() + ((ServerLevel) pLevel).getLogicalHeight() - 1));
+                double f = pEntityLiving.getZ() + (pEntityLiving.getRandom().nextDouble() - (double) 0.5F) * (double) 16.0F;
                 if (pEntityLiving.isPassenger()) {
                     pEntityLiving.stopRiding();
                 }
 
                 Vec3 vec3 = pEntityLiving.position();
-                EntityTeleportEvent.ChorusFruit event = onChorusFruitTeleport(pEntityLiving, d0, d1, d2);
-                if (event.isCanceled()) return;
-                if (pEntityLiving.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                if (pEntityLiving.randomTeleport(d, e, f, true)) {
                     pLevel.gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(pEntityLiving));
-                    SoundSource soundsource;
-                    SoundEvent soundevent;
+                    SoundSource soundSource;
+                    SoundEvent soundEvent;
                     if (pEntityLiving instanceof Fox) {
-                        soundevent = SoundEvents.FOX_TELEPORT;
-                        soundsource = SoundSource.NEUTRAL;
+                        soundEvent = SoundEvents.FOX_TELEPORT;
+                        soundSource = SoundSource.NEUTRAL;
                     } else {
-                        soundevent = SoundEvents.CHORUS_FRUIT_TELEPORT;
-                        soundsource = SoundSource.PLAYERS;
+                        soundEvent = SoundEvents.CHORUS_FRUIT_TELEPORT;
+                        soundSource = SoundSource.PLAYERS;
                     }
 
-                    pLevel.playSound(null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), soundevent, soundsource);
+                    pLevel.playSound(null, pEntityLiving.getX(), pEntityLiving.getY(), pEntityLiving.getZ(), soundEvent, soundSource);
                     pEntityLiving.resetFallDistance();
                     break;
                 }
             }
         }
+    }
+
+    public static <R, T extends R> Supplier<T> register(String name, Supplier<T> supplier, Registry<R> reg) {
+        T object = supplier.get();
+        Registry.register(reg, ResourceLocation.fromNamespaceAndPath(EndsDelight.MOD_ID, name), object);
+        return () -> object;
     }
 
 }

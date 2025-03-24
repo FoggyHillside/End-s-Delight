@@ -2,7 +2,6 @@ package cn.foggyhillside.ends_delight.block;
 
 import cn.foggyhillside.ends_delight.registry.ModBlockStateProperties;
 import com.mojang.serialization.MapCodec;
-import io.github.fabricators_of_create.porting_lib.tags.Tags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -101,7 +100,7 @@ public class ChorusSucculentBlock extends BushBlock implements BonemealableBlock
 
     @Override
     public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
-        if (pLevel.getBlockState(pPos.below()).is(Tags.Blocks.END_STONES)) {
+        if (pLevel.getBlockState(pPos.below()).is(Blocks.END_STONE)) {
             pLevel.setBlock(pPos, pState.setValue(SUCCULENT, 3), 3);
         }
     }

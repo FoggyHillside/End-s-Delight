@@ -1,9 +1,8 @@
 package cn.foggyhillside.ends_delight.registry;
 
-import cn.foggyhillside.ends_delight.EndsDelight;
-import io.github.fabricators_of_create.porting_lib.util.DeferredRegister;
+import cn.foggyhillside.ends_delight.utility.Utils;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 
@@ -11,9 +10,11 @@ import java.util.function.Supplier;
 
 public class ModCreativeTab {
 
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EndsDelight.MOD_ID);
+    public static <B extends CreativeModeTab> Supplier<B> regTab(String name, Supplier<B> supplier) {
+        return Utils.register(name, supplier, BuiltInRegistries.CREATIVE_MODE_TAB);
+    }
 
-    public static final Supplier<CreativeModeTab> ENDS_DELIGHT_TAB = CREATIVE_MODE_TABS.register("ends_delight_tab", () -> FabricItemGroup.builder()
+    public static final Supplier<CreativeModeTab> ENDS_DELIGHT_TAB = regTab("ends_delight_tab", () -> FabricItemGroup.builder()
             .title(Component.translatable("itemGroup.ends_delight"))
             .icon(() -> ModItems.BUBBLE_TEA.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
@@ -82,4 +83,7 @@ public class ModCreativeTab {
                 output.accept(ModItems.GRILLED_SHULKER.get());
             }).build());
 
+    public static void touch() {
+
+    }
 }
