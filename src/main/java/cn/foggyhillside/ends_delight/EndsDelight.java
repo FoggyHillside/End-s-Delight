@@ -7,7 +7,6 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -35,9 +34,11 @@ public class EndsDelight {
         LOOT_MODIFIERS.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, EDCommonConfigs.SPEC);
+        if (Dist.CLIENT.equals(net.neoforged.fml.loading.FMLEnvironment.dist)) {
+            modEventBus.register(ClientSetupEvents.class);
+        }
     }
 
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientSetupEvents
     {
         @SubscribeEvent

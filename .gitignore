@@ -42,7 +42,9 @@ buildNumber.properties
 *.userosscache
 *.sln.docstates
 local.properties
-
+.vscode/
+all_deps.txt
+deps.txt
 # Minecraft / NeoForge
 .gradle/
 build/
@@ -66,3 +68,8 @@ noobdev/
 *.minecraft/
 saves/
 debug/
+options.txt
+usercache.json
+usernamecache.json
+crash-reports/
+log.json
