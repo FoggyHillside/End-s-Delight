@@ -1,4 +1,4 @@
-package com.plusls.EndsDelight.common.block.entity;
+package cn.foggyhillside.ends_delight.block.entity;
 
 import com.google.common.collect.Lists;
 import com.plusls.EndsDelight.common.block.EndStoveBlock;
