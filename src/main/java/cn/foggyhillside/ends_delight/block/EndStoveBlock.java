@@ -41,7 +41,7 @@ public class EndStoveBlock extends AbstractStoveBlock
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
         if (level.isClientSide && state.getValue(LIT)) return createTickerHelper(blockEntityType, ModBlockEntityTypes.END_STOVE.get(), EndStoveBlockEntity::particleTick);
-        return createStoveTicker(level, blockEntityType, ModBlockEntityTypes.END_STOVE.get());
+        return AbstractStoveBlock.createStoveTicker(level, blockEntityType, ModBlockEntityTypes.END_STOVE.get());
     }
 
     @Override
