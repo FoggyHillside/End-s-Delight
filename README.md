@@ -1,6 +1,6 @@
 Additional Notes for Source Builds
 
-This patched release focuses only on the runtime compatibility fixes required for NeoForge 1.21.1 + Farmers Delight 1.21 API compatibility.
+This patched release focuses only on the runtime compatibility fixes required for NeoForge for Minecraft 1.21.1 + Farmers Delight - 1.21 API compatibility.
 
 Implemented fixes:
 
@@ -14,7 +14,7 @@ https://github.com/FoggyHillside/End-s-Delight/pull/60
 Those extra changes were intentionally not included in this patch jar in order to keep the runtime fix as small and isolated as possible. Users compiling from source may optionally review or incorporate those additional changes depending on their build environment and dependency versions.
 
 
-# Fix NeoForge 1.21.1 Farmer’s Delight Stove API Compatibility
+# Fix NeoForge for Minecraft 1.21.1 Farmer’s Delight Stove API Compatibility
 
 ## Summary
 
