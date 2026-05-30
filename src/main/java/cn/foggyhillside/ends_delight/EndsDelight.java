@@ -2,7 +2,6 @@ package cn.foggyhillside.ends_delight;
 
 import cn.foggyhillside.ends_delight.client.renderer.EndStoveRenderer;
 import cn.foggyhillside.ends_delight.registry.ModBlockEntityTypes;
-import com.mojang.logging.LogUtils;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -11,7 +10,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import org.slf4j.Logger;
 
 import static cn.foggyhillside.ends_delight.registry.ModBiomeFeatures.FEATURES;
 import static cn.foggyhillside.ends_delight.registry.ModBlockEntityTypes.TILES;
@@ -23,7 +21,6 @@ import static cn.foggyhillside.ends_delight.registry.ModLootModifiers.LOOT_MODIF
 @Mod(EndsDelight.MODID)
 public class EndsDelight {
     public static final String MODID = "ends_delight";
-    public static final Logger LOGGER = LogUtils.getLogger();
 
     public EndsDelight(IEventBus modEventBus, ModContainer modContainer) {
 
@@ -37,7 +34,7 @@ public class EndsDelight {
         modContainer.registerConfig(ModConfig.Type.COMMON, EDCommonConfigs.SPEC);
     }
 
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
     public static class ClientSetupEvents
     {
         @SubscribeEvent

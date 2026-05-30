@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "エンダーマンの軟骨を食べる",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s は地面と強く激突した",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s は %2$s から逃れようとして地面と強く激突した",
-  "farmersdelight.tooltip.chorus_fruit_wine": "ランダムにテレポートしてデバフを１つ解除する",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "ランダムにテレポートしてデバフを１つ解除する",
-  "farmersdelight.tooltip.chorus_flower_tea": "浮遊効果を解除する"
+  "tooltip.farmersdelight.chorus_fruit_wine": "ランダムにテレポートしてデバフを１つ解除する",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "ランダムにテレポートしてデバフを１つ解除する",
+  "tooltip.farmersdelight.chorus_flower_tea": "浮遊効果を解除する"
 }

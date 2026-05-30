@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "Съешьте хрящ эндермена",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s разбился вдребезги",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s разбился вдребезги, спасаясь от %2$s",
-  "farmersdelight.tooltip.chorus_fruit_wine": "Случайно телепортирует и убирает один негативный эффект",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "Случайно телепортирует и убирает один негативный эффект",
-  "farmersdelight.tooltip.chorus_flower_tea": "Убирает эффект левитации"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Случайно телепортирует и убирает один негативный эффект",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Случайно телепортирует и убирает один негативный эффект",
+  "tooltip.farmersdelight.chorus_flower_tea": "Убирает эффект левитации"
 }

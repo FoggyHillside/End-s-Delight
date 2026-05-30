@@ -234,7 +234,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
             if (heldStack.is(Items.BOWL)) {
                 return takeServing(pLevel, pPos, pState, pPlayer, pHand, ModItems.DRAGON_LEG_WITH_SAUCE.get());
             } else {
-                pPlayer.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
+                pPlayer.displayClientMessage(TextUtils.block("feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
             }
         }
         if (servings == 0) {
@@ -242,7 +242,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
             pLevel.destroyBlock(pPos, true);
         }
         else {
-            pPlayer.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
+            pPlayer.displayClientMessage(TextUtils.block("feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
         }
         return ItemInteractionResult.SUCCESS;
     }

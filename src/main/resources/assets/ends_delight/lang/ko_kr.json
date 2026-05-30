@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "엔더맨 연골을 먹으세요",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s이(가) 땅바닥으로 곤두박질쳤습니다",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s이(가) %2$s에게서 도망치려다 땅바닥으로 곤두박질쳤습니다",
-  "farmersdelight.tooltip.chorus_fruit_wine": "무작위의 위치로 순간이동하며 해로운 효과를 1개 제거합니다",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "무작위의 위치로 순간이동하며 해로운 효과를 1개 제거합니다",
-  "farmersdelight.tooltip.chorus_flower_tea": "공중 부양 효과를 제거합니다"
+  "tooltip.farmersdelight.chorus_fruit_wine": "무작위의 위치로 순간이동하며 해로운 효과를 1개 제거합니다",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "무작위의 위치로 순간이동하며 해로운 효과를 1개 제거합니다",
+  "tooltip.farmersdelight.chorus_flower_tea": "공중 부양 효과를 제거합니다"
 }

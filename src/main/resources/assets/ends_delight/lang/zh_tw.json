@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "消耗使者脆骨",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s 重重摔落",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s 在試圖逃離 %2$s 時重重摔落",
-  "farmersdelight.tooltip.chorus_fruit_wine": "隨機傳送並清除１個負面效果",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "隨機傳送並清除１個負面效果",
-  "farmersdelight.tooltip.chorus_flower_tea": "清除懸浮效果"
+  "tooltip.farmersdelight.chorus_fruit_wine": "隨機傳送並清除１個負面效果",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "隨機傳送並清除１個負面效果",
+  "tooltip.farmersdelight.chorus_flower_tea": "清除懸浮效果"
 }

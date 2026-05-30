@@ -14,10 +14,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
 public class DragonToothKnifeEvent {
 
-    @EventBusSubscriber(
-            modid = EndsDelight.MODID,
-            bus = EventBusSubscriber.Bus.GAME
-    )
+    @EventBusSubscriber(modid = EndsDelight.MODID)
     public static class KnifeEvents {
         public KnifeEvents() {
         }
