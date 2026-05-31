@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -22,7 +23,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHORUS_SUCCULENT = BLOCKS.register("chorus_succulent",
             () -> new ChorusSucculentBlock(BlockBehaviour.Properties.of().strength(0.0F, 0.0F).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
                 return 1 + 2 * state.getValue(ChorusSucculentBlock.SUCCULENT);
-            }).sound(SoundType.FUNGUS).noOcclusion()));
+            }).sound(SoundType.FUNGUS).noOcclusion().pushReaction(PushReaction.DESTROY)));
     public static final DeferredBlock<Block> STEAMED_DRAGON_EGG_BLOCK = BLOCKS.register("steamed_dragon_egg_block",
             ()-> new DragonEggFeastBlock(Block.Properties.ofFullCopy(Blocks.DRAGON_EGG),ModItems.STEAMED_DRAGON_EGG,true));
     public static final DeferredBlock<Block> DRAGON_MEAT_STEW_BLOCK = BLOCKS.register("dragon_meat_stew_block",
