@@ -23,7 +23,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: "org.spongepowered.mixin"
 
-version = "${minecraft_version}-${mod_version}"
+version = "${mod_version}"
 group = 'cn.foggyhillside.ends_delight'
 
 base {
@@ -91,9 +91,7 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    maven {
-        url = "https://maven.jaackson.me"
-    }
+
 }
 
 dependencies {

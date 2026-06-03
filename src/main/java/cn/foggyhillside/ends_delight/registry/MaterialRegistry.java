@@ -13,7 +13,7 @@ public class MaterialRegistry {
 
         @Override
         public float getSpeed() {
-            return 4.0F;
+            return 6.0F;
         }
 
         @Override
@@ -28,7 +28,7 @@ public class MaterialRegistry {
 
         @Override
         public int getEnchantmentValue() {
-            return 5;
+            return 14;
         }
 
         @Override
@@ -106,7 +106,7 @@ public class MaterialRegistry {
 
         @Override
         public float getSpeed() {
-            return 4.0F;
+            return 8.0F;
         }
 
         @Override
@@ -116,17 +116,17 @@ public class MaterialRegistry {
 
         @Override
         public int getLevel() {
-            return 2;
+            return 3;
         }
 
         @Override
         public int getEnchantmentValue() {
-            return 5;
+            return 10;
         }
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(Items.BONE_BLOCK);
+            return Ingredient.of(ItemRegistry.DragonTooth.get());
         }
     };
 }

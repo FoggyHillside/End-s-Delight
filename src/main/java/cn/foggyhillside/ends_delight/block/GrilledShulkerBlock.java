@@ -11,11 +11,11 @@ import vectorwing.farmersdelight.common.block.FeastBlock;
 
 import java.util.function.Supplier;
 
-public class GrilledShullkerBlock extends FeastBlock {
+public class GrilledShulkerBlock extends FeastBlock {
     protected static final VoxelShape ONE_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D);
     protected static final VoxelShape TWO_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 3.0D, 14.0D);
 
-    public GrilledShullkerBlock(Properties properties, Supplier<Item> servingItem, boolean hasLeftovers) {
+    public GrilledShulkerBlock(Properties properties, Supplier<Item> servingItem, boolean hasLeftovers) {
         super(properties, servingItem, hasLeftovers);
     }
 

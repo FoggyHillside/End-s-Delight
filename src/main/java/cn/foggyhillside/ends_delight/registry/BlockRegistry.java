@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -28,13 +29,13 @@ public class BlockRegistry {
     public static final RegistryObject<Block> ChorusSucculent = BLOCKS.register("chorus_succulent",
             () -> new ChorusSucculentBlock(BlockBehaviour.Properties.of().strength(0.0F, 0.0F).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> {
                 return 1 + 2 * state.getValue(ChorusSucculentBlock.Succulent);
-            }).sound(SoundType.FUNGUS).noOcclusion()));
+            }).sound(SoundType.FUNGUS).noOcclusion().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> SteamedDragonEggBlock = BLOCKS.register("steamed_dragon_egg_block",
             ()-> new SteamedDragonEggBlock(Block.Properties.copy(Blocks.DRAGON_EGG),ItemRegistry.SteamedDragonEgg,true));
     public static final RegistryObject<Block> DragonMeatStewBlock = BLOCKS.register("dragon_meat_stew_block",
             ()-> new SteamedDragonEggBlock(Block.Properties.copy(Blocks.DRAGON_EGG),ItemRegistry.DragonMeatStew,true));
     public static final RegistryObject<Block> GrilledShulkerBlock = BLOCKS.register("grilled_shulker_block",
-            ()-> new GrilledShullkerBlock(Block.Properties.copy(Blocks.SHULKER_BOX),ItemRegistry.GrilledShulker,true));
+            ()-> new GrilledShulkerBlock(Block.Properties.copy(Blocks.SHULKER_BOX),ItemRegistry.GrilledShulker,true));
     public static final RegistryObject<Block> EndStove = BLOCKS.register("end_stove",
             () -> new EndStoveBlock(Block.Properties.copy(Blocks.END_STONE_BRICKS).lightLevel(litBlockEmission(13))));
     public static final RegistryObject<Block> DragonLegBlock = BLOCKS.register("dragon_leg_with_sauce_block",

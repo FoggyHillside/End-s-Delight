@@ -21,9 +21,7 @@ public class EDCommonConfigs {
     static {
         BUILDER.push("Configs for End's Delight");
 
-        END_MOBS = BUILDER.comment("Dragon Tooth Knife can cause more damage when attacking following mobs \n(Default: [\"minecraft:enderman\", \"minecraft:endermite\", \"minecraft:ender_dragon\", \"minecraft:shulker\"])").defineList("allowedMobs", ImmutableList.of("minecraft:enderman", "minecraft:endermite", "minecraft:ender_dragon", "minecraft:shulker"), (obj) -> {
-            return true;
-        });
+        END_MOBS = BUILDER.comment("Dragon Tooth Knife can cause more damage when attacking following mobs \n(Default: [\"minecraft:enderman\", \"minecraft:endermite\", \"minecraft:ender_dragon\", \"minecraft:shulker\"])").defineList("allowedMobs", ImmutableList.of("minecraft:enderman", "minecraft:endermite", "minecraft:ender_dragon", "minecraft:shulker"), (obj) -> true);
         GRISTLE_TELEPORT = BUILDER.comment("Whether teleport after consuming an Enderman Gristle Item or an Enderman Gristle Stew Item \nDefault: true").define("enableGristleTeleport", true);
         TELEPORT_RANGE_SIZE = BUILDER.comment("The range size of gristle teleport (Default: 24 (1 ~ 32))").defineInRange("teleportRangeSize", 24, 1, 32);
         TELEPORT_MAX_HEIGHT = BUILDER.comment("The max height of gristle teleport (Default: 32 (1 ~ 64))").defineInRange("teleportMaxHeight", 32, 1, 64);

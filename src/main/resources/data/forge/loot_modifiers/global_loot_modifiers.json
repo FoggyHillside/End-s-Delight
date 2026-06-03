@@ -4,8 +4,11 @@
     "ends_delight:add_dragon_meat",
     "ends_delight:add_dragon_leg",
     "ends_delight:add_endermite_meat",
+    "ends_delight:add_dried_endermite_meat",
     "ends_delight:add_shulker_meat",
     "ends_delight:add_dragon_tooth",
-    "ends_delight:add_enderman_gristle"
+    "ends_delight:add_enderman_gristle",
+    "ends_delight:add_extra_dragon_meat",
+    "ends_delight:add_extra_dragon_tooth"
   ]
 }

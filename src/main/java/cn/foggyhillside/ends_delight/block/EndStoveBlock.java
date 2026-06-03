@@ -195,7 +195,7 @@ public class EndStoveBlock extends BaseEntityBlock {
     }
 
     @Nullable
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
+    public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
         return (Boolean)state.getValue(LIT) ? BlockPathTypes.DAMAGE_FIRE : null;
     }
 

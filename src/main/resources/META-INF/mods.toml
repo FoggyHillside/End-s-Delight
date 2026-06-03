@@ -8,7 +8,7 @@ version="${mod_version}"
 displayName="${mod_name}"
 logoFile="logo.png"
 logoBlur=false
-credits="GamingeckeSpace, mpustovoi, PExPE3, Roby1164, SABITRON, tankplanelaserkoala, TheLegendofSaram, unroman and many others!"
+credits="GamingeckeSpace, Lobster0228, mpustovoi, PExPE3, Roby1164, SABITRON, tankplanelaserkoala, TheLegendofSaram, unroman and many others!"
 authors="FoggyHillside"
 description='''
 An addon mod for Farmer's Delight based around adding culinary content to the end!

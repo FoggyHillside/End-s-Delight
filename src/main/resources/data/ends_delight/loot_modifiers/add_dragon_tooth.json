@@ -3,17 +3,6 @@
     {
       "condition": "forge:loot_table_id",
       "loot_table_id": "minecraft:entities/ender_dragon"
-    },
-    {
-      "condition": "minecraft:entity_properties",
-      "entity": "killer",
-      "predicate": {
-        "equipment": {
-          "mainhand": {
-            "tag": "ends_delight:dragon_loot_tools"
-          }
-        }
-      }
     }
   ],
   "item": "ends_delight:dragon_tooth",

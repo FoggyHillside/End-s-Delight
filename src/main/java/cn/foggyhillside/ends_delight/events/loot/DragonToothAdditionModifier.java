@@ -32,10 +32,13 @@ public class DragonToothAdditionModifier extends LootModifier {
 
     @Override
     protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        generatedLoot.add(new ItemStack(item, 1));
-        if (context.getRandom().nextFloat() > 0.7) {
+        generatedLoot.add(new ItemStack(item, 3));
+        if (context.getRandom().nextFloat() > 0.25) {
             generatedLoot.add(new ItemStack(item, 1));
-        };
+        }
+        if (context.getRandom().nextFloat() > 0.5) {
+            generatedLoot.add(new ItemStack(item, 1));
+        }
         return generatedLoot;
     }
 
