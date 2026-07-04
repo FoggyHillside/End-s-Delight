@@ -97,7 +97,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    implementation fg.deobf("curse.maven:farmersdelight-398521:5051242")
+    implementation fg.deobf("curse.maven:farmersdelight-398521:8007609")
 }
 
 tasks.named('processResources', ProcessResources).configure {

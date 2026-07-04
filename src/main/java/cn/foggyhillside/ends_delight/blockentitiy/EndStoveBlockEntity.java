@@ -77,7 +77,7 @@ public class EndStoveBlockEntity extends SyncedBlockEntity {
     public static void cookingTick(Level level, BlockPos pos, BlockState state, EndStoveBlockEntity stove) {
         boolean isStoveLit = (Boolean)state.getValue(EndStoveBlock.LIT);
         if (stove.isStoveBlockedAbove()) {
-            if (!ItemUtils.isInventoryEmpty(stove.inventory)) {
+            if (ItemUtils.doesInventoryHaveItems(stove.inventory)) {
                 ItemUtils.dropItems(level, pos, stove.inventory);
                 stove.inventoryChanged();
             }
