@@ -74,7 +74,7 @@
   "ends_delight.advancement.the_end_chef.desc": "Endherd erhalten",
   "ends_delight.advancement.get_dragon_leg_with_sauce": "Drachenbeinfest!",
   "ends_delight.advancement.get_dragon_leg_with_sauce.desc": "Drachenkeule mit Soße erhalten",
-  "farmersdelight.tooltip.chorus_fruit_wine": "Zufällig teleportieren und 1 Nachteil entfernen",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "Zufällig teleportieren und 1 Nachteil entfernen",
-  "farmersdelight.tooltip.chorus_flower_tea": "Levitations Vorteil entfernen"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Zufällig teleportieren und 1 Nachteil entfernen",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Zufällig teleportieren und 1 Nachteil entfernen",
+  "tooltip.farmersdelight.chorus_flower_tea": "Levitations Vorteil entfernen"
 }

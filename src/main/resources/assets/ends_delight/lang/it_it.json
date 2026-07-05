@@ -74,7 +74,7 @@
   "ends_delight.advancement.the_end_chef.desc": "Ottieni la stufa dell'End",
   "ends_delight.advancement.get_dragon_leg_with_sauce": "Festa della zampa di drago!",
   "ends_delight.advancement.get_dragon_leg_with_sauce.desc": "Ottieni la coscia di drago con salsa",
-  "farmersdelight.tooltip.chorus_fruit_wine": "Teletrasporto casuale e cancellazione di 1 Depotenziamento",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "Teletrasporto casuale e cancellazione di 1 Depotenziamento",
-  "farmersdelight.tooltip.chorus_flower_tea": "Eliminare il potenziamento di Levitazione"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Teletrasporto casuale e cancellazione di 1 Depotenziamento",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Teletrasporto casuale e cancellazione di 1 Depotenziamento",
+  "tooltip.farmersdelight.chorus_flower_tea": "Eliminare il potenziamento di Levitazione"
 }

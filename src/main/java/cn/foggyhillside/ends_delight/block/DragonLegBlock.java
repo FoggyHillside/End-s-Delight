@@ -126,7 +126,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (state.getValue(PART) == BedPart.HEAD) {
-            switch ((Direction) state.getValue(FACING)) {
+            switch (state.getValue(FACING)) {
                 case NORTH:
                     return SHAPES_NORTH_HEAD[state.getValue(SERVINGS)];
                 case SOUTH:
@@ -138,7 +138,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
             }
         }
         if (state.getValue(PART) == BedPart.FOOT) {
-            switch ((Direction) state.getValue(FACING)) {
+            switch (state.getValue(FACING)) {
                 case NORTH:
                     return SHAPES_NORTH_FOOT[state.getValue(SERVINGS)];
                 case SOUTH:
@@ -218,12 +218,6 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
         }
     }
 
-    public static DoubleBlockCombiner.BlockType getBlockType(BlockState state) {
-        BedPart bedpart = state.getValue(PART);
-        return bedpart == BedPart.FOOT ? DoubleBlockCombiner.BlockType.FIRST : DoubleBlockCombiner.BlockType.SECOND;
-    }
-
-
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
         int servings = state.getValue(SERVINGS);
@@ -233,7 +227,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
             if (heldStack.is(Items.BOWL)) {
                 return takeServing(level, pos, state, player, handIn, ItemRegistry.DragonLegWithSauce.get());
             } else {
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
+                player.displayClientMessage(TextUtils.block("feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
             }
         }
         if (servings == 0) {
@@ -241,7 +235,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
                 level.destroyBlock(pos, true);
             }
             else {
-                player.displayClientMessage(TextUtils.getTranslation("block.feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
+                player.displayClientMessage(TextUtils.block("feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
             }
         return InteractionResult.SUCCESS;
     }

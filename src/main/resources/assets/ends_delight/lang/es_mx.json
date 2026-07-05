@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "Consume Carne de Enderman",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s golpeó el suelo con demasiada fuerza",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s golpeó el suelo con demasiada fuerza mientras intentaba escapar de %2$s",
-  "farmersdelight.tooltip.chorus_fruit_wine": "Teletransportación aleatoria y eliminación de 1 efecto negativo",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "Teletransportación aleatoria y eliminación de 1 efecto negativo",
-  "farmersdelight.tooltip.chorus_flower_tea": "Eliminación de Efecto de Levitación"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Teletransportación aleatoria y eliminación de 1 efecto negativo",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Teletransportación aleatoria y eliminación de 1 efecto negativo",
+  "tooltip.farmersdelight.chorus_flower_tea": "Eliminación de Efecto de Levitación"
 }

@@ -20,8 +20,8 @@ public class EndStoveRenderer implements BlockEntityRenderer<EndStoveBlockEntity
     }
 
     public void render(EndStoveBlockEntity stoveEntity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
-        Direction direction = ((Direction)stoveEntity.getBlockState().getValue(EndStoveBlock.FACING)).getOpposite();
-        ItemStackHandler inventory = stoveEntity.getInventory();
+        Direction direction = stoveEntity.getBlockState().getValue(EndStoveBlock.FACING).getOpposite();
+        ItemStackHandler inventory = stoveEntity.getItems();
         int posLong = (int)stoveEntity.getBlockPos().asLong();
 
         for(int i = 0; i < inventory.getSlots(); ++i) {
@@ -33,7 +33,7 @@ public class EndStoveRenderer implements BlockEntityRenderer<EndStoveBlockEntity
                 poseStack.mulPose(Axis.YP.rotationDegrees(f));
                 poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
                 Vec2 itemOffset = stoveEntity.getStoveItemOffset(i);
-                poseStack.translate((double)itemOffset.x, (double)itemOffset.y, 0.0);
+                poseStack.translate(itemOffset.x, itemOffset.y, 0.0);
                 poseStack.scale(0.375F, 0.375F, 0.375F);
                 if (stoveEntity.getLevel() != null) {
                     Minecraft.getInstance().getItemRenderer().renderStatic(stoveStack, ItemDisplayContext.FIXED, LevelRenderer.getLightColor(stoveEntity.getLevel(), stoveEntity.getBlockPos().above()), combinedOverlayIn, poseStack, buffer, stoveEntity.getLevel(), posLong + i);

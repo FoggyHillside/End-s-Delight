@@ -18,33 +18,33 @@ public class ChorusFruitPopsicleItem extends PopsicleItem {
         super(builder);
     }
 
-    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        ItemStack itemstack = super.finishUsingItem(itemStack, level, entity);
+    public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
+        ItemStack itemstack = super.finishUsingItem(itemStack, level, livingEntity);
         if (!level.isClientSide) {
-            double d0 = entity.getX();
-            double d1 = entity.getY();
-            double d2 = entity.getZ();
+            double d0 = livingEntity.getX();
+            double d1 = livingEntity.getY();
+            double d2 = livingEntity.getZ();
 
             for(int i = 0; i < 16; ++i) {
-                double d3 = entity.getX() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
-                double d4 = Mth.clamp(entity.getY() + (double)(entity.getRandom().nextInt(16) - 8), (double)level.getMinBuildHeight(), (double)(level.getMinBuildHeight() + ((ServerLevel)level).getLogicalHeight() - 1));
-                double d5 = entity.getZ() + (entity.getRandom().nextDouble() - 0.5D) * 16.0D;
-                if (entity.isPassenger()) {
-                    entity.stopRiding();
+                double d3 = livingEntity.getX() + (livingEntity.getRandom().nextDouble() - 0.5D) * 16.0D;
+                double d4 = Mth.clamp(livingEntity.getY() + (double)(livingEntity.getRandom().nextInt(16) - 8), level.getMinBuildHeight(), level.getMinBuildHeight() + ((ServerLevel)level).getLogicalHeight() - 1);
+                double d5 = livingEntity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5D) * 16.0D;
+                if (livingEntity.isPassenger()) {
+                    livingEntity.stopRiding();
                 }
 
-                net.minecraftforge.event.entity.EntityTeleportEvent.ChorusFruit event = net.minecraftforge.event.ForgeEventFactory.onChorusFruitTeleport(entity, d3, d4, d5);
+                net.minecraftforge.event.entity.EntityTeleportEvent.ChorusFruit event = net.minecraftforge.event.ForgeEventFactory.onChorusFruitTeleport(livingEntity, d3, d4, d5);
                 if (event.isCanceled()) return itemstack;
-                if (entity.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
-                    SoundEvent soundevent = entity instanceof Fox ? SoundEvents.FOX_TELEPORT : SoundEvents.CHORUS_FRUIT_TELEPORT;
-                    level.playSound((Player)null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
-                    entity.playSound(soundevent, 1.0F, 1.0F);
+                if (livingEntity.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                    SoundEvent soundevent = livingEntity instanceof Fox ? SoundEvents.FOX_TELEPORT : SoundEvents.CHORUS_FRUIT_TELEPORT;
+                    level.playSound(null, d0, d1, d2, soundevent, SoundSource.PLAYERS, 1.0F, 1.0F);
+                    livingEntity.playSound(soundevent, 1.0F, 1.0F);
                     break;
                 }
             }
 
-            if (entity instanceof Player) {
-                ((Player)entity).getCooldowns().addCooldown(this, 20);
+            if (livingEntity instanceof Player) {
+                ((Player)livingEntity).getCooldowns().addCooldown(this, 20);
             }
         }
 

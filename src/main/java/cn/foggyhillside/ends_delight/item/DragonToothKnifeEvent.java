@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class DragonToothKnifeEvent {
 
@@ -27,8 +28,8 @@ public class DragonToothKnifeEvent {
             LivingEntity target = event.getEntity();
             String[] endMobs = EDCommonConfigs.END_MOBS.get().toArray(new String[0]);
             for (String endMob : endMobs) {
-                ResourceLocation id = BuiltInRegistries.ENTITY_TYPE.getKey(target.getType());
-                if (id.equals(ResourceLocation.tryParse(endMob)) && event.getSource().getEntity() instanceof LivingEntity attacker) {
+                ResourceLocation id = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
+                if (id != null && id.equals(ResourceLocation.tryParse(endMob)) && event.getSource().getEntity() instanceof LivingEntity attacker) {
                     ItemStack toolStack = attacker.getItemInHand(InteractionHand.MAIN_HAND);
                     if (toolStack.is(ItemRegistry.DragonToothKnife.get())) {
                         event.setAmount(event.getAmount() * 3.5F);

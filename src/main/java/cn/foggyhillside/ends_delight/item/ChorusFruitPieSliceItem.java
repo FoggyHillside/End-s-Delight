@@ -48,7 +48,7 @@ public class ChorusFruitPieSliceItem extends Item {
 
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag isAdvanced) {
-        if ((Boolean) Configuration.FOOD_EFFECT_TOOLTIP.get()) {
+        if (Configuration.ENABLE_FOOD_EFFECT_TOOLTIP.get()) {
             if (this.hasCustomTooltip) {
                 MutableComponent textEmpty = TextUtils.getTranslation("tooltip." + this, new Object[0]);
                 tooltip.add(textEmpty.withStyle(ChatFormatting.BLUE));
