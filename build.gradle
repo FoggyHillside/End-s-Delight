@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'fabric-loom' version '1.16-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -15,23 +15,7 @@ repositories {
     maven { url = "https://maven.parchmentmc.org" } // Parchment
 }
 
-loom {
-    splitEnvironmentSourceSets()
-
-    mods {
-        "ends_delight" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
-
-}
-
 dependencies {
-    // To change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
     mappings loom.layered() {
         it.officialMojangMappings {
             setNameSyntheticMembers(false)
@@ -39,12 +23,12 @@ dependencies {
         it.parchment("org.parchmentmc.data:parchment-${rootProject.parchment_version}")
     }
 
-    modImplementation "curse.maven:farmers-delight-refabricated-993166:6324963"
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "curse.maven:farmers-delight-refabricated-993166:${project.fd_version}"
 
-    implementation "net.minecraft:minecraft-clientOnly-166bfcc39c:1.21.1-loom.mappings.1_21_1.layered+hash.1865420937-v2"
 }
 
 processResources {

@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "Скуштуйте хрящі ендермена",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s надто сильно вдарився об землю",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s надто сильно вдарився об землю при спробі втекти від %2$s",
-  "farmersdelight.tooltip.chorus_fruit_wine": "Випадково телепортує та очищає 1 шкідливий ефект",
-  "farmersdelight.tooltip.dragon_breath_and_chorus_soup": "Випадково телепортує та очищає 1 шкідливий ефект",
-  "farmersdelight.tooltip.chorus_flower_tea": "Очищає ефект левітації"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Випадково телепортує та очищає 1 шкідливий ефект",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Випадково телепортує та очищає 1 шкідливий ефект",
+  "tooltip.farmersdelight.chorus_flower_tea": "Очищає ефект левітації"
 }

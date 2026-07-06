@@ -49,39 +49,39 @@ public class EDLootModificationEvents {
         if (key == ENTITIES_ENDERMAN) {
             tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.ENDERMAN_GRISTLE.get())
                     .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                            EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                            EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                     )).and(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.4F, 0.1F)))));
         }
 
         if (key == ENTITIES_ENDERMITE) {
             tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.DRIED_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))
                             )).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.DRIED_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))
                             ).and(LootItemRandomChanceCondition.randomChance(0.75F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.DRIED_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true)))
                             ).and(LootItemRandomChanceCondition.randomChance(0.5F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAW_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(false)))
                             )).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAW_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(false)))
                             ).and(LootItemRandomChanceCondition.randomChance(0.75F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAW_ENDERMITE_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             )).and(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(false)))
                             ).and(LootItemRandomChanceCondition.randomChance(0.5F)))));
         }
@@ -89,7 +89,7 @@ public class EDLootModificationEvents {
         if (key == ENTITIES_SHULKER) {
             tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.SHULKER_MEAT.get())
                     .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                            EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                            EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                     )).and(LootItemRandomChanceCondition.randomChance(0.9F)))));
         }
 
@@ -104,7 +104,7 @@ public class EDLootModificationEvents {
                             .when(LootItemRandomChanceCondition.randomChance(0.5F))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.RAW_DRAGON_MEAT.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             ))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.DRAGON_TOOTH.get())
                             .apply(SetItemCountFunction.setCount(ConstantValue.exactly(3.0F)))))
@@ -114,7 +114,7 @@ public class EDLootModificationEvents {
                             .when(LootItemRandomChanceCondition.randomChance(0.5F))))
                     .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ModItems.DRAGON_TOOTH.get())
                             .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().equipment(
-                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.KNIVES))
+                                    EntityEquipmentPredicate.Builder.equipment().mainhand(ItemPredicate.Builder.item().of(ModTags.Items.KNIVES))
                             ))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0F)))));
         }
     }

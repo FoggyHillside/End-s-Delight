@@ -23,7 +23,7 @@ public class EndStoveRenderer implements BlockEntityRenderer<EndStoveBlockEntity
     public void render(EndStoveBlockEntity stoveEntity, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int combinedLightIn, int combinedOverlayIn) {
         Direction direction = stoveEntity.getBlockState().getValue(EndStoveBlock.FACING).getOpposite();
 
-        ItemStackHandler inventory = stoveEntity.getInventory();
+        ItemStackHandler inventory = stoveEntity.getItems();
         int posLong = (int) stoveEntity.getBlockPos().asLong();
 
         for (int i = 0; i < inventory.getSlotCount(); ++i) {
