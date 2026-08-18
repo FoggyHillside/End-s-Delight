@@ -1,9 +1,8 @@
-package cn.foggyhillside.ends_delight.item;
+package cn.foggyhillside.ends_delight.events;
 
 import cn.foggyhillside.ends_delight.EndsDelight;
-import cn.foggyhillside.ends_delight.config.EDCommonConfigs;
-import cn.foggyhillside.ends_delight.registry.ItemRegistry;
-import net.minecraft.core.registries.BuiltInRegistries;
+import cn.foggyhillside.ends_delight.EDCommonConfigs;
+import cn.foggyhillside.ends_delight.registry.ModItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.*;
@@ -31,7 +30,7 @@ public class DragonToothKnifeEvent {
                 ResourceLocation id = ForgeRegistries.ENTITY_TYPES.getKey(target.getType());
                 if (id != null && id.equals(ResourceLocation.tryParse(endMob)) && event.getSource().getEntity() instanceof LivingEntity attacker) {
                     ItemStack toolStack = attacker.getItemInHand(InteractionHand.MAIN_HAND);
-                    if (toolStack.is(ItemRegistry.DragonToothKnife.get())) {
+                    if (toolStack.is(ModItems.DRAGON_TOOTH_KNIFE.get())) {
                         event.setAmount(event.getAmount() * 3.5F);
                         break;
                     }

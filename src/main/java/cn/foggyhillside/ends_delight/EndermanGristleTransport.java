@@ -1,6 +1,6 @@
 package cn.foggyhillside.ends_delight;
 
-import cn.foggyhillside.ends_delight.registry.DamageTypeRegistry;
+import cn.foggyhillside.ends_delight.registry.EDModDamageTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
@@ -8,7 +8,6 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import vectorwing.farmersdelight.common.registry.ModDamageTypes;
 
 public class EndermanGristleTransport {
 
@@ -42,9 +41,9 @@ public class EndermanGristleTransport {
                 if (flag) {
                     if (entity instanceof Player && !((Player) entity).isCreative()) {
                         if (entity.getHealth() < (entity.getMaxHealth() * 0.3F)) {
-                            entity.hurt(ModDamageTypes.getSimpleDamageSource(level, DamageTypeRegistry.ENDERMAN_GRISTLE_TELEPORT), entity.getHealth() * 1.5F);
+                            entity.hurt(vectorwing.farmersdelight.common.registry.ModDamageTypes.getSimpleDamageSource(level, EDModDamageTypes.ENDERMAN_GRISTLE_TELEPORT), entity.getHealth() * 1.5F);
                         } else {
-                            entity.hurt(ModDamageTypes.getSimpleDamageSource(level, DamageTypeRegistry.ENDERMAN_GRISTLE_TELEPORT), entity.getHealth() * damage);
+                            entity.hurt(vectorwing.farmersdelight.common.registry.ModDamageTypes.getSimpleDamageSource(level, EDModDamageTypes.ENDERMAN_GRISTLE_TELEPORT), entity.getHealth() * damage);
                         }
                     }
                 }

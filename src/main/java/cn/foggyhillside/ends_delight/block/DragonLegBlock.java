@@ -1,6 +1,6 @@
 package cn.foggyhillside.ends_delight.block;
 
-import cn.foggyhillside.ends_delight.registry.ItemRegistry;
+import cn.foggyhillside.ends_delight.registry.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -225,7 +225,7 @@ public class DragonLegBlock extends HorizontalDirectionalBlock {
 
         if (!(servings == 0)) {
             if (heldStack.is(Items.BOWL)) {
-                return takeServing(level, pos, state, player, handIn, ItemRegistry.DragonLegWithSauce.get());
+                return takeServing(level, pos, state, player, handIn, ModItems.DRAGON_LEG_WITH_SAUCE.get());
             } else {
                 player.displayClientMessage(TextUtils.block("feast.use_container", new ItemStack(Items.BOWL).getHoverName()), true);
             }

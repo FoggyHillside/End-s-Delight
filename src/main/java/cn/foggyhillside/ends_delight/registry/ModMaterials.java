@@ -4,7 +4,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class MaterialRegistry {
+public class ModMaterials {
     public static final Tier DRAGON_EGG_SHELL = new Tier() {
         @Override
         public int getUses() {
@@ -33,7 +33,7 @@ public class MaterialRegistry {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(ItemRegistry.HalfDragonEggShell.get());
+            return Ingredient.of(ModItems.HALF_DRAGON_EGG_SHELL.get());
         }
     };
     public static final Tier END_STONE = new Tier() {
@@ -126,7 +126,7 @@ public class MaterialRegistry {
 
         @Override
         public Ingredient getRepairIngredient() {
-            return Ingredient.of(ItemRegistry.DragonTooth.get());
+            return Ingredient.of(ModItems.DRAGON_TOOTH.get());
         }
     };
 }

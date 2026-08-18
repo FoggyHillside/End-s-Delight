@@ -1,6 +1,6 @@
 package cn.foggyhillside.ends_delight.world.feature;
 
-import cn.foggyhillside.ends_delight.registry.BlockRegistry;
+import cn.foggyhillside.ends_delight.registry.ModBlocks;
 import cn.foggyhillside.ends_delight.block.ChorusSucculentBlock;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -30,7 +30,7 @@ public class ChorusSucculentFeature extends Feature<CountConfiguration> {
             int i1 = randomsource.nextInt(8) - randomsource.nextInt(8);
             int j1 = worldgenlevel.getHeight(Heightmap.Types.WORLD_SURFACE, blockpos.getX() + l, blockpos.getZ() + i1);
             BlockPos blockpos1 = new BlockPos(blockpos.getX() + l, j1, blockpos.getZ() + i1);
-            BlockState blockstate = BlockRegistry.ChorusSucculent.get().defaultBlockState().setValue(ChorusSucculentBlock.Succulent, Integer.valueOf(randomsource.nextInt(3) + 1));
+            BlockState blockstate = ModBlocks.CHORUS_SUCCULENT.get().defaultBlockState().setValue(ChorusSucculentBlock.Succulent, Integer.valueOf(randomsource.nextInt(3) + 1));
             if (blockstate.canSurvive(worldgenlevel, blockpos1)) {
                 worldgenlevel.setBlock(blockpos1, blockstate, 2);
                 ++i;

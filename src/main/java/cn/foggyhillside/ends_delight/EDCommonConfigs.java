@@ -1,4 +1,4 @@
-package cn.foggyhillside.ends_delight.config;
+package cn.foggyhillside.ends_delight;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraftforge.common.ForgeConfigSpec;

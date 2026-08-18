@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageType;
 
-public class DamageTypeRegistry {
+public class EDModDamageTypes {
     public static final ResourceKey<DamageType> ENDERMAN_GRISTLE_TELEPORT = ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(EndsDelight.MODID, "enderman_gristle_teleport"));
 
 }

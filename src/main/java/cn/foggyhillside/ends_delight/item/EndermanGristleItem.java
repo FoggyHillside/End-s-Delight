@@ -1,7 +1,7 @@
 package cn.foggyhillside.ends_delight.item;
 
 import cn.foggyhillside.ends_delight.EndermanGristleTransport;
-import cn.foggyhillside.ends_delight.config.EDCommonConfigs;
+import cn.foggyhillside.ends_delight.EDCommonConfigs;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -10,11 +10,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import vectorwing.farmersdelight.common.item.ConsumableItem;
 
-public class EndermanGristleItem extends Item {
+public class EndermanGristleItem extends ConsumableItem {
 
     private final Float damage;
 
@@ -26,6 +26,11 @@ public class EndermanGristleItem extends Item {
         this.shift = shift;
     }
 
+    public EndermanGristleItem(Properties properties, float damage, boolean shift, boolean hasFoodEffectTooltip) {
+        super(properties, hasFoodEffectTooltip);
+        this.damage = damage;
+        this.shift = shift;
+    }
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         ItemStack itemstack = super.finishUsingItem(itemStack, level, livingEntity);
@@ -60,5 +65,4 @@ public class EndermanGristleItem extends Item {
         }
         return itemstack;
     }
-
 }
