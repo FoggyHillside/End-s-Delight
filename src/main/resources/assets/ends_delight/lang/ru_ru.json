@@ -26,7 +26,7 @@
   "item.ends_delight.end_barbecue_stick": "Эндер-барбекю",
   "item.ends_delight.chorus_flower_tea": "Чай из цветка хоруса",
   "item.ends_delight.dried_chorus_flower": "Высушенный цветок хоруса",
-  "item.ends_delight.roasted_shulker_meat": "Обжареное шалкеровое мясо",
+  "item.ends_delight.roasted_shulker_meat": "Обжаренное шалкеровое мясо",
   "item.ends_delight.roasted_shulker_meat_slice": "Обжареный ломтик шалкерового мяса",
   "item.ends_delight.roasted_dragon_meat_cuts": "Обжареная рубленая драконятина",
   "item.ends_delight.raw_dragon_meat_cuts": "Сырая рубленая драконятина",
@@ -39,7 +39,7 @@
   "item.ends_delight.chorus_flower_pie": "Пирог с цветком хоруса",
   "item.ends_delight.steamed_dragon_egg": "Миска яйца дракона на пару",
   "item.ends_delight.grilled_shulker": "Тарелка шалкера на гриле",
-  "item.ends_delight.roasted_dragon_steak": "Обжареный драконий стейк",
+  "item.ends_delight.roasted_dragon_steak": "Обжаренный драконий стейк",
   "item.ends_delight.chorus_sauce": "Эндер-соус",
   "item.ends_delight.chorus_cookie": "Печенье с плодами хоруса",
   "item.ends_delight.ender_congee": "Эндер-каша",
@@ -89,7 +89,7 @@
   "ends_delight.advancement.consume_enderman_gristle.desc": "Съешьте хрящ эндермена",
   "death.attack.ends_delight.enderman_gristle_teleport": "%1$s разбился вдребезги",
   "death.attack.ends_delight.enderman_gristle_teleport.player": "%1$s разбился вдребезги, спасаясь от %2$s",
-  "tooltip.farmersdelight.chorus_fruit_wine": "Случайно телепортирует и убирает один негативный эффект",
-  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Случайно телепортирует и убирает один негативный эффект",
-  "tooltip.farmersdelight.chorus_flower_tea": "Убирает эффект левитации"
+  "tooltip.farmersdelight.chorus_fruit_wine": "Случайно телепортирует и снимает один вредный эффект",
+  "tooltip.farmersdelight.dragon_breath_and_chorus_soup": "Случайно телепортирует и снимает один вредный эффект",
+  "tooltip.farmersdelight.chorus_flower_tea": "Снимает эффект левитации"
 }
